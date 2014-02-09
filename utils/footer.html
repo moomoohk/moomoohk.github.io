@@ -1,0 +1,46 @@
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script><br />
+<script type="text/javascript">
+	$(document).ready(function(){
+		function getLast(url){
+			var page=url;
+				if(page.charAt(page.length-1)=='/'){
+					page=page.substring(0, page.length-1);
+					while(page.charAt(page.length-1)=='/')
+						page=page.substring(0, page.length-1);
+				}
+			return page.substring(page.lastIndexOf('/')+1);
+		}
+		function getFirst(url){
+			var temp=url;
+			if(temp.toLowerCase().substring(0, 7)=="http://")
+				temp=temp.substring(7);
+			temp+="/";
+			temp=temp.substring(0, temp.indexOf("/"));
+			return temp;
+		}
+		var target=""+window.location.search.substring(1);
+		var page="Back to site";
+			if(target.length>0){
+				$("#url").attr("href", target);
+				page="("+getFirst(target)+")";
+			}
+		$("#footer").hover(function(){
+ 		   $("#footer").css("background-color","#C7C7C7");
+ 		   $("#text").text(page);
+		});
+		$("#footer").mouseleave(function(){
+		    $("#footer").css("background-color","#BAB6B8");
+		    $("#text").text("Back to site");
+		});
+		$("#footer").mousedown(function(){
+ 		   $("#footer").css("background-color","#9E9E9E");
+		});
+	});
+</script>
+<a id="url" href="http://moomoohk.github.io/" target="_top">
+	<div id="footer" style="color: black; text-align: center; background: #BAB6B8; width: 100%; position: fixed; bottom: 0; left: 0; height: 20px; font-family: PT Sans, sans-serif">
+				<b id="text">
+					Back to site
+				</b>
+	</div>
+</a>
