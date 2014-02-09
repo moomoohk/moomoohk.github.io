@@ -80,7 +80,7 @@ section {
         cursor: default; }
       #main ul#topList li a, #main ul#topList li p {
         display: block;
-        padding: 25px 40px;
+        padding: 15px 40px;
         color: #484848;
         text-decoration: none; }
     #main ul#topList ul {
@@ -108,15 +108,15 @@ section {
         top: 0; }
 
 .headerDivider {
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
   padding-top: 10px;
-  padding-bottom: 40px;
+  padding-bottom: 30px;
   border-right: 2px solid #B8B8B8;
   border-radius: 20px; }
 
 #footer {
-  color: #272727;
+  color: #565656;
   background-color: #7a8996;
   margin-top: 20px;
   padding: 5px;
