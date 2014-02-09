@@ -54,7 +54,7 @@ section {
       #main ul li:hover a {
         color: #fff;
         background: #4b545f; }
-      #main ul li:active > a {
+      #main ul li a:active {
         background: #47515a; }
       #main ul li:hover > ul {
         display: block; }
