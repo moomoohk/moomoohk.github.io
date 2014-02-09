@@ -6,9 +6,12 @@ body {
   font-family: Conv_PT Sans; }
 
 @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
-  /* Styles for mobile */ }
+  nav {
+    display: none; } }
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
-  /* Styles for tablet */ }
+  /* Styles for tablet */
+  nav {
+    display: none; } }
 @media only screen and (-webkit-min-device-pixel-ratio: 1.5) {
   /* Don't forget your Retina CSS! */
   body {
@@ -19,10 +22,6 @@ body, div, h1, h2, h3, h4, h5, h6, p, ul, ol, li, dl, dt, dd, img, form, fieldse
   padding: 0;
   border: 0; }
 
-/* {
-	
-	}
-*/
 section {
   color: #272727;
   background: #66839f;
