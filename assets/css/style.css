@@ -14,13 +14,25 @@ body {
   body {
     background-size: 72px 72px; } }
 body, div, h1, h2, h3, h4, h5, h6, p, ul, ol, li, dl, dt, dd, img, form, fieldset, input, textarea, blockquote {
+  -webkit-font-smoothing: antialiased;
   margin: 0;
   padding: 0;
   border: 0; }
 
+/* {
+	
+	}
+*/
 section {
-  margin-left: 20px;
-  margin-right: 20px; }
+  color: #272727;
+  background: #66839f;
+  margin-top: 100px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  box-shadow: 0px 0px 10px #494f69; }
+  section p {
+    margin-left: 20px;
+    margin-right: 20px; }
 
 nav {
   margin-top: 20px;
@@ -45,29 +57,22 @@ nav {
       float: left; }
       nav ul li:hover a {
         color: #fff;
-        background: #4b545f;
-        background: linear-gradient(top, #4f5964 0%, #5f6975 40%);
-        background: -moz-linear-gradient(top, #4f5964 0%, #5f6975 40%);
-        background: -webkit-linear-gradient(top, #4f5964 0%, #5f6975 40%); }
+        background: #4b545f; }
       nav ul li:active > ul {
         background: #47515a; }
       nav ul li:hover > ul {
         display: block; }
       nav ul li p {
         -webkit-user-select: none;
-        /* Chrome/Safari */
         -moz-user-select: none;
-        /* Firefox */
         -ms-user-select: none;
-        /* IE10+ */
-        /* Rules below not implemented in browsers yet */
         -o-user-select: none;
         user-select: none;
         cursor: default; }
       nav ul li a, nav ul li p {
         display: block;
         padding: 25px 40px;
-        color: #757575;
+        color: #484848;
         text-decoration: none; }
     nav ul ul {
       display: none;
