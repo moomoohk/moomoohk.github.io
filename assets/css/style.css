@@ -6,13 +6,9 @@ body {
   font-family: Conv_PT Sans; }
 
 @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
-  /* Styles for mobile */
-  section {
-    margin-top: 10px; } }
+  /* Styles for mobile */ }
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
-  /* Styles for tablet */
-  section {
-    margin-top: 10px; } }
+  /* Styles for tablet */ }
 @media only screen and (-webkit-min-device-pixel-ratio: 1.5) {
   /* Don't forget your Retina CSS! */
   body {
@@ -34,66 +30,66 @@ section {
     margin-left: 20px;
     margin-right: 20px; }
 
-nav {
+#main {
   margin-top: 20px;
   margin-bottom: 40px;
   text-align: center; }
-  nav ul {
+  #main ul {
     background: #efefef;
     background: linear-gradient(top, #efefef 0%, #bbbbbb 100%);
     background: -moz-linear-gradient(top, #efefef 0%, #bbbbbb 100%);
     background: -webkit-linear-gradient(top, #efefef 0%, #bbbbbb 100%);
     box-shadow: 0px 0px 9px rgba(0, 0, 0, 0.15);
     padding: 0 20px;
-    border-radius: 10px;
+    border-radius: 5px;
     list-style: none;
     position: relative;
     display: inline-table; }
-    nav ul:after {
+    #main ul:after {
       content: "";
       clear: both;
       display: block; }
-    nav ul li {
+    #main ul li {
       float: left; }
-      nav ul li:hover a {
+      #main ul li:hover a {
         color: #fff;
         background: #4b545f; }
-      nav ul li:active > ul {
+      #main ul li:active > a {
         background: #47515a; }
-      nav ul li:hover > ul {
+      #main ul li:hover > ul {
         display: block; }
-      nav ul li p {
+      #main ul li p {
         -webkit-user-select: none;
         -moz-user-select: none;
         -ms-user-select: none;
         -o-user-select: none;
         user-select: none;
         cursor: default; }
-      nav ul li a, nav ul li p {
+      #main ul li a, #main ul li p {
         display: block;
         padding: 25px 40px;
         color: #484848;
         text-decoration: none; }
-    nav ul ul {
+    #main ul ul {
       display: none;
       background: #5f6975;
       border-radius: 0px;
       padding: 0;
       position: absolute;
       top: 100%; }
-      nav ul ul li {
+      #main ul ul li {
         float: none;
         border-top: 1px solid #6b727c;
         border-bottom: 1px solid #575f6a;
         position: relative; }
-        nav ul ul li a {
+        #main ul ul li a {
           padding: 15px 40px;
           color: #fff; }
-          nav ul ul li a:hover {
+          #main ul ul li a:hover {
             background: #4b545f; }
-          nav ul ul li a:active {
+          #main ul ul li a:active {
             background: #47515a; }
-      nav ul ul ul {
+      #main ul ul ul {
         position: absolute;
         left: 100%;
         top: 0; }
