@@ -42,6 +42,12 @@ section {
   section h2 {
     margin-top: 10px;
     padding-left: 10px; }
+  section.announcement {
+    background: #84659e;
+    color: #382c57;
+    padding: 10px;
+    margin-bottom: 25px;
+    text-align: center; }
 
 #main {
   margin-top: 20px;
@@ -134,3 +140,30 @@ section {
   #footer h2 {
     margin-top: 10px;
     padding-left: 10px; }
+
+#widgets {
+  position: relative;
+  height: 625px; }
+  #widgets #irc #ircFr {
+    height: 495px;
+    width: 60%;
+    border-radius: 5px;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    right: 200px; }
+  #widgets #twitter .twitter-timeline {
+    height: 500px;
+    width: 35%;
+    position: absolute;
+    right: 20px;
+    top: 20px; }
+  #widgets #youtube #youtubeFr {
+    position: absolute;
+    border-radius: 5px;
+    top: 540px;
+    width: 95%;
+    overflow: hidden;
+    height: 105px;
+    border: 0;
+    background-color: #7d93f3; }
