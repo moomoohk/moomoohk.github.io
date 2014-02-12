@@ -213,3 +213,9 @@ section {
     height: 105px;
     border: 0;
     background-color: #7d93f3; }
+
+.prettify .pun {
+  color: #3d3d3d; }
+
+.prettify .atv {
+  color: blue; }
