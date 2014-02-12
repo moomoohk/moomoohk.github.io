@@ -37,7 +37,7 @@ section {
     margin-top: 5px;
     margin-bottom: 5px;
     padding-left: 10px; }
-  section ul {
+  section ul, section ol {
     padding-left: 30px; }
   section a {
     color: #303087;
@@ -51,6 +51,7 @@ section {
     overflow-x: auto;
     overflow-y: auto;
     margin-left: 10px;
+    margin-right: 10px;
     padding-left: 20px;
     box-shadow: 0px 0px 10px #494f69;
     background: #44739e;
@@ -213,9 +214,3 @@ section {
     height: 105px;
     border: 0;
     background-color: #7d93f3; }
-
-.prettify .pun {
-  color: #3d3d3d; }
-
-.prettify .atv {
-  color: blue; }
