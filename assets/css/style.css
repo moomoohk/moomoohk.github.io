@@ -138,19 +138,20 @@ section {
         float: none;
         border-top: 1px solid #6b727c;
         border-bottom: 1px solid #575f6a;
+        border-left: 1px solid #575f6a;
         position: relative; }
         #main ul#topList ul li a {
           padding: 15px 40px;
           color: #fff; }
           #main ul#topList ul li a:hover {
-            background: #4b545f; }
+            background: #2f2f2f; }
           #main ul#topList ul li a:active {
             background: #47515a; }
       #main ul#topList ul ul {
         z-index: 10;
         position: absolute;
         left: 100%;
-        top: 0; }
+        top: -1px; }
 
 .headerDivider {
   margin-top: 5px;
