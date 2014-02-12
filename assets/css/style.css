@@ -137,7 +137,6 @@ section {
       #main ul#topList ul li {
         float: none;
         border-top: 1px solid #6b727c;
-        border-bottom: 1px solid #575f6a;
         border-left: 1px solid #575f6a;
         position: relative; }
         #main ul#topList ul li a {
