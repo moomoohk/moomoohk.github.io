@@ -4,7 +4,7 @@
 .pln { color: #000 }  /* plain text */
 
 @media screen {
-  .str { color: blue }  /* string content */
+  .str { color: red }  /* string content */
   .kwd { color: #008 }  /* a keyword */
   .com { color: #800 }  /* a comment */
   .typ { color: #606 }  /* a type name */
@@ -13,9 +13,9 @@
   .pun, .opn, .clo { color: rgb(61, 61, 61) }
   .tag { color: #008 }  /* a markup tag name */
   .atn { color: #606 }  /* a markup attribute name */
-  .atv { color: blue }  /* a markup attribute value */
+  .atv { color: red }  /* a markup attribute value */
   .dec, .var { color: #606 }  /* a declaration; a variable name */
-  .fun { color: red }  /* a function name */
+  .fun { color: blue }  /* a function name */
 }
 
 /* Use higher contrast and text-weight for printable form. */

@@ -56,10 +56,20 @@
 	        }
 	    }
 	});
-	</script>  
+	</script>
+	
+	<script type="text/javascript">
+		function deleteNums() {
+			prettyPrint();
+			$("ol.linenums").each(function(index) { 
+				if($(this).children().length == 1)
+					$(this).remove();
+			});
+		}
+	</script>
 </head>
 
-<body onload="prettyPrint()">
+<body onload="deleteNums()">
 
   <header>
     <!-- @todo Do mobile styling -->
@@ -172,9 +182,8 @@
 
 	</section>
   
-<!-- @todo fix the footer touching the bottom of the screen -->
-	<div id="footer">
-		© moomoohk 2014
-	</div>
-</body>
+		<div id="footer">
+			© moomoohk 2014
+		</div>
+	</body>
 </html>
