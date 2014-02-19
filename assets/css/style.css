@@ -2,7 +2,7 @@ html {
   height: 100%; }
 
 body {
-  background: #909eab;
+  background: #AFC1D1;
   font-family: Conv_PT Sans; }
 
 @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
@@ -26,8 +26,9 @@ body {
 
 section {
   color: #272727;
-  background: #66839f;
+  background: #667AB3;
   margin-top: 10px;
+  border-radius: 2px;
   padding: 20px;
   box-shadow: 0px 0px 10px #494f69;
   /* THANK YOU http://perishablepress.com/perfect-pre-tags/ */
@@ -39,8 +40,12 @@ section {
     padding-left: 10px; }
   section ul, section ol {
     padding-left: 30px; }
+    section ul li code, section ol li code {
+      border: #6CA5B6 solid 1px;
+      border-radius: 3px;
+      background: #6A80C3; }
   section a {
-    color: #303087;
+    color: #1F0D4D;
     text-decoration: none; }
   section h2 {
     margin-top: 10px;
@@ -68,7 +73,8 @@ section {
     margin-bottom: 5px;
     font-family: Conv_PT Sans;
     font-size: medium;
-    background: #405097; }
+    background: #405097;
+    color: #978140; }
   section *:first-child + html pre {
     padding-bottom: 20px;
     overflow-y: hidden;
@@ -174,6 +180,7 @@ section {
   margin-bottom: 20px;
   padding: 5px;
   box-shadow: 0px 0px 10px #494f69;
+  border-radius: 2px;
   text-align: center; }
   #footer p {
     margin-top: 5px;
