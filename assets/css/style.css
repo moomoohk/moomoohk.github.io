@@ -25,7 +25,7 @@ section {
   color: #ffffff;
   background: #667AB3;
   margin-top: 10px;
-  border-radius: 2px;
+  border-radius: 4px;
   padding: 20px;
   /*box-shadow:  0px 0px 10px #494f69;*/
   /* THANK YOU http://perishablepress.com/perfect-pre-tags/ */
@@ -93,6 +93,33 @@ section {
     padding: 10px;
     margin-bottom: 25px;
     text-align: center; }
+  section#footer {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    cursor: default;
+    color: #565656;
+    background-color: #7a8996;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 5px;
+    /*box-shadow:  0px 0px 10px #494f69;*/
+    border-radius: 4px;
+    text-align: center; }
+    section#footer p {
+      margin-top: 5px;
+      margin-bottom: 5px;
+      padding-left: 10px; }
+    section#footer ul {
+      padding-left: 30px; }
+    section#footer a {
+      color: #303087;
+      text-decoration: none; }
+    section#footer h2 {
+      margin-top: 10px;
+      padding-left: 10px; }
 
 #main {
   margin-top: 20px;
@@ -135,6 +162,13 @@ section {
         padding: 15px 40px;
         color: #484848;
         text-decoration: none; }
+      #main ul#topList li .headerDivider {
+        margin-top: 5px;
+        margin-bottom: 5px;
+        padding-top: 10px;
+        padding-bottom: 30px;
+        border-right: 2px solid #B8B8B8;
+        border-radius: 20px; }
     #main ul#topList ul {
       z-index: 10;
       display: none;
@@ -161,42 +195,6 @@ section {
         position: absolute;
         left: 100%;
         top: -1px; }
-
-.headerDivider {
-  margin-top: 5px;
-  margin-bottom: 5px;
-  padding-top: 10px;
-  padding-bottom: 30px;
-  border-right: 2px solid #B8B8B8;
-  border-radius: 20px; }
-
-#footer {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  -o-user-select: none;
-  user-select: none;
-  cursor: default;
-  color: #565656;
-  background-color: #7a8996;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  padding: 5px;
-  /*box-shadow:  0px 0px 10px #494f69;*/
-  border-radius: 2px;
-  text-align: center; }
-  #footer p {
-    margin-top: 5px;
-    margin-bottom: 5px;
-    padding-left: 10px; }
-  #footer ul {
-    padding-left: 30px; }
-  #footer a {
-    color: #303087;
-    text-decoration: none; }
-  #footer h2 {
-    margin-top: 10px;
-    padding-left: 10px; }
 
 #widgets {
   position: relative;
