@@ -1,0 +1,103 @@
+body
+{
+    font-family:PT Sans, Helvetica, sans-serif;
+    text-decoration:none;
+}
+
+#tilegrid
+{
+    display:inline-block;
+    padding:10px;
+}
+
+.tile
+{
+    display:inline-block;
+    height:260px;
+    width:200px;
+    padding:5px;
+    margin:10px;
+    border:2px solid gray;
+    background-color:#c7c7c7;
+    border-radius:5px;
+    float:left;
+}
+
+.tileName
+{
+    font-weight:bold;
+    color:#2f2f2f;   
+}
+
+.hr
+{
+    width:98%;
+    height:2px;
+    background-color:gray;
+    margin-bottom:5px;
+}
+
+.innerDiv
+{  
+    float:left;
+}
+
+.tileImages
+{
+    width:60px;
+}
+
+.tileImage
+{
+    border:2px solid gray;
+    border-radius:10px;
+}
+
+.projectImage
+{
+    border:2px solid blue;   
+}
+
+/*THANK YOU RADJOR I LUB YU LONG TAIM*/
+.tileImages a img.tileImage:hover
+{
+    border:3px solid #656565;
+    margin-top:-1px;
+    margin-bottom:-1px;
+    margin-left:-1px;
+}
+
+.tileImages a img.tileImage:active
+{
+    border-color:2px solid #1d1d1d; 
+}
+
+.descriptionText
+{
+    position:relative;
+    width:135px;
+    height:230px;
+}
+
+.readMore
+{
+    position:absolute;
+    bottom:6px;
+    right:0;
+}
+
+.readMore a
+{
+    border-radius:2px;
+    padding:4px;
+    font-weight:bold;
+    color:#4d4d4d;   
+    background-color:#b2b2b2;
+    border:1px solid #626262;
+}
+
+.readMore a:hover
+{
+    background-color:#848484;
+    color:#000;   
+}

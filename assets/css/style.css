@@ -94,12 +94,12 @@ section {
     margin-bottom: 25px;
     text-align: center; }
   section#footer {
+    cursor: pointer;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     -o-user-select: none;
     user-select: none;
-    cursor: default;
     color: #565656;
     background-color: #7a8996;
     margin-top: 20px;
@@ -223,3 +223,9 @@ section {
     height: 105px;
     border: 0;
     background-color: #7d93f3; }
+
+.centre {
+  width: 200px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto; }
