@@ -66,7 +66,7 @@
 					selectImage($(this).index());
 				});
 				$(".ribbon img").each(function() {
-					$(this).height(100);
+					$(this).height(100).css("display", "inline-block");
 				});
 
 				selectImage(0);
@@ -173,20 +173,18 @@
 		}
 
 		.ribbon {
+			display: block;
 			margin-top: 10px;
 			border-radius: 2px;
 			width: 100%;
-			/*display: inline-flex;*/
 			overflow-x: scroll;
 		}
 
 		.ribbon img {
+			display: none;
 			cursor: pointer;
 			padding: 5px;
 			transition: height 0.2s ease, width 0.2s ease;
-		}
-
-		.ribbon img:hover {
 		}
 	</style>
 	<h1>Reaction Keeper</h1>
@@ -201,7 +199,7 @@
 					<img src="assets/images/screenshots/reactionkeeper/reactionkeeper1.png" />
 					<img src="assets/images/screenshots/reactionkeeper/reactionkeeper2.png" />
 				</div>
-				</center>
+			</center>
 		</div>
 	</p>
 	<h1>//TODO</h1>
