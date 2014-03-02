@@ -27,9 +27,9 @@
           </script>
         <!-- /Hammer reload -->
       
-		
+
 		<link href="//fonts.googleapis.com/css?family=PT+Sans:400italic,400,700italic,700" rel="stylesheet" type="text/css">
-		
+
 		<link rel='stylesheet' href='assets/css/normalize.css'>
 <link rel='stylesheet' href='assets/css/fonts.css'>
 <link rel='stylesheet' href='assets/css/style.css'>
@@ -41,7 +41,7 @@
 		<link href="assets/favicon.ico" rel="shortcut icon">
 		<link href="" rel="apple-touch-icon">
 		<title>moomoohk</title>
-		<script type="text/javascript">
+		<script type="application/javascript">
 			var selectedIndex;
 
 			function onLoad() {
@@ -79,7 +79,13 @@
 					return;
 				}
 				$(".ribbon img:nth(" + selectedIndex + ")").css("border", "none");
-				selectedIndex = index;
+				if (index < 0) {
+					selectedIndex = 0;
+				} else if (index >= $(".ribbon img").length ) {
+					selectedIndex = $(".ribbon img").length - 1;
+				} else {
+					selectedIndex = index;
+				}
 				$(".ribbon img:nth(" + selectedIndex + ")").css("border", "blue 1px solid").css("border-radius", "5px");
 				$(".mainImage").attr("src", $(".ribbon img:nth(" + index + ")").attr("src"));
 			}
@@ -179,7 +185,7 @@
 			margin-top: 10px;
 			border-radius: 2px;
 			width: 100%;
-			overflow-x: scroll;
+			overflow-x: auto;
 		}
 
 		.ribbon img {
@@ -200,6 +206,7 @@
 				<div class="ribbon">
 					<img src="assets/images/screenshots/reactionkeeper/reactionkeeper1.png" />
 					<img src="assets/images/screenshots/reactionkeeper/reactionkeeper2.png" />
+					<img src="assets/images/screenshots/reactionkeeper/reactionkeeper3.png" />
 				</div>
 			</center>
 		</div>
@@ -218,16 +225,15 @@
 			</li>
 		</ul>
 	</p>
-	<section id="downloads">
+</section>
+<section id="downloads">
+	<h1>Downloads</h1>
 	<p>
 		<ul>
-			<li><a href="https://github.com/moomoohk/reactionkeeper/tarball/master">tar.gz</a></li>
-			<li><a href="https://github.com/moomoohk/reactionkeeper/zipball/master">.zip</a></li>
+			<li><a href= assets/bin/reactionkeeper/reactionkeeperJAR.zip >.zip</a></li>
 		</ul>
 	</p>
 </section>
-</section>
-
 		<section id="footer">
 			© moomoohk 2014
 		</section>

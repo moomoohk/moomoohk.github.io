@@ -27,9 +27,9 @@
           </script>
         <!-- /Hammer reload -->
       
-		
+
 		<link href="//fonts.googleapis.com/css?family=PT+Sans:400italic,400,700italic,700" rel="stylesheet" type="text/css">
-		
+
 		<link rel='stylesheet' href='assets/css/normalize.css'>
 <link rel='stylesheet' href='assets/css/fonts.css'>
 <link rel='stylesheet' href='assets/css/style.css'>
@@ -41,7 +41,7 @@
 		<link href="assets/favicon.ico" rel="shortcut icon">
 		<link href="" rel="apple-touch-icon">
 		<title>moomoohk</title>
-		<script type="text/javascript">
+		<script type="application/javascript">
 			var selectedIndex;
 
 			function onLoad() {
@@ -79,7 +79,13 @@
 					return;
 				}
 				$(".ribbon img:nth(" + selectedIndex + ")").css("border", "none");
-				selectedIndex = index;
+				if (index < 0) {
+					selectedIndex = 0;
+				} else if (index >= $(".ribbon img").length ) {
+					selectedIndex = $(".ribbon img").length - 1;
+				} else {
+					selectedIndex = index;
+				}
 				$(".ribbon img:nth(" + selectedIndex + ")").css("border", "blue 1px solid").css("border-radius", "5px");
 				$(".mainImage").attr("src", $(".ribbon img:nth(" + index + ")").attr("src"));
 			}
