@@ -2,7 +2,7 @@ body {
   -webkit-font-smoothing: antialiased;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
   background: #AFC1D1;
-  font-family: Conv_PT Sans; }
+  font-family: 'PT Sans', sans-serif; }
 
 @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
   /* Styles for mobile */ }
