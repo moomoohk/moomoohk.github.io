@@ -64,28 +64,23 @@
 							scrollTop : 0
 						}, 400);
 				});
-				$(".ribbon img").click(function() {
-					selectImage($(this).index());
+			}
+		</script>
+		<script type="application/javascript">
+			$(document).ready(function() {
+				$("#screenies").after("<p id=\"thumbs\"></p>");
+				$("#screenies img").each(function() {
+					$("#thumbs").append("<img src=\"" + $(this).attr("src") + "\"/>");
 				});
-
-				selectImage(0);
-			}
-
-			function selectImage(index) {
-				if (index == selectedIndex) {
-					return;
-				}
-				$(".ribbon img:nth(" + selectedIndex + ")").css("border-color", "rgba(0, 0, 255, 0)");
-				if (index < 0) {
-					selectedIndex = 0;
-				} else if (index >= $(".ribbon img").length ) {
-					selectedIndex = $(".ribbon img").length - 1;
-				} else {
-					selectedIndex = index;
-				}
-				$(".ribbon img:nth(" + selectedIndex + ")").css("border-color", "blue");
-				$(".mainImage").attr("src", $(".ribbon img:nth(" + index + ")").attr("src"));
-			}
+				$("#thumbs img:first-child").addClass("selected");
+				$("#thumbs").on("click", "img", function() {
+					$("#screenies img").removeClass("opaque");
+					var newImage = $(this).index();
+					$("#screenies img").eq(newImage).addClass("opaque");
+					$("#thumbs img").removeClass("selected");
+					$(this).addClass("selected");
+				});
+			});
 		</script>
 	</head>
 
