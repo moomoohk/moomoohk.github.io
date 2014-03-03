@@ -67,9 +67,6 @@
 				$(".ribbon img").click(function() {
 					selectImage($(this).index());
 				});
-				$(".ribbon img").each(function() {
-					$(this).height(100).css("display", "inline-block");
-				});
 
 				selectImage(0);
 			}
@@ -78,7 +75,7 @@
 				if (index == selectedIndex) {
 					return;
 				}
-				$(".ribbon img:nth(" + selectedIndex + ")").css("border", "none");
+				$(".ribbon img:nth(" + selectedIndex + ")").css("border-color", "rgba(0, 0, 255, 0)");
 				if (index < 0) {
 					selectedIndex = 0;
 				} else if (index >= $(".ribbon img").length ) {
@@ -86,7 +83,7 @@
 				} else {
 					selectedIndex = index;
 				}
-				$(".ribbon img:nth(" + selectedIndex + ")").css("border", "blue 1px solid").css("border-radius", "5px");
+				$(".ribbon img:nth(" + selectedIndex + ")").css("border-color", "blue");
 				$(".mainImage").attr("src", $(".ribbon img:nth(" + index + ")").attr("src"));
 			}
 		</script>
