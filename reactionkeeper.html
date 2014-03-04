@@ -30,20 +30,18 @@
 
 		<link href="//fonts.googleapis.com/css?family=PT+Sans:400italic,400,700italic,700" rel="stylesheet" type="text/css">
 
-		<link rel='stylesheet' href='assets/css/normalize.css'>
-<link rel='stylesheet' href='assets/css/fonts.css'>
-<link rel='stylesheet' href='assets/css/style.css'>
-<link rel='stylesheet' href='assets/js/google-code-prettify/prettify.css'>
-		<script src='assets/js/jquery-1.8.3.min.js'></script>
-<script src='assets/js/app.js'></script>
-<script src='assets/js/google-code-prettify/prettify.js'></script>
+		<link rel='stylesheet' href='template/assets/css/normalize.css'>
+<link rel='stylesheet' href='template/assets/css/fonts.css'>
+<link rel='stylesheet' href='template/assets/css/style.css'>
+<link rel='stylesheet' href='template/assets/js/google-code-prettify/prettify.css'>
+		<script src='template/assets/js/jquery-1.8.3.min.js'></script>
+<script src='template/assets/js/app.js'></script>
+<script src='template/assets/js/google-code-prettify/prettify.js'></script>
 
-		<link href="assets/favicon.ico" rel="shortcut icon">
+		<link href="template/assets/favicon.ico" rel="shortcut icon">
 		<link href="" rel="apple-touch-icon">
 		<title>moomoohk/reactionkeeper</title>
 		<script type="application/javascript">
-			var selectedIndex;
-
 			function onLoad() {
 				prettyPrint();
 				$("ol.linenums").each(function(index) {
@@ -67,20 +65,57 @@
 			}
 		</script>
 		<script type="application/javascript">
+			var selectedIndex = 0;
+			var speed = 5000;
+			var timer;
+
 			$(document).ready(function() {
+				timer = setInterval(function() {
+					changeImage(++selectedIndex);
+				}, speed);
+
 				$("#screenies").after("<p id=\"thumbs\"></p>");
 				$("#screenies img").each(function() {
 					$("#thumbs").append("<img src=\"" + $(this).attr("src") + "\"/>");
 				});
+				$("#screenies img:first-child").addClass("opaque");
 				$("#thumbs img:first-child").addClass("selected");
-				$("#thumbs").on("click", "img", function() {
-					$("#screenies img").removeClass("opaque");
-					var newImage = $(this).index();
-					$("#screenies img").eq(newImage).addClass("opaque");
-					$("#thumbs img").removeClass("selected");
-					$(this).addClass("selected");
+				$("#thumbs img").on("click", function() {
+					changeImage( selectedIndex = $(this).index());
+				}).on("mouseenter", function() {
+					$(this).addClass("mouseover");
+					if ($(this).hasClass("selected")) {
+						toggleTimer(false);
+					}
+				}).on("mouseleave", function() {
+					$(this).removeClass("mouseover");
+					if ($(this).hasClass("selected")) {
+						toggleTimer(true);
+					}
 				});
 			});
+
+			function changeImage(index) {
+				toggleTimer(false);
+				$("#screenies img").removeClass("opaque");
+				index = index % $("#thumbs img").length;
+				$("#screenies img:nth(" + index + ")").addClass("opaque");
+				$("#thumbs img").removeClass("selected");
+				$("#thumbs img:nth(" + index + ")").addClass("selected");
+				if (!$("#thumbs img:nth(" + index + ")").hasClass("mouseover")) {
+					toggleTimer(true);
+				}
+			}
+
+			function toggleTimer(f) {
+				if (f) {
+					timer = setInterval(function() {
+						changeImage(++selectedIndex);
+					}, speed);
+				} else {
+					clearInterval(timer);
+				}
+			}
 		</script>
 	</head>
 
@@ -99,41 +134,41 @@
 				<li><a href="/grame/">Grame</a>
 					<ul>
 						<li><a href="/grame/docs/">JavaDocs</a></li>
-						<li><a href="/grame/#download">Download</a></li>
+						<li><a href="/grame/#downloads">Download</a></li>
 					</ul>
 				</li>
 				<li><a href="/reactionkeeper.html">Reaction Keeper</a>
 					<ul>
-						<li><a href="/reactionkeeper.html#download">Download</a></li>
+						<li><a href="/reactionkeeper.html#downloads">Download</a></li>
 					</ul>
 				</li>
 				<li><a href="/trackingmanager.html">Tracking Manager</a>
 					<ul>
-						<li><a href="/trackingmanager.html#download">Download</a></li>
+						<li><a href="/trackingmanager.html#downloads">Download</a></li>
 					</ul>
 				</li>
 				<li><a href="/moocommands/">MooCommands</a>
 					<ul>
 						<li><a href="/moocommands/docs">JavaDocs</a></li>
-						<li><a href="/moocommands/#download">Download</a></li>
+						<li><a href="/moocommands/#downloads">Download</a></li>
 					</ul>
 				</li>
 				<li><a href="/mooconsole/">MooConsole</a>
 					<ul>
 						<li><a href="/mooconsole/docs">JavaDocs</a></li>
-						<li><a href="/mooconsole/#download">Download</a></li>
+						<li><a href="/mooconsole/#downloads">Download</a></li>
 					</ul>
 				</li>
 				<li><a href="/mootilities/">Mootilities</a>
 					<ul>
 						<li><a href="/mootilities/docs">JavaDocs</a></li>
-						<li><a href="/mootilities/#download">Download</a></li>
+						<li><a href="/mootilities/#downloads">Download</a></li>
 					</ul>
 				</li>
 				<li><a href="/moobootstrap/">MooBootstrap</a>
 					<ul>
 						<li><a href="/moobootstrap/docs">JavaDocs</a></li>
-						<li><a href="/moobootstrap/#download">Download</a></li>
+						<li><a href="/moobootstrap/#downloads">Download</a></li>
 					</ul>
 				</li>
 			</ul>
@@ -170,8 +205,8 @@
 	<p>
 		Reaction Keeper is a program which lets you quickly save links to popular images. You can name the link and also attach tags to it.
 		<div class="container">
-			<div id="screenies" class="shadow">
-				<img src="assets/images/screenshots/reactionkeeper/reactionkeeper1.png" class="opaque" />
+			<div id="screenies">
+				<img src="assets/images/screenshots/reactionkeeper/reactionkeeper1.png" />
 				<img src="assets/images/screenshots/reactionkeeper/reactionkeeper2.png" />
 				<img src="assets/images/screenshots/reactionkeeper/reactionkeeper3.png" />
 			</div>
@@ -196,7 +231,9 @@
 	<h1>Downloads</h1>
 	<p>
 		<ul>
-			<li><a href= assets/bin/reactionkeeper/reactionkeeperJAR.zip >.zip</a></li>
+			<li><a href="template/assets/bin/reactionkeeper/reactionkeeperJAR.zip">Cross platform (.jar)</a></li>
+			<li>Coming soon: OS X (.app)</li>
+			<li>Coming soon: Windows (.exe)</li>
 		</ul>
 	</p>
 </section>
