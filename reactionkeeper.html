@@ -33,10 +33,11 @@
 		<link rel='stylesheet' href='template/assets/css/normalize.css'>
 <link rel='stylesheet' href='template/assets/css/fonts.css'>
 <link rel='stylesheet' href='template/assets/css/style.css'>
-<link rel='stylesheet' href='template/assets/js/google-code-prettify/prettify.css'>
+<link rel='stylesheet' href='template/assets/css/prettify.css'>
 		<script src='template/assets/js/jquery-1.8.3.min.js'></script>
 <script src='template/assets/js/app.js'></script>
 <script src='template/assets/js/google-code-prettify/prettify.js'></script>
+<script src='template/assets/js/snaptortoise-konami-js-93c5489/konami.js'></script>
 
 		<link href="template/assets/favicon.ico" rel="shortcut icon">
 		<link href="" rel="apple-touch-icon">
@@ -120,6 +121,15 @@
 	</head>
 
 	<body onload="onLoad()">
+		<script>
+			$(document).ready(function() {
+				new Konami(function() {
+					var audioElement = document.createElement('audio');
+					audioElement.setAttribute('src', 'template/assets/audio/aristotle.m4a');
+					audioElement.setAttribute('autoplay', 'autoplay');
+				});
+			});
+		</script>
 		<header>
 			<!-- @todo Do mobile styling -->
 
@@ -203,7 +213,8 @@
 <section>
 	<h1>Reaction Keeper</h1>
 	<p>
-		Reaction Keeper is a program which lets you quickly save links to popular images. You can name the link and also attach tags to it.
+		Reaction Keeper is a program which lets you quickly save links to popular images. You can name the link and also attach tags to it.<br>
+		This app is perfect for those times when you're browsing Reddit/Facebook/forums and you've got a good meme image in mind. Instead of hitting up Google and looking for it, you can just fire up Reaction Keeper, enter some tags and you're good to go.
 		<div class="container">
 			<div id="screenies">
 				<img src="assets/images/screenshots/reactionkeeper/reactionkeeper1.png" />
@@ -231,7 +242,7 @@
 	<h1>Downloads</h1>
 	<p>
 		<ul>
-			<li><a href="template/assets/bin/reactionkeeper/reactionkeeperJAR.zip">Cross platform (.jar)</a></li>
+			<li><a href="assets/bin/reactionkeeper/reactionkeeperJAR.zip">Cross platform (.jar)</a></li>
 			<li>Coming soon: OS X (.app)</li>
 			<li>Coming soon: Windows (.exe)</li>
 		</ul>

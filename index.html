@@ -33,10 +33,11 @@
 		<link rel='stylesheet' href='template/assets/css/normalize.css'>
 <link rel='stylesheet' href='template/assets/css/fonts.css'>
 <link rel='stylesheet' href='template/assets/css/style.css'>
-<link rel='stylesheet' href='template/assets/js/google-code-prettify/prettify.css'>
+<link rel='stylesheet' href='template/assets/css/prettify.css'>
 		<script src='template/assets/js/jquery-1.8.3.min.js'></script>
 <script src='template/assets/js/app.js'></script>
 <script src='template/assets/js/google-code-prettify/prettify.js'></script>
+<script src='template/assets/js/snaptortoise-konami-js-93c5489/konami.js'></script>
 
 		<link href="template/assets/favicon.ico" rel="shortcut icon">
 		<link href="" rel="apple-touch-icon">
@@ -120,6 +121,15 @@
 	</head>
 
 	<body onload="onLoad()">
+		<script>
+			$(document).ready(function() {
+				new Konami(function() {
+					var audioElement = document.createElement('audio');
+					audioElement.setAttribute('src', 'template/assets/audio/aristotle.m4a');
+					audioElement.setAttribute('autoplay', 'autoplay');
+				});
+			});
+		</script>
 		<header>
 			<!-- @todo Do mobile styling -->
 
@@ -230,6 +240,8 @@
   <li><a href="/trackingmanager/">Tracking Manager</a> - A simple tool that helps you keep track of your packages. Great if you’re an artist that finds themselves sending a lot of work to clients using services like UPS, USPS, FedEx, etc.</li>
 </ul>
 
+		<hr/>
+		<p style="font-size: 12px;">This website has been forged with <a href="http://hammerformac.com">Hammer</a></p>
 	</section>
 			<section id="footer">
 			© moomoohk 2014

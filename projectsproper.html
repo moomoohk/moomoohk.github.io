@@ -33,10 +33,11 @@
 		<link rel='stylesheet' href='template/assets/css/normalize.css'>
 <link rel='stylesheet' href='template/assets/css/fonts.css'>
 <link rel='stylesheet' href='template/assets/css/style.css'>
-<link rel='stylesheet' href='template/assets/js/google-code-prettify/prettify.css'>
+<link rel='stylesheet' href='template/assets/css/prettify.css'>
 		<script src='template/assets/js/jquery-1.8.3.min.js'></script>
 <script src='template/assets/js/app.js'></script>
 <script src='template/assets/js/google-code-prettify/prettify.js'></script>
+<script src='template/assets/js/snaptortoise-konami-js-93c5489/konami.js'></script>
 
 		<link href="template/assets/favicon.ico" rel="shortcut icon">
 		<link href="" rel="apple-touch-icon">
@@ -120,6 +121,15 @@
 	</head>
 
 	<body onload="onLoad()">
+		<script>
+			$(document).ready(function() {
+				new Konami(function() {
+					var audioElement = document.createElement('audio');
+					audioElement.setAttribute('src', 'template/assets/audio/aristotle.m4a');
+					audioElement.setAttribute('autoplay', 'autoplay');
+				});
+			});
+		</script>
 		<header>
 			<!-- @todo Do mobile styling -->
 
