@@ -229,8 +229,11 @@
 			cursor: pointer;
 			margin-bottom: 10px;
 			color: #D1D1D1;
-			transition: color ease 0.5s,
-						border-color ease 0.5s;
+			-webkit-transition: color ease 0.5s, border-color ease 0.5s;
+			-moz-transition: color ease 0.5s, border-color ease 0.5s;
+			-ms-transition: color ease 0.5s, border-color ease 0.5s;
+			-o-transition: color ease 0.5s, border-color ease 0.5s;
+			transition: color ease 0.5s, border-color ease 0.5s;
 		}
 	</style>
 	<script type="application/javascript">
@@ -243,8 +246,7 @@
 					$(this).addClass("open");
 					$(this).css("color", "#FFFFFF");
 					$(this).css("border-color", "#D1D1D1");
-				}
-				else {
+				} else {
 					$(this).next().slideUp();
 					$(this).removeClass("open");
 					$(this).css("color", "#D1D1D1");
