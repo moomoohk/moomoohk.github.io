@@ -28,7 +28,7 @@
         <!-- /Hammer reload -->
       
 
-		<link href="//fonts.googleapis.com/css?family=PT+Sans:400italic,400,700italic,700" rel="stylesheet" type="text/css">
+		<link href="http://fonts.googleapis.com/css?family=PT+Sans:400italic,400,700italic,700" rel="stylesheet" type="text/css">
 
 		<link rel='stylesheet' href='template/assets/css/normalize.css'>
 <link rel='stylesheet' href='template/assets/css/fonts.css'>
@@ -40,7 +40,6 @@
 <script src='template/assets/js/snaptortoise-konami-js-93c5489/konami.js'></script>
 
 		<link href="template/assets/favicon.ico" rel="shortcut icon">
-		<link href="" rel="apple-touch-icon">
 		<title>moomoohk</title>
 		<script type="application/javascript">
 			function onLoad() {
@@ -66,6 +65,7 @@
 			}
 		</script>
 		<script type="application/javascript">
+			/* Slideshow widget */
 			var selectedIndex = 0;
 			var speed = 5000;
 			var timer;
@@ -122,11 +122,12 @@
 
 	<body onload="onLoad()">
 		<script>
+			/* Oh what's this */
 			$(document).ready(function() {
 				new Konami(function() {
-					var audioElement = document.createElement('audio');
-					audioElement.setAttribute('src', 'template/assets/audio/aristotle.m4a');
-					audioElement.setAttribute('autoplay', 'autoplay');
+					var audioElement = document.createElement("audio");
+					audioElement.setAttribute("src", "template/assets/audio/aristotle.m4a");
+					audioElement.setAttribute("autoplay", "autoplay");
 				});
 			});
 		</script>
@@ -212,7 +213,58 @@
 		</section>
 
 <section>
+	<style type="text/css">
+		div.project {
+			margin-bottom: 5px;
+		}
 
+		.collapsible {
+			display: none;
+			background-color: #788ECA;
+			padding-top: 5px;
+			padding-bottom: 5px;
+		}
+
+		h1.projectName {
+			cursor: pointer;
+			margin-bottom: 10px;
+			color: #D1D1D1;
+			transition: color ease 0.5s,
+						border-color ease 0.5s;
+		}
+	</style>
+	<script type="application/javascript">
+		$(document).ready(function() {
+			$("h1.projectName").on("mousedown", function() {
+				$(this).parent().css("border-color", "blue");
+				if (!$(this).hasClass("open")) {
+					//$("div.project > .collapsible");
+					$(this).next().slideDown();
+					$(this).addClass("open");
+					$(this).css("color", "#FFFFFF");
+					$(this).css("border-color", "#D1D1D1");
+				}
+				else {
+					$(this).next().slideUp();
+					$(this).removeClass("open");
+					$(this).css("color", "#D1D1D1");
+					$(this).css("border-color", "#FFFFFF");
+				}
+			});
+		});
+	</script>
+	<div class="project">
+		<h1 class="projectName">Grame</h1>
+		<p class="collapsible">
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+		</p>
+	</div>
+	<div class="project">
+		<h1 class="projectName">MooCommands</h1>
+		<p class="collapsible">
+			buttz Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+		</p>
+	</div>
 </section>
 
 		<section id="footer">

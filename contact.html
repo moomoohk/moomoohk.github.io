@@ -28,7 +28,7 @@
         <!-- /Hammer reload -->
       
 
-		<link href="//fonts.googleapis.com/css?family=PT+Sans:400italic,400,700italic,700" rel="stylesheet" type="text/css">
+		<link href="http://fonts.googleapis.com/css?family=PT+Sans:400italic,400,700italic,700" rel="stylesheet" type="text/css">
 
 		<link rel='stylesheet' href='template/assets/css/normalize.css'>
 <link rel='stylesheet' href='template/assets/css/fonts.css'>
@@ -40,7 +40,6 @@
 <script src='template/assets/js/snaptortoise-konami-js-93c5489/konami.js'></script>
 
 		<link href="template/assets/favicon.ico" rel="shortcut icon">
-		<link href="" rel="apple-touch-icon">
 		<title>moomoohk</title>
 		<script type="application/javascript">
 			function onLoad() {
@@ -66,6 +65,7 @@
 			}
 		</script>
 		<script type="application/javascript">
+			/* Slideshow widget */
 			var selectedIndex = 0;
 			var speed = 5000;
 			var timer;
@@ -122,11 +122,12 @@
 
 	<body onload="onLoad()">
 		<script>
+			/* Oh what's this */
 			$(document).ready(function() {
 				new Konami(function() {
-					var audioElement = document.createElement('audio');
-					audioElement.setAttribute('src', 'template/assets/audio/aristotle.m4a');
-					audioElement.setAttribute('autoplay', 'autoplay');
+					var audioElement = document.createElement("audio");
+					audioElement.setAttribute("src", "template/assets/audio/aristotle.m4a");
+					audioElement.setAttribute("autoplay", "autoplay");
 				});
 			});
 		</script>
