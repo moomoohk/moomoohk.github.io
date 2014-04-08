@@ -3,7 +3,9 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-
+		<meta name="description" content="Moomoohk's site. Contains all my major Java projects.">
+		<meta name="robots" content="index, follow">
+		
 		
         <!-- Hammer reload -->
           <script>
@@ -235,36 +237,103 @@
 			-o-transition: color ease 0.5s, border-color ease 0.5s;
 			transition: color ease 0.5s, border-color ease 0.5s;
 		}
+
+		.clickable {
+			margin-left: 20px;
+			margin-right: 20px;
+			cursor: pointer;
+			-webkit-transition: color ease 0.5s;
+			-moz-transition: color ease 0.5s;
+			-ms-transition: color ease 0.5s;
+			-o-transition: color ease 0.5s;
+			transition: color ease 0.5s;
+		}
+
+		.clickable:hover {
+			color: #D1D1D1;
+		}
 	</style>
 	<script type="application/javascript">
 		$(document).ready(function() {
+			function expand(obj) {
+				obj.next().slideDown();
+				obj.addClass("open");
+				obj.css("color", "#FFFFFF");
+				obj.css("border-color", "#D1D1D1");
+			}
+
+			function collapse(obj) {
+				obj.next().slideUp();
+				obj.removeClass("open");
+				obj.css("color", "#D1D1D1");
+				obj.css("border-color", "#FFFFFF");
+			}
+
+
 			$("h1.projectName").on("mousedown", function() {
 				$(this).parent().css("border-color", "blue");
 				if (!$(this).hasClass("open")) {
-					//$("div.project > .collapsible");
-					$(this).next().slideDown();
-					$(this).addClass("open");
-					$(this).css("color", "#FFFFFF");
-					$(this).css("border-color", "#D1D1D1");
+					expand($(this));
 				} else {
-					$(this).next().slideUp();
-					$(this).removeClass("open");
-					$(this).css("color", "#D1D1D1");
-					$(this).css("border-color", "#FFFFFF");
+					collapse($(this));
 				}
+			});
+
+			$("#expandall").on("mousedown", function() {
+				$("h1.projectName").each(function() {
+					expand($(this));
+				});
+			});
+
+			$("#collapseall").on("mousedown", function() {
+				$("h1.projectName").each(function() {
+					collapse($(this));
+				});
 			});
 		});
 	</script>
+	<span class="clickable" id="expandall">Expand all</span>
+	<span class="clickable" id="collapseall">Collapse all</span>
 	<div class="project">
 		<h1 class="projectName">Grame</h1>
 		<p class="collapsible">
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+			Grame is a 2D grid based game engine I've been spending the better part of the last few years developing.
+		</p>
+	</div>
+	<div class="project">
+		<h1 class="projectName">Reaction Keeper</h1>
+		<p class="collapsible">
+			Reaction Keeper is an app I made to help catalogue GIFs and images I keep finding myself using.
+		</p>
+	</div>
+	<div class="project">
+		<h1 class="projectName">Tracking Manager</h1>
+		<p class="collapsible">
+			Tracking Manager is an app I made to help keep track of packages that you've got in the mail with the help of tracking numbers.
 		</p>
 	</div>
 	<div class="project">
 		<h1 class="projectName">MooCommands</h1>
 		<p class="collapsible">
-			buttz Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+			MooCommands is a library which helps in creating, managing and executing command objects in your program. Great for apps like IRC clients.
+		</p>
+	</div>
+	<div class="project">
+		<h1 class="projectName">MooConsole</h1>
+		<p class="collapsible">
+			Mooconsole is an external console for your everyday logging needs. Depends on MooCommands.
+		</p>
+	</div>
+	<div class="project">
+		<h1 class="projectName">Mootilities</h1>
+		<p class="collapsible">
+			Mootilities is a library which contains plenty of useful classes and boilerplate methods for your convinience.
+		</p>
+	</div>
+	<div class="project">
+		<h1 class="projectName">MooBootstrap</h1>
+		<p class="collapsible">
+			MooBootstrap is a library which provides an easy to use bootstrap system for application in your programs.
 		</p>
 	</div>
 </section>
