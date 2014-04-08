@@ -43,7 +43,8 @@ section {
       border-radius: 3px;
       background: #6A80C3; }
   section a {
-    color: #BBBABA;
+    color: #cacaca;
+    font-weight: bold;
     text-decoration: none;
     -o-transition: text-decoration ease .2s, color ease .2s;
     -ms-transition: text-decoration ease .2s, color ease .2s;
