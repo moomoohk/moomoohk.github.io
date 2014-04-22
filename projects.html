@@ -219,6 +219,7 @@
 	<style type="text/css">
 		div.project {
 			margin-bottom: 5px;
+			padding-left: 10px;
 		}
 
 		.collapsible {
@@ -227,7 +228,7 @@
 			padding-top: 5px;
 		}
 
-		h1.projectName {
+		h2.projectName {
 			cursor: pointer;
 			margin-bottom: 10px;
 			color: #D1D1D1;
@@ -237,7 +238,7 @@
 			-o-transition: color ease 0.5s, border-color ease 0.5s;
 			transition: color ease 0.5s, border-color ease 0.5s;
 		}
-
+		
 		.clickable {
 			margin-right: 20px;
 			cursor: pointer;
@@ -276,7 +277,7 @@
 			}
 
 
-			$("h1.projectName").on("mousedown", function() {
+			$("h2.projectName").on("mousedown", function() {
 				$(this).parent().css("border-color", "blue");
 				if (!$(this).hasClass("open")) {
 					expand($(this));
@@ -292,79 +293,80 @@
 			});
 
 			$("#collapseall").on("mousedown", function() {
-				$("h1.projectName").each(function() {
+				$("h2.projectName").each(function() {
 					collapse($(this));
 				});
 			});
 		});
 	</script>
-	<span class="clickable" id="expandall">Expand all</span>
-	<span class="clickable" id="collapseall">Collapse all</span>
-	<div class="project">
-		<h1 class="projectName">Grame</h1>
-		<div class="collapsible">
-			<p>
-				Grame is a 2D grid based game engine I've been spending the better part of the last few years developing.
-			</p>
-			<a href="/grame" class="projectlink">Read more ></a>
+	<h1>Projects</h1>
+	<p>
+		<span class="clickable" id="expandall">Expand all</span>
+		<span class="clickable" id="collapseall">Collapse all</span>
+		<div class="project">
+			<h2 class="projectName">Grame</h2>
+			<div class="collapsible">
+				<p>
+					Grame is a 2D grid based game engine I've been spending the better part of the last few years developing.
+				</p>
+				<a href="/grame" class="projectlink">Read more ></a>
+			</div>
 		</div>
-	</div>
-	<div class="project">
-		<h1 class="projectName">Reaction Keeper</h1>
-		<div class="collapsible">
-			<p>
-				Reaction Keeper is an app I made to help catalogue GIFs and images I keep finding myself using.
-				<br>
-			</p>
-			<a href="/reactionkeeper.html" class="projectlink">Read more ></a>
+		<div class="project">
+			<h2 class="projectName">Reaction Keeper</h2>
+			<div class="collapsible">
+				<p>
+					Reaction Keeper is an app I made to help catalogue GIFs and images I keep finding myself using.
+				</p>
+				<a href="/reactionkeeper.html" class="projectlink">Read more ></a>
+			</div>
 		</div>
-	</div>
-	<div class="project">
-		<h1 class="projectName">Tracking Manager</h1>
-		<div class="collapsible">
-			<p >
-				Tracking Manager is an app I made to help keep track of packages that you've got in the mail with the help of tracking numbers.
-			</p>
-			<a href="/trackingmanager.html" class="projectlink">Read more ></a>
+		<div class="project">
+			<h2 class="projectName">Tracking Manager</h2>
+			<div class="collapsible">
+				<p >
+					Tracking Manager is an app I made to help keep track of packages that you've got in the mail with the help of tracking numbers.
+				</p>
+				<a href="/trackingmanager.html" class="projectlink">Read more ></a>
+			</div>
 		</div>
-	</div>
-	<div class="project">
-		<h1 class="projectName">MooCommands</h1>
-		<div class="collapsible">
-			<p>
-				MooCommands is a library which helps in creating, managing and executing command objects in your program. Great for apps like IRC clients.
-			</p>
-			<a href="/moocommands" class="projectlink">Read more ></a>
+		<div class="project">
+			<h2 class="projectName">MooCommands</h2>
+			<div class="collapsible">
+				<p>
+					MooCommands is a library which helps in creating, managing and executing command objects in your program. Great for apps like IRC clients.
+				</p>
+				<a href="/moocommands" class="projectlink">Read more ></a>
+			</div>
 		</div>
-	</div>
-	<div class="project">
-		<h1 class="projectName">MooConsole</h1>
-		<div class="collapsible">
-			<p >
-				Mooconsole is an external console for your everyday logging needs. Depends on MooCommands.
-			</p>
-			<a href="/mooconsole" class="projectlink">Read more ></a>
+		<div class="project">
+			<h2 class="projectName">MooConsole</h2>
+			<div class="collapsible">
+				<p >
+					Mooconsole is an external console for your everyday logging needs. Depends on MooCommands.
+				</p>
+				<a href="/mooconsole" class="projectlink">Read more ></a>
+			</div>
 		</div>
-	</div>
-	<div class="project">
-		<h1 class="projectName">Mootilities</h1>
-		<div class="collapsible">
-			<p>
-				Mootilities is a library which contains plenty of useful classes and boilerplate methods for your convinience.
-			</p>
-			<a href="/mootilities" class="projectlink">Read more ></a>
+		<div class="project">
+			<h2 class="projectName">Mootilities</h2>
+			<div class="collapsible">
+				<p>
+					Mootilities is a library which contains plenty of useful classes and boilerplate methods for your convinience.
+				</p>
+				<a href="/mootilities" class="projectlink">Read more ></a>
+			</div>
 		</div>
-	</div>
-	<div class="project">
-		<h1 class="projectName">MooBootstrap</h1>
-		<div class="collapsible">
-			<p>
-				MooBootstrap is a library which provides an easy to use bootstrap system for application in your programs.
-				<br>
-			</p>
-			<a href="/moobootstrap" class="projectlink">Read more ></a>
+		<div class="project">
+			<h2 class="projectName">MooBootstrap</h2>
+			<div class="collapsible">
+				<p>
+					MooBootstrap is a library which provides an easy to use bootstrap system for application in your programs.
+				</p>
+				<a href="/moobootstrap" class="projectlink">Read more ></a>
+			</div>
 		</div>
-	</div>
+	</p>
 </section>
 
 		<section id="footer">

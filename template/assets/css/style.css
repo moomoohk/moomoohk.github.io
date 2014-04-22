@@ -59,7 +59,7 @@ section {
     border-bottom: 1px solid white; }
   section h2 {
     margin-top: 10px;
-    padding-left: 10px; }
+    border-bottom: 1px solid white; }
   section pre {
     border-radius: 5px;
     height: 300px;
