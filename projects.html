@@ -225,7 +225,6 @@
 			display: none;
 			background-color: #788ECA;
 			padding-top: 5px;
-			padding-bottom: 5px;
 		}
 
 		h1.projectName {
@@ -240,7 +239,6 @@
 		}
 
 		.clickable {
-			margin-left: 20px;
 			margin-right: 20px;
 			cursor: pointer;
 			-webkit-transition: color ease 0.5s;
@@ -254,14 +252,11 @@
 			color: #D1D1D1;
 		}
 
-		p.collapsible {
-			position: relative;
-		}
-
 		.projectlink {
-			position: absolute;
-			right: 5px;
-			bottom: 5px;
+			display: block;
+			text-align: right;
+			padding-right: 10px;
+			background-color: rgb(88, 118, 199);
 		}
 	</style>
 	<script type="application/javascript">
@@ -307,59 +302,68 @@
 	<span class="clickable" id="collapseall">Collapse all</span>
 	<div class="project">
 		<h1 class="projectName">Grame</h1>
-		<p class="collapsible">
-			Grame is a 2D grid based game engine I've been spending the better part of the last few years developing.
-			<br>
-			<span class="projectlink"><a href="/grame">Read more ></a></span>
-		</p>
+		<div class="collapsible">
+			<p>
+				Grame is a 2D grid based game engine I've been spending the better part of the last few years developing.
+			</p>
+			<a href="/grame" class="projectlink">Read more ></a>
+		</div>
 	</div>
 	<div class="project">
 		<h1 class="projectName">Reaction Keeper</h1>
-		<p class="collapsible">
-			Reaction Keeper is an app I made to help catalogue GIFs and images I keep finding myself using.
-			<br>
-			<span class="projectlink"><a href="/reactionkeeper.html">Read more ></a></span>
-		</p>
+		<div class="collapsible">
+			<p>
+				Reaction Keeper is an app I made to help catalogue GIFs and images I keep finding myself using.
+				<br>
+			</p>
+			<a href="/reactionkeeper.html" class="projectlink">Read more ></a>
+		</div>
 	</div>
 	<div class="project">
 		<h1 class="projectName">Tracking Manager</h1>
-		<p class="collapsible">
-			Tracking Manager is an app I made to help keep track of packages that you've got in the mail with the help of tracking numbers.
-			<br>
-			<span class="projectlink"><a href="/trackingmanager.html">Read more ></a></span>
-		</p>
+		<div class="collapsible">
+			<p >
+				Tracking Manager is an app I made to help keep track of packages that you've got in the mail with the help of tracking numbers.
+			</p>
+			<a href="/trackingmanager.html" class="projectlink">Read more ></a>
+		</div>
 	</div>
 	<div class="project">
 		<h1 class="projectName">MooCommands</h1>
-		<p class="collapsible">
-			MooCommands is a library which helps in creating, managing and executing command objects in your program. Great for apps like IRC clients.
-			<br>
-			<span class="projectlink"><a href="/moocommands">Read more ></a></span>
-		</p>
+		<div class="collapsible">
+			<p>
+				MooCommands is a library which helps in creating, managing and executing command objects in your program. Great for apps like IRC clients.
+			</p>
+			<a href="/moocommands" class="projectlink">Read more ></a>
+		</div>
 	</div>
 	<div class="project">
 		<h1 class="projectName">MooConsole</h1>
-		<p class="collapsible">
-			Mooconsole is an external console for your everyday logging needs. Depends on MooCommands.
-			<br>
-			<span class="projectlink"><a href="/mooconsole">Read more ></a></span>
-		</p>
+		<div class="collapsible">
+			<p >
+				Mooconsole is an external console for your everyday logging needs. Depends on MooCommands.
+			</p>
+			<a href="/mooconsole" class="projectlink">Read more ></a>
+		</div>
 	</div>
 	<div class="project">
 		<h1 class="projectName">Mootilities</h1>
-		<p class="collapsible">
-			Mootilities is a library which contains plenty of useful classes and boilerplate methods for your convinience.
-			<br>
-			<span class="projectlink"><a href="/mootilities">Read more ></a></span>
-		</p>
+		<div class="collapsible">
+			<p>
+				Mootilities is a library which contains plenty of useful classes and boilerplate methods for your convinience.
+			</p>
+			<a href="/mootilities" class="projectlink">Read more ></a>
+		</div>
 	</div>
 	<div class="project">
 		<h1 class="projectName">MooBootstrap</h1>
-		<p class="collapsible">
-			MooBootstrap is a library which provides an easy to use bootstrap system for application in your programs.
-			<br>
-			<span class="projectlink"><a href="/moobootstrap">Read more ></a></span>
-		</p>
+		<div class="collapsible">
+			<p>
+				MooBootstrap is a library which provides an easy to use bootstrap system for application in your programs.
+				<br>
+			</p>
+			<a href="/moobootstrap" class="projectlink">Read more ></a>
+		</div>
 	</div>
 </section>
 
