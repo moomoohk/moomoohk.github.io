@@ -103,13 +103,13 @@
 			});
 
 			function changeImage(index) {
+				toggleTimer(false);
+				$("#screenies img").removeClass("opaque");
 				index = index % $("#thumbs img").length;
 				if ($("#screenies img:nth(" + index + ")").height() == 0 || $("#screenies img:nth(" + index + ")").width() == 0) {
 					setTimeout(changeImage(index), 50);
 					return;
 				}
-				toggleTimer(false);
-				$("#screenies img").removeClass("opaque");
 				$("#screenies").css("height", $("#screenies img:nth(" + index + ")").height());
 				$("#screenies").css("width", $("#screenies img:nth(" + index + ")").width());
 				$("#screenies img:nth(" + index + ")").addClass("opaque");
