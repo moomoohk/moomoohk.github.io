@@ -83,6 +83,8 @@
 				});
 				$("#screenies img:first-child").addClass("opaque");
 				$("#thumbs img:first-child").addClass("selected");
+				$("#screenies").css("height", $("#screenies > img.opaque").height());
+				$("#screenies").css("width", $("#screenies > img.opaque").width());
 				$("#thumbs img").on("click", function() {
 					changeImage( selectedIndex = $(this).index());
 				}).on("mouseenter", function() {
@@ -96,8 +98,6 @@
 						toggleTimer(true);
 					}
 				});
-				$("#screenies").css("height", $("#screenies img:nth(0)").height());
-				$("#screenies").css("width", $("#screenies img:nth(0)").width());
 			});
 
 			function changeImage(index) {
