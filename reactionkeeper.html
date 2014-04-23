@@ -103,8 +103,10 @@
 				toggleTimer(false);
 				$("#screenies img").removeClass("opaque");
 				index = index % $("#thumbs img").length;
-				$("#screenies").css("height", $("#screenies img:nth(" + index + ")").height());
-				$("#screenies").css("width", $("#screenies img:nth(" + index + ")").width());
+
+				$("#screenies img:nth(" + index + ")").height($("#screenies").height());
+				var ratio = $("#screenies").height() / $("#screenies img:nth(" + index + ")").height();
+				$("#screenies img:nth(" + index + ")").width(ratio * $("#screenies img:nth(" + index + ")").width());
 				$("#screenies img:nth(" + index + ")").addClass("opaque");
 				$("#thumbs img").removeClass("selected");
 				$("#thumbs img:nth(" + index + ")").addClass("selected");

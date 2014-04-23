@@ -58,8 +58,9 @@ section {
     text-decoration: none;
     border-bottom: 1px solid white; }
   section h2 {
-    margin-top: 10px;
-    border-bottom: 1px solid white; }
+    margin-top: 10px; }
+    section h2.projectName {
+      border-bottom: 1px solid white; }
   section pre {
     border-radius: 5px;
     height: 300px;
@@ -259,7 +260,7 @@ p#thumbs {
   border-radius: 5px;
   background-color: white;
   position: relative;
-  height: 100px;
+  height: 500px;
   -webkit-transition: height 0.5s ease-in-out,  width 0.5s ease-in-out;
   -moz-transition: height 0.5s ease-in-out,  width 0.5s ease-in-out;
   -o-transition: height 0.5s ease-in-out,  width 0.5s ease-in-out;

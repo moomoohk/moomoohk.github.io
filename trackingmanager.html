@@ -103,8 +103,10 @@
 				toggleTimer(false);
 				$("#screenies img").removeClass("opaque");
 				index = index % $("#thumbs img").length;
-				$("#screenies").css("height", $("#screenies img:nth(" + index + ")").height());
-				$("#screenies").css("width", $("#screenies img:nth(" + index + ")").width());
+
+				$("#screenies img:nth(" + index + ")").height($("#screenies").height());
+				var ratio = $("#screenies").height() / $("#screenies img:nth(" + index + ")").height();
+				$("#screenies img:nth(" + index + ")").width(ratio * $("#screenies img:nth(" + index + ")").width());
 				$("#screenies img:nth(" + index + ")").addClass("opaque");
 				$("#thumbs img").removeClass("selected");
 				$("#thumbs img:nth(" + index + ")").addClass("selected");
@@ -217,6 +219,7 @@
 			</p>
 		</section>
 <section>
+
 	<h1>Tracking Manager</h1>
 	<p>
 		Tracking Manager is a program that lets you store tracking numbers for packages that are in the mail.
@@ -230,13 +233,21 @@
 			</div>
 		</div>
 	</p>
-	<h1>Tracking a package</h1>
+	<h2>Tracking a package</h2>
 	<p>
 		Use the form at the bottom of the main window to attach information to your package. The tracking number is the most important bit.
 		<br>
-		Out of the box Tracking Manager lets you track packages sent with UPS, USPS, FedEx and DHL, just select one from the dropdown menu in the form.
+		Whenever you'd like to check the status of your package, find it in the list and click its track button. Your browser should open the company's respective package tracking page.
 		<br>
-		To add a new shipping company to the list open up the settings and click the "Manage Shipping Companies" button.  
+		Out of the box Tracking Manager lets you track packages sent with UPS, USPS, FedEx and DHL, just select one from the dropdown menu in the form.
+	</p>
+	<h2>Adding a shipping company to the list</h2>
+	<p>
+		First, navigate to the company's tracking page in your browser and enter your tracking number. Once you get to the page which shows you the status of your package, copy the URL. It should look something like this (supposing our tracking number is 123456): <code>http://shippingcompany.com/track/?trackingnumber=123456</code> .
+		<br>
+		In the Settings window click on the "Manage shipping companies" button. Enter the company name in the "Name" field and in the "URL scheme" field paste the URL you copied but replace the tracking number in it with "{moomoohk}" (without quotes). So for the example URL above, the URL scheme will look like this: <code>http://shippingcompany.com/track/?trackingnumber={momoohk}</code> .
+		<br>
+		And that's it. You can now use that company from the main window.
 	</p>
 </section>
 <section id="downloads">
@@ -244,25 +255,13 @@
 	<p>
 		<ul>
 			<li>
-				<a href="assets/bin/reactionkeeper/reactionkeeperJAR.zip">Cross platform (.jar)</a>
+				Coming soon: Cross platform (.jar)
 			</li>
 			<li>
 				Coming soon: OS X (.app)
 			</li>
 			<li>
 				Coming soon: Windows (.exe)
-			</li>
-			<li>
-				Haidawe made these updater shell scripts:
-				<ul>
-					<li>
-						<a href="assets/bin/reactionkeeper/RKUpdaters2/bin/RKUpdaterOSX.zip">OS X (.command)</a>
-					</li>
-					<li>
-						<a href="assets/bin/reactionkeeper/RKUpdaters2/bin/RKUpdaterLinux.zip">Linux (.sh)</a>
-					</li>
-				</ul>
-				<span style="font-size: 12px;">Running "chmod +x" (without quotes) on the scripts might be necessary</span>
 			</li>
 		</ul>
 	</p>
