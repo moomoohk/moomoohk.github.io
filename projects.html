@@ -82,9 +82,7 @@
 					$("#thumbs").append("<img src=\"" + $(this).attr("src") + "\"/>");
 				});
 				changeImage(selectedIndex);
-				$("#thumbs img").on("click", function() {
-					changeImage( selectedIndex = $(this).index());
-				}).on("mouseenter", function() {
+				$("#thumbs img").on("mouseenter", function() {
 					$(this).addClass("mouseover");
 					if ($(this).hasClass("selected")) {
 						toggleTimer(false);
@@ -94,9 +92,9 @@
 					if ($(this).hasClass("selected")) {
 						toggleTimer(true);
 					}
+				}).on("click", function() {
+					changeImage( selectedIndex = $(this).index());
 				});
-				$("#screenies").css("height", $("#screenies img:nth(0)").height());
-				$("#screenies").css("width", $("#screenies img:nth(0)").width());
 			});
 
 			function changeImage(index) {
@@ -107,6 +105,7 @@
 				$("#screenies img:nth(" + index + ")").height($("#screenies").height());
 				var ratio = $("#screenies").height() / $("#screenies img:nth(" + index + ")").height();
 				$("#screenies img:nth(" + index + ")").width(ratio * $("#screenies img:nth(" + index + ")").width());
+				$("#screenies").width(ratio * $("#screenies img:nth(" + index + ")").width());
 				$("#screenies img:nth(" + index + ")").addClass("opaque");
 				$("#thumbs img").removeClass("selected");
 				$("#thumbs img:nth(" + index + ")").addClass("selected");
