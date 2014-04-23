@@ -259,6 +259,7 @@ p#thumbs {
   border-radius: 5px;
   background-color: white;
   position: relative;
+  height: 100px;
   -webkit-transition: height 0.5s ease-in-out,  width 0.5s ease-in-out;
   -moz-transition: height 0.5s ease-in-out,  width 0.5s ease-in-out;
   -o-transition: height 0.5s ease-in-out,  width 0.5s ease-in-out;
