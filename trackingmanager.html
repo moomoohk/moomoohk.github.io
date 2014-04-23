@@ -5,7 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="description" content="Moomoohk's site. Contains all my major Java projects.">
 		<meta name="robots" content="index, follow">
-		
+
 		
         <!-- Hammer reload -->
           <script>
@@ -42,7 +42,7 @@
 <script src='template/assets/js/snaptortoise-konami-js-93c5489/konami.js'></script>
 
 		<link href="template/assets/favicon.ico" rel="shortcut icon">
-		<title>moomoohk</title>
+		<title>moomoohk/trackingmanager</title>
 		<script type="application/javascript">
 			function onLoad() {
 				prettyPrint();
@@ -96,12 +96,16 @@
 						toggleTimer(true);
 					}
 				});
+				$("#screenies").css("height", $("#screenies img:nth(0)").height());
+				$("#screenies").css("width", $("#screenies img:nth(0)").width());
 			});
 
 			function changeImage(index) {
 				toggleTimer(false);
 				$("#screenies img").removeClass("opaque");
 				index = index % $("#thumbs img").length;
+				$("#screenies").css("height", $("#screenies img:nth(" + index + ")").height());
+				$("#screenies").css("width", $("#screenies img:nth(" + index + ")").width());
 				$("#screenies img:nth(" + index + ")").addClass("opaque");
 				$("#thumbs img").removeClass("selected");
 				$("#thumbs img:nth(" + index + ")").addClass("selected");
@@ -213,8 +217,56 @@
 				This site is still very much under construction! Sorry for all the empty pages and 404's
 			</p>
 		</section>
-
 <section>
+	<h1>Tracking Manager</h1>
+	<p>
+		Tracking Manager is a program that lets you store tracking numbers for packages that are in the mail.
+		<br>
+		This app is perfect for people like artists that send comissioned work to clients regularly.
+		<div class="container">
+			<div id="screenies">
+				<img src="assets/images/screenshots/trackingmanager/trackingmanager1.png" />
+				<img src="assets/images/screenshots/trackingmanager/trackingmanager2.png" />
+				<img src="assets/images/screenshots/trackingmanager/trackingmanager3.png" />
+			</div>
+		</div>
+	</p>
+	<h1>Tracking a package</h1>
+	<p>
+		Use the form at the bottom of the main window to attach information to your package. The tracking number is the most important bit.
+		<br>
+		Out of the box Tracking Manager lets you track packages sent with UPS, USPS, FedEx and DHL, just select one from the dropdown menu in the form.
+		<br>
+		To add a new shipping company to the list open up the settings and click the "Manage Shipping Companies" button.  
+	</p>
+</section>
+<section id="downloads">
+	<h1>Downloads</h1>
+	<p>
+		<ul>
+			<li>
+				<a href="assets/bin/reactionkeeper/reactionkeeperJAR.zip">Cross platform (.jar)</a>
+			</li>
+			<li>
+				Coming soon: OS X (.app)
+			</li>
+			<li>
+				Coming soon: Windows (.exe)
+			</li>
+			<li>
+				Haidawe made these updater shell scripts:
+				<ul>
+					<li>
+						<a href="assets/bin/reactionkeeper/RKUpdaters2/bin/RKUpdaterOSX.zip">OS X (.command)</a>
+					</li>
+					<li>
+						<a href="assets/bin/reactionkeeper/RKUpdaters2/bin/RKUpdaterLinux.zip">Linux (.sh)</a>
+					</li>
+				</ul>
+				<span style="font-size: 12px;">Running "chmod +x" (without quotes) on the scripts might be necessary</span>
+			</li>
+		</ul>
+	</p>
 </section>
 
 		<section id="footer">

@@ -5,7 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="description" content="Moomoohk's site. Contains all my major Java projects.">
 		<meta name="robots" content="index, follow">
-		
+
 		
         <!-- Hammer reload -->
           <script>
@@ -96,12 +96,16 @@
 						toggleTimer(true);
 					}
 				});
+				$("#screenies").css("height", $("#screenies img:nth(0)").height());
+				$("#screenies").css("width", $("#screenies img:nth(0)").width());
 			});
 
 			function changeImage(index) {
 				toggleTimer(false);
 				$("#screenies img").removeClass("opaque");
 				index = index % $("#thumbs img").length;
+				$("#screenies").css("height", $("#screenies img:nth(" + index + ")").height());
+				$("#screenies").css("width", $("#screenies img:nth(" + index + ")").width());
 				$("#screenies img:nth(" + index + ")").addClass("opaque");
 				$("#thumbs img").removeClass("selected");
 				$("#thumbs img:nth(" + index + ")").addClass("selected");
