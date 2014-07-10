@@ -20,8 +20,8 @@ body, div, h1, h2, h3, h4, h5, h6, p, ul, ol, li, dl, dt, dd, img, form, fieldse
   border: 0; }
 
 body {
-  padding-left: 5%;
-  padding-right: 5%;
+  padding-left: 12.5%;
+  padding-right: 12.5%;
   height: 100%; }
 
 section {
@@ -63,7 +63,8 @@ section {
   section h2 {
     margin-top: 10px; }
     section h2.projectName {
-      border-bottom: 1px solid white; }
+      color: #505050;
+      border-bottom: 1px solid #cacaca; }
   section pre {
     border-radius: 5px;
     height: 300px;
