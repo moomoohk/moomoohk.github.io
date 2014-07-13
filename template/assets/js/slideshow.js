@@ -70,6 +70,9 @@ $(document).ready(function() {
 });
 
 function changeImage(thumbnail) {
+	if (thumbnail.hasClass("selected")) {
+		return;
+	}
 	toggleTimer(false);
 	$(".currSlide").fadeOut(100, function() {
 		$(".currSlide").attr("src", thumbnail.attr("src"));
@@ -77,9 +80,6 @@ function changeImage(thumbnail) {
 	$(".currSlide").fadeIn(100);
 	if (!thumbnail.hasClass("mouseover")) {
 		toggleTimer(true);
-	}
-	if (thumbnail.hasClass("selected")) {
-		return;
 	}
 
 	$(".selected").animate({
