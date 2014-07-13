@@ -34,7 +34,7 @@ $(document).ready(function() {
 		"border-radius" : "5px",
 		"padding" : "5px",
 		"overflow-x" : "auto",
-"white-space": "nowrap"		
+		"white-space" : "nowrap"
 	});
 
 	$("img.slide").each(function() {
@@ -94,14 +94,14 @@ function changeImage(thumbnail) {
 		toggleTimer(true);
 	}
 
-	$(".selected").stop(true, true).animate({
+	$(".selected").animate({
 		borderWidth : "0px"
 	}, 100);
 
 	$(".selected").removeClass("selected");
 	thumbnail.addClass("selected");
 
-	$(".selected").stop(true, true).animate({
+	$(".selected").animate({
 		borderWidth : "3px"
 	}, 100);
 }
