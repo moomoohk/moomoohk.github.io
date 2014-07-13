@@ -1,4 +1,8 @@
-/* Slideshow widget */
+/*
+* Author: Meshulam Silk (moomoohk@ymail.com) 
+* Description: Slideshow widget
+*/
+
 var selectedIndex = 0;
 var speed = 5000;
 var timer;
