@@ -1,7 +1,7 @@
 /*
-* Author: Meshulam Silk (moomoohk@ymail.com) 
-* Description: Slideshow widget
-*/
+ * Author: Meshulam Silk (moomoohk@ymail.com)
+ * Description: Slideshow widget
+ */
 
 var selectedIndex = 0;
 var speed = 5000;
@@ -13,36 +13,44 @@ $(document).ready(function() {
 	}, speed);
 
 	$(".slideshow").append("<img class=\"currSlide\"/><div class=\"slides\"></div>");
-	$(".slideshow").css("height", "500px");
-	$(".slideshow").css("background-color", "white");
-	$(".slideshow").css("overflow", "auto");
-	$(".slideshow").css("border", "1px solid #505050");
-	$(".slideshow").css("border-radius", "5px");
+	$(".slideshow").css({
+		"height" : "500px",
+		"background-color" : "white",
+		"overflow" : "auto",
+		"border" : "1px solid #505050",
+		"border-radius" : "5px"
+	});
 
-	$(".currSlide").css("height", "400px");
-	$(".currSlide").css("display", "block");
-	$(".currSlide").css("margin", "auto");
+	$(".currSlide").css({
+		"height" : "400px",
+		"display" : "block",
+		"margin" : "auto"
+	});
 
-	$(".slides").css("vertical-align", "middle");
-	$(".slides").css("height", "90px");
-	$(".slides").css("background-color", "#505050");
-	$(".slides").css("border-radius", "5px");
-	$(".slides").css("padding", "5px");
+	$(".slides").css({
+		"vertical-align" : "middle",
+		"height" : "90px",
+		"background-color" : "#505050",
+		"border-radius" : "5px",
+		"padding" : "5px"
+	});
 
 	$("img.slide").each(function() {
 		var thumbSlide = $(this).clone();
 		$(this).removeClass("slide");
 		$(".slides").append(thumbSlide);
 
-		thumbSlide.css("height", (thumbSlide.parent().height() - 10) + "px");
-		thumbSlide.css("margin-left", "2px");
-		thumbSlide.css("margin-right", "2px");
-		thumbSlide.css("cursor", "pointer");
-		thumbSlide.css("background-color", "white");
-		thumbSlide.css("border-style", "solid");
-		thumbSlide.css("border-width", "0px");
-		thumbSlide.css("border-color", "rgb(168, 168, 168)");
-		thumbSlide.css("vertical-align", "middle");
+		thumbSlide.css({
+			"height" : (thumbSlide.parent().height() - 10) + "px",
+			"margin-left" : "2px",
+			"margin-right" : "2px",
+			"cursor" : "pointer",
+			"background-color" : "white",
+			"border-style" : "solid",
+			"border-width" : "0px",
+			"border-color" : "rgb(168, 168, 168)",
+			"vertical-align" : "middle"
+		});
 
 		thumbSlide.hover(function() {
 			$(this).addClass("mouseover");
