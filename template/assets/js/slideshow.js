@@ -40,6 +40,7 @@ $(document).ready(function() {
 		thumbSlide.css("border-style", "solid");
 		thumbSlide.css("border-width", "0px");
 		thumbSlide.css("border-color", "rgb(168, 168, 168)");
+		thumbSlide.css("vertical-align", "middle");
 
 		thumbSlide.hover(function() {
 			$(this).addClass("mouseover");
@@ -70,10 +71,10 @@ $(document).ready(function() {
 
 function changeImage(thumbnail) {
 	toggleTimer(false);
-	$(".currSlide").fadeOut(function() {
+	$(".currSlide").fadeOut(100, function() {
 		$(".currSlide").attr("src", thumbnail.attr("src"));
 	});
-	$(".currSlide").fadeIn();
+	$(".currSlide").fadeIn(100);
 	if (!thumbnail.hasClass("mouseover")) {
 		toggleTimer(true);
 	}
@@ -83,14 +84,14 @@ function changeImage(thumbnail) {
 
 	$(".selected").animate({
 		borderWidth : "0px"
-	}, 200);
+	}, 100);
 
 	$(".selected").removeClass("selected");
 	thumbnail.addClass("selected");
 
 	$(".selected").animate({
 		borderWidth : "3px"
-	}, 200);
+	}, 100);
 }
 
 function toggleTimer(f) {
