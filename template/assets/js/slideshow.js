@@ -16,6 +16,8 @@ $(document).ready(function() {
 	$(".slideshow").css("height", "500px");
 	$(".slideshow").css("background-color", "white");
 	$(".slideshow").css("overflow", "auto");
+	$(".slideshow").css("border", "1px solid #505050");
+	$(".slideshow").css("border-radius", "5px");
 
 	$(".currSlide").css("height", "400px");
 	$(".currSlide").css("display", "block");
@@ -23,7 +25,7 @@ $(document).ready(function() {
 
 	$(".slides").css("vertical-align", "middle");
 	$(".slides").css("height", "90px");
-	$(".slides").css("background-color", "#272727");
+	$(".slides").css("background-color", "#505050");
 	$(".slides").css("border-radius", "5px");
 	$(".slides").css("padding", "5px");
 
