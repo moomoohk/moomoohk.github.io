@@ -2,63 +2,102 @@
 var selectedIndex = 0;
 var speed = 5000;
 var timer;
-var images = new Array(); 
-
-$(document).ready(function() {
-	$("img.slide").each(function() {
-		images.push($(this).attr("src"));
-		$(this).css("display", "none");
-		$(this).height(Math.min(300, ($("body").width - 10)));
-	});
-	
-});
 
 $(document).ready(function() {
 	timer = setInterval(function() {
-		changeImage(++selectedIndex);
+		changeImage($(".slide:nth(" + ((++selectedIndex) % $(".slide").length()) + ")"));
 	}, speed);
 
-	$("#screenies").after("<p id=\"thumbs\"></p>");
-	$("#screenies img").each(function() {
-		$("#thumbs").append("<img src=\"" + $(this).attr("src") + "\"/>");
+	$(".slideshow").append("<img class=\"currSlide\"/><div class=\"slides\"></div>");
+	$(".slideshow").css("height", "500px");
+	$(".slideshow").css("background-color", "white");
+	$(".slideshow").css("overflow", "auto");
+
+	$(".currSlide").css("height", "400px");
+	$(".currSlide").css("display", "block");
+	$(".currSlide").css("margin", "auto");
+
+	$(".slides").css("vertical-align", "middle");
+	$(".slides").css("height", "90px");
+	$(".slides").css("background-color", "#272727");
+	$(".slides").css("border-radius", "5px");
+	$(".slides").css("padding", "5px");
+
+	$("img.slide").each(function() {
+		var thumbSlide = $(this).clone();
+		$(this).removeClass("slide");
+		$(".slides").append(thumbSlide);
+
+		thumbSlide.css("height", (thumbSlide.parent().height() - 10) + "px");
+		thumbSlide.css("margin-left", "2px");
+		thumbSlide.css("margin-right", "2px");
+		thumbSlide.css("cursor", "pointer");
+		thumbSlide.css("background-color", "white");
+		thumbSlide.css("border-style", "solid");
+		thumbSlide.css("border-width", "0px");
+		thumbSlide.css("border-color", "rgb(168, 168, 168)");
+
+		thumbSlide.hover(function() {
+			$(this).addClass("mouseover");
+			if ($(this).hasClass("selected")) {
+				toggleTimer(false);
+			}
+			$(this).animate({
+				"height" : ($(this).parent().height() - 5) + "px",
+			}, 100);
+		}, function() {
+			$(this).removeClass("mouseover");
+			if ($(this).hasClass("selected")) {
+				toggleTimer(true);
+			}
+			$(this).animate({
+				"height" : ($(this).parent().height() - 10) + "px",
+			}, 100);
+		});
+		thumbSlide.click(function() {
+			changeImage($(this));
+		});
+		$(this).css("display", "none");
+		$(this).height(Math.min(300, ($("body").width - 10)));
 	});
-	changeImage(selectedIndex);
-	$("#thumbs img").on("mouseenter", function() {
-		$(this).addClass("mouseover");
-		if ($(this).hasClass("selected")) {
-			toggleTimer(false);
-		}
-	}).on("mouseleave", function() {
-		$(this).removeClass("mouseover");
-		if ($(this).hasClass("selected")) {
-			toggleTimer(true);
-		}
-	}).on("click", function() {
-		changeImage( selectedIndex = $(this).index());
-	});
+
+	changeImage($(".slide:nth(0)"));
 });
 
-function changeImage(index) {
+function changeImage(thumbnail) {
 	toggleTimer(false);
-	$("#screenies img").removeClass("opaque");
-	index = index % $("#thumbs img").length;
-
-	$("#screenies img:nth(" + index + ")").height($("#screenies").height());
-	var ratio = $("#screenies").height() / $("#screenies img:nth(" + index + ")").height();
-	$("#screenies img:nth(" + index + ")").width(ratio * $("#screenies img:nth(" + index + ")").width());
-	$("#screenies").width(ratio * $("#screenies img:nth(" + index + ")").width());
-	$("#screenies img:nth(" + index + ")").addClass("opaque");
-	$("#thumbs img").removeClass("selected");
-	$("#thumbs img:nth(" + index + ")").addClass("selected");
-	if (!$("#thumbs img:nth(" + index + ")").hasClass("mouseover")) {
+	$(".currSlide").fadeOut(function() {
+		$(".currSlide").attr("src", thumbnail.attr("src"));
+	});
+	$(".currSlide").fadeIn();
+	if (!thumbnail.hasClass("mouseover")) {
 		toggleTimer(true);
 	}
+	if (thumbnail.hasClass("selected")) {
+		return;
+	}
+
+	$(".selected").animate({
+		borderWidth : "0px"
+	}, 200);
+
+	$(".selected").removeClass("selected");
+	thumbnail.addClass("selected");
+
+	$(".selected").animate({
+		borderWidth : "3px"
+	}, 200);
 }
 
 function toggleTimer(f) {
 	if (f) {
 		timer = setInterval(function() {
-			changeImage(++selectedIndex);
+			if (selectedIndex == $(".slide").length - 1) {
+				selectedIndex = 0;
+			} else {
+				selectedIndex++;
+			}
+			changeImage($(".slide:nth(" + selectedIndex + ")"));
 		}, speed);
 	} else {
 		clearInterval(timer);
