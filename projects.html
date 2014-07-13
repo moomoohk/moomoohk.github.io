@@ -31,6 +31,7 @@
       
 
 		<link href="http://fonts.googleapis.com/css?family=PT+Sans:400italic,400,700italic,700" rel="stylesheet" type="text/css">
+		<link href='http://fonts.googleapis.com/css?family=PT+Mono' rel='stylesheet' type='text/css'>
 
 		<link rel='stylesheet' href='template/assets/css/normalize.css'>
 <link rel='stylesheet' href='template/assets/css/style.css'>
@@ -43,7 +44,13 @@
 		<link href="template/assets/favicon.ico" rel="shortcut icon">
 		<title>projects</title>
 		<script type="application/javascript">
-			function onLoad() {
+			$(document).ready(function() {
+				/* Oh what's this */
+				new Konami(function() {
+					var audioElement = document.createElement("audio");
+					audioElement.setAttribute("src", "template/assets/audio/aristotle.m4a");
+					audioElement.setAttribute("autoplay", "autoplay");
+				});
 				prettyPrint();
 				$("ol.linenums").each(function(index) {
 					if ($(this).children().length == 1)
@@ -63,21 +70,11 @@
 							scrollTop : 0
 						}, 400);
 				});
-			}
+			});
 		</script>
 	</head>
 
-	<body onload="onLoad()">
-		<script>
-			/* Oh what's this */
-			$(document).ready(function() {
-				new Konami(function() {
-					var audioElement = document.createElement("audio");
-					audioElement.setAttribute("src", "template/assets/audio/aristotle.m4a");
-					audioElement.setAttribute("autoplay", "autoplay");
-				});
-			});
-		</script>
+	<body>
 		<header>
 			<!-- @todo Do mobile styling -->
 
@@ -169,20 +166,20 @@
 
 		.collapsible {
 			display: none;
-			background-color: #788ECA;
+			background-color: #B9C2DB;
 			padding-top: 5px;
 		}
 
 		h2.projectName {
 			cursor: pointer;
-			margin-bottom: 10px;
+			margin-bottom: 0px;
 			-webkit-transition: color ease 0.5s, border-color ease 0.5s;
 			-moz-transition: color ease 0.5s, border-color ease 0.5s;
 			-ms-transition: color ease 0.5s, border-color ease 0.5s;
 			-o-transition: color ease 0.5s, border-color ease 0.5s;
 			transition: color ease 0.5s, border-color ease 0.5s;
 		}
-		
+
 		.clickable {
 			margin-right: 20px;
 			cursor: pointer;
@@ -201,7 +198,23 @@
 			display: block;
 			text-align: right;
 			padding-right: 10px;
-			background-color: rgb(88, 118, 199);
+			background-color: #9BA5BE;
+			-webkit-transition: background-color ease 0.5s, border-color ease 0.5s;
+			-moz-transition: background-color ease 0.5s, border-color ease 0.5s;
+			-ms-transition: background-color ease 0.5s, border-color ease 0.5s;
+			-o-transition: background-color ease 0.5s, border-color ease 0.5s;
+			transition: background-color ease 0.5s, border-color ease 0.5s;
+		}
+
+		.projectlink:hover {
+			background-color: #788DC2;
+		}
+
+		.tile {
+			margin-right: 5px;
+			margin-bottom: 5px;
+			height: 30px;
+			vertical-align: middle;
 		}
 	</style>
 	<script type="application/javascript">
@@ -248,7 +261,7 @@
 		<span class="clickable" id="expandall">Expand all</span>
 		<span class="clickable" id="collapseall">Collapse all</span>
 		<div class="project">
-			<h2 class="projectName">Grame</h2>
+			<h2 class="projectName"><img src="assets/images/tiles/Grame.png" class="tile"/>Grame</h2>
 			<div class="collapsible">
 				<p>
 					Grame is a 2D grid based game engine I've been spending the better part of the last few years developing.
@@ -257,7 +270,7 @@
 			</div>
 		</div>
 		<div class="project">
-			<h2 class="projectName">Reaction Keeper</h2>
+			<h2 class="projectName"><img src="assets/images/tiles/ReactionKeeper.png" class="tile"/>Reaction Keeper</h2>
 			<div class="collapsible">
 				<p>
 					Reaction Keeper is an app I made to help catalogue GIFs and images I keep finding myself using.
@@ -266,7 +279,7 @@
 			</div>
 		</div>
 		<div class="project">
-			<h2 class="projectName">Tracking Manager</h2>
+			<h2 class="projectName"><img src="assets/images/tiles/TrackingManager.png" class="tile"/>Tracking Manager</h2>
 			<div class="collapsible">
 				<p >
 					Tracking Manager is an app I made to help keep track of packages that you've got in the mail with the help of tracking numbers.
@@ -275,7 +288,7 @@
 			</div>
 		</div>
 		<div class="project">
-			<h2 class="projectName">MooCommands</h2>
+			<h2 class="projectName"><img src="assets/images/tiles/MooCommands.png" class="tile"/>MooCommands</h2>
 			<div class="collapsible">
 				<p>
 					MooCommands is a library which helps in creating, managing and executing command objects in your program. Great for apps like IRC clients.
@@ -284,7 +297,7 @@
 			</div>
 		</div>
 		<div class="project">
-			<h2 class="projectName">MooConsole</h2>
+			<h2 class="projectName"><img src="assets/images/tiles/MooConsole.png" class="tile"/>MooConsole</h2>
 			<div class="collapsible">
 				<p >
 					Mooconsole is an external console for your everyday logging needs. Depends on MooCommands.
@@ -293,7 +306,7 @@
 			</div>
 		</div>
 		<div class="project">
-			<h2 class="projectName">Mootilities</h2>
+			<h2 class="projectName"><img src="assets/images/sprites/no-icon.png" class="tile"/>Mootilities</h2>
 			<div class="collapsible">
 				<p>
 					Mootilities is a library which contains plenty of useful classes and boilerplate methods for your convinience.
@@ -302,7 +315,7 @@
 			</div>
 		</div>
 		<div class="project">
-			<h2 class="projectName">MooBootstrap</h2>
+			<h2 class="projectName"><img src="assets/images/sprites/no-icon.png" class="tile"/>MooBootstrap</h2>
 			<div class="collapsible">
 				<p>
 					MooBootstrap is a library which provides an easy to use bootstrap system for application in your programs.
