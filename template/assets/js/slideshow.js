@@ -32,7 +32,9 @@ $(document).ready(function() {
 		"height" : "90px",
 		"background-color" : "#505050",
 		"border-radius" : "5px",
-		"padding" : "5px"
+		"padding" : "5px",
+		"overflow-x" : "auto",
+"white-space": "nowrap"		
 	});
 
 	$("img.slide").each(function() {
@@ -92,14 +94,14 @@ function changeImage(thumbnail) {
 		toggleTimer(true);
 	}
 
-	$(".selected").animate({
+	$(".selected").stop(true, true).animate({
 		borderWidth : "0px"
 	}, 100);
 
 	$(".selected").removeClass("selected");
 	thumbnail.addClass("selected");
 
-	$(".selected").animate({
+	$(".selected").stop(true, true).animate({
 		borderWidth : "3px"
 	}, 100);
 }
