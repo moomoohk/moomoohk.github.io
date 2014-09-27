@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="Moomoohk's site. Contains all my major Java projects.">
+		<meta name="robots" content="index, follow">
+
+		
+        <!-- Hammer reload -->
+          <script>
+            setInterval(function(){
+              try {
+                if(typeof ws != 'undefined' && ws.readyState == 1){return true;}
+                ws = new WebSocket('ws://'+(location.host || 'localhost').split(':')[0]+':35353')
+                ws.onopen = function(){ws.onclose = function(){document.location.reload()}}
+                ws.onmessage = function(){
+                  var links = document.getElementsByTagName('link'); 
+                    for (var i = 0; i < links.length;i++) { 
+                    var link = links[i]; 
+                    if (link.rel === 'stylesheet' && !link.href.match(/typekit/)) { 
+                      href = link.href.replace(/((&|\?)hammer=)[^&]+/,''); 
+                      link.href = href + (href.indexOf('?')>=0?'&':'?') + 'hammer='+(new Date().valueOf());
+                    }
+                  }
+                }
+              }catch(e){}
+            }, 1000)
+          </script>
+        <!-- /Hammer reload -->
+      
+
+		<link href="http://fonts.googleapis.com/css?family=PT+Sans:400italic,400,700italic,700" rel="stylesheet" type="text/css">
+		<link href='http://fonts.googleapis.com/css?family=PT+Mono' rel='stylesheet' type='text/css'>
+
+		<link rel='stylesheet' href='../template/assets/css/normalize.css'>
+<link rel='stylesheet' href='../template/assets/css/style.css'>
+<link rel='stylesheet' href='../template/assets/css/prettify.css'>
+		<script src='../template/assets/js/jquery-1.8.3.min.js'></script>
+<script src='../template/assets/js/slideshow.js'></script>
+<script src='../template/assets/js/google-code-prettify/prettify.js'></script>
+<script src='../template/assets/js/snaptortoise-konami-js-93c5489/konami.js'></script>
+
+		<link href="../template/assets/favicon.ico" rel="shortcut icon">
+		<title>moomoohk/snippets/java_osx</title>
+		<script type="application/javascript">
+			$(document).ready(function() {
+				/* Oh what's this */
+				new Konami(function() {
+					var audioElement = document.createElement("audio");
+					audioElement.setAttribute("src", "../template/assets/audio/aristotle.m4a");
+					audioElement.setAttribute("autoplay", "autoplay");
+				});
+				prettyPrint();
+				$("ol.linenums").each(function(index) {
+					if ($(this).children().length == 1)
+						$(this).remove();
+				});
+				var textContents = $("#footer").text().trim();
+				$("#footer").on("mouseenter", function() {
+					$(this).text("Return to top");
+				}).on("mouseleave", function() {
+					$(this).text(textContents);
+				}).mousedown(function(event) {
+					if (event.which == 1)
+						$("html, body").animate({
+							scrollTop : 0
+						}, 400);
+				});
+			});
+		</script>
+	</head>
+
+	<body>
+		<header>
+			<!-- @todo Do mobile styling -->
+
+<nav id="main">
+	<ul id="topList">
+		<li><p unselectable="on">moomoohk</p></li>
+		<li><div class="headerDivider"></div></li>
+		<li><a href="/index.html">Home</a></li>
+		<li><div class="headerDivider"></div></li>
+		<li><a href="/projects.html">Projects</a>
+			<ul>
+				<li><a href="/grame/">Grame</a>
+					<ul>
+						<li><a href="/grame/docs/">JavaDocs</a></li>
+						<li><a href="/grame/#downloads">Download</a></li>
+					</ul>
+				</li>
+				<li><a href="/reactionkeeper.html">Reaction Keeper</a>
+					<ul>
+						<li><a href="/reactionkeeper.html#downloads">Download</a></li>
+					</ul>
+				</li>
+				<li><a href="/trackingmanager.html">Tracking Manager</a>
+					<ul>
+						<li><a href="/trackingmanager.html#downloads">Download</a></li>
+					</ul>
+				</li>
+				<li><a href="/moocommands/">MooCommands</a>
+					<ul>
+						<li><a href="/moocommands/docs">JavaDocs</a></li>
+						<li><a href="/moocommands/#downloads">Download</a></li>
+					</ul>
+				</li>
+				<li><a href="/mooconsole/">MooConsole</a>
+					<ul>
+						<li><a href="/mooconsole/docs">JavaDocs</a></li>
+						<li><a href="/mooconsole/#downloads">Download</a></li>
+					</ul>
+				</li>
+				<li><a href="/mootilities/">Mootilities</a>
+					<ul>
+						<li><a href="/mootilities/docs">JavaDocs</a></li>
+						<li><a href="/mootilities/#downloads">Download</a></li>
+					</ul>
+				</li>
+				<li><a href="/moobootstrap/">MooBootstrap</a>
+					<ul>
+						<li><a href="/moobootstrap/docs">JavaDocs</a></li>
+						<li><a href="/moobootstrap/#downloads">Download</a></li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+		<li><div class="headerDivider"></div></li>
+		<li><a href="/snippets.html">Snippets</a></li>
+		<li><div class="headerDivider"></div></li>
+		<li><a href="/contact.html">Contact</a>
+			<ul>
+				<li>
+					<a href="http://twitter.com/moomoohk" target="_blank">Twitter</a>
+				</li>
+				<li>
+					<a href="http://youtube.com/moomoohk" target="_blank">YouTube</a>
+				</li>
+				<li>
+					<a href="http://webchat.freenode.net?channels=%23moomoohk&uio=Mj10cnVlJjQ9dHJ1ZSYxMT0yMzYff" target="_blank">IRC</a>
+				</li>
+				<li>
+					<a href="http://github.com/moomoohk" target="_blank">GitHub</a>
+				</li>
+			</ul>
+		</li>
+		<li><div class="headerDivider"></div></li>
+	</ul>
+</nav>
+		</header>
+
+<style type="text/css">
+	#snippetHeader {
+		text-align: center;
+		padding: 5px;
+		background-color: #B9C2DB;
+	}
+
+	#snippetID {
+		display: block;
+		margin-bottom: 5px;
+	}
+
+	#indexLink {
+		background-color: #9BA5BE;
+		border-bottom-right-radius: 4px;
+		border-bottom-left-radius: 4px;
+		display: block;
+		padding: 5px;
+		margin-left: -5px;
+		margin-right: -5px;
+		margin-bottom: -5px;
+		-o-transition: background-color ease .2s;
+		-ms-transition: background-color ease .2s;
+		-moz-transition: background-color ease .2s;
+		-webkit-transition: background-color ease .2s;
+		transition: background-color ease .2s;
+	}
+
+	#indexLink:hover {
+		background-color: #788DC2;
+	}
+</style>
+<section id="snippetHeader">
+	<span id="snippetID">Snippet: java_osx</span>
+	<a href="../snippets.html" id="indexLink">Index</a>
+</section>
+
+<section>
+	<article>
+		<h1>Developing an OSX Application in Java</h1>
+<p>I haven't found any good development guides for Java apps on OSX so I thought I'd write one myself.</p>
+
+<p>There will probably be a lot of missing info in this article. I want it to be both a guide and a reference. I'll try to add/edit info as I learn it through experimentation. If you have any info you think belongs in this article feel free to <a href="/contact.html">contact me</a>.</p>
+
+<p>All of the Apple related classes are located in the <code>com.apple.eawt</code> package which <em>should</em> come with your Mac JDK. Unfortunately these classes are not documented. I think they used to be but all links to old doc pages that I've found online lead to 404's.</p>
+
+<p>There quite a few classes in the <code>com.apple.eawt</code> package but the most important one is <code>Application</code>. This class lets you get an <code>Application</code> instance through the static <code>getApplication()</code> method which represents your app on OSX. Through this instance you'll be able to add all kinds of cool functionality which will make your app feel a lot more native to OSX.</p>
+
+<p>Throughout this article I'll be referencing <code>macApplication</code> which is simply one such <code>Application</code> instance:</p>
+
+<p><code>Application macApplication = Application.getApplication();</code></p>
+
+<h2>Events</h2>
+<p>So the whole <code>com.apple.eawt</code> system abstractifies user interaction with OSX specific app components (stuff like menubar items, I'll get to that) as well operations originating from the OS by throwing around events. This abstractification is a bit convoluted which took me quite a bit to wrap my head around.</p>
+
+<p>The <code>com.apple.eawt.AppEvent</code> class contains all the different OSX specific events that might get thrown (in the form of abstract subclasses).</p>
+
+<p>I've separated these events into different categories:</p>
+
+<h3>Menu Bar Item Events</h3>
+<ul>
+  <li><code>com.apple.eawt.AppEvent.AboutEvent</code></li>
+  <li><code>com.apple.eawt.AppEvent.PreferencesEvent</code></li>
+  <li><code>com.apple.eawt.AppEvent.QuitEvent</code></li>
+</ul>
+
+<h3>App State Events</h3>
+<ul>
+  <li><code>com.apple.eawt.AppEvent.AppReOpenedEvent</code></li>
+  <li><code>com.apple.eawt.AppEvent.AppForegroundEvent</code></li>
+  <li><code>com.apple.eawt.AppEvent.AppHiddenEvent</code></li>
+</ul>
+
+<h3>Computer State Events</h3>
+<ul>
+  <li><code>com.apple.eawt.AppEvent.ScreenSleepEvent</code></li>
+  <li><code>com.apple.eawt.AppEvent.SystemSleepEvent</code></li>
+  <li><code>com.apple.eawt.AppEvent.FullScreenEvent</code></li>
+</ul>
+
+<p>The names should pretty clearly indicate the purpose of each event.</p>
+
+<h3>Miscellaneous Events (aka I'm not exactly sure what these do)</h3>
+<ul>
+  <li><code>com.apple.eawt.AppEvent.FilesEvent</code>: I think this is just an abstract class that helps you work with lists of files for stuff
+    <ul>
+      <li><code>com.apple.eawt.AppEvent.OpenFilesEvent</code>: Extends <code>FilesEvent</code>. Not sure where this event would originate from</li>
+      <li><code>com.apple.eawt.AppEvent.PrintFilesEvent</code>: Extends <code>FilesEvent</code>. Not sure where this event would originate from</li>
+    </ul>
+  </li>
+  <li><code>com.apple.eawt.AppEvent.UserSessionEvent</code>: I think this is thrown when the computer comes from or goes to the login screen</li>
+  <li><code>com.apple.eawt.AppEvent.OpenURIEvent</code>: Not sure how this event is different from <code>OpenFilesEvent</code> (or where it would originate from)</li>
+</ul>
+
+<h2>Event Handlers</h2>
+<p>Here's where things get confusing.</p>
+
+<p>Allow me to compare the <code>com.apple.eawt</code> event system to Swing’s event system:</p>
+
+<ul>
+  <li>Similarity: Both systems feature different types of events which fall into different categories</li>
+  <li>Difference: Swing has a uniform way of handling events: <code>someSwingComponent.addSomeListener(paramSomeEvent)</code>. On the other hand, <code>com.apple.eawt</code> doesn’t have a uniform way to handle events.</li>
+</ul>
+
+<p><code>com.apple.eawt</code> provides handlers for <em>some</em> events.</p>
+
+<p>Here are the handlers available:</p>
+
+<ul>
+  <li><code>com.apple.eawt.AboutHandler</code></li>
+  <li><code>com.apple.eawt.PreferencesHandler</code></li>
+  <li><code>com.apple.eawt.OpenFilesHandler</code></li>
+  <li><code>com.apple.eawt.PrintFilesHandler</code></li>
+  <li><code>com.apple.eawt.OpenURIHandler</code></li>
+  <li><code>com.apple.eawt.QuitHandler</code></li>
+</ul>
+
+<p>Implementing these handlers is pretty straightforward (demonstrated with <code>com.apple.eawt.PreferencesHandler</code> and <code>com.apple.eawt.AboutHandler</code> in the next section). </p>
+
+<p>The events that don't have handlers instead have listeners, I'm not sure why… Maybe “handlers” are for user input whereas “listeners” are for OS induced operations? Seems more confusing and redundant than anything else.</p>
+
+<p>Here are the listeners available:</p>
+
+<ul>
+  <li><code>com.apple.eawt.AppReOpenedListener</code></li>
+  <li><code>com.apple.eawt.AppForegroundListener</code></li>
+  <li><code>com.apple.eawt.AppHiddenListener</code></li>
+  <li><code>com.apple.eawt.UserSessionListener</code></li>
+  <li><code>com.apple.eawt.ScreenSleepListener</code></li>
+  <li><code>com.apple.eawt.SystemSleepListener</code></li>
+</ul>
+
+<p>All these listeners extend <code>com.apple.eawt.AppEventListener</code>.</p>
+
+<p>Register these listeners through <code>macApplication.addAppEventListener(AppEventListener paramAppEventListener)</code>.</p>
+
+<p>You can write your own listener that extends <code>com.apple.eawt.AppEventListener</code> but attempting to register it will result in nothing happening. Only the above 6 listeners can be registered. This should be obvious since the only events you’re catching with this system are being thrown by the OS, which means you can’t create your own events and therefore have no reason to create your own listeners.</p>
+
+<h3>“Catch All” Adapter</h3>
+<p>After understanding how the <code>com.apple.eawt</code> event system works I felt it was only appropriate to quickly write up and share an event adapter that catches everything. I realize it’s not very elegant but it “just makes sense”.</p>
+
+<p>I’m including it here as well as in the <code>com.moomoohk.Mootilities.OSUtils.MacOSX</code> package of <a href="/mootilities/">Mootilities</a> (a pretty handy project of mine that you should totally check out):</p>
+
+<pre><code>import com.apple.eawt.AboutHandler;
+import com.apple.eawt.AppEvent.AboutEvent;
+import com.apple.eawt.AppEvent.AppForegroundEvent;
+import com.apple.eawt.AppEvent.AppHiddenEvent;
+import com.apple.eawt.AppEvent.AppReOpenedEvent;
+import com.apple.eawt.AppEvent.OpenFilesEvent;
+import com.apple.eawt.AppEvent.OpenURIEvent;
+import com.apple.eawt.AppEvent.PreferencesEvent;
+import com.apple.eawt.AppEvent.PrintFilesEvent;
+import com.apple.eawt.AppEvent.QuitEvent;
+import com.apple.eawt.AppEvent.ScreenSleepEvent;
+import com.apple.eawt.AppEvent.SystemSleepEvent;
+import com.apple.eawt.AppEvent.UserSessionEvent;
+import com.apple.eawt.AppForegroundListener;
+import com.apple.eawt.AppHiddenListener;
+import com.apple.eawt.AppReOpenedListener;
+import com.apple.eawt.Application;
+import com.apple.eawt.OpenFilesHandler;
+import com.apple.eawt.OpenURIHandler;
+import com.apple.eawt.PreferencesHandler;
+import com.apple.eawt.PrintFilesHandler;
+import com.apple.eawt.QuitHandler;
+import com.apple.eawt.QuitResponse;
+import com.apple.eawt.ScreenSleepListener;
+import com.apple.eawt.SystemSleepListener;
+import com.apple.eawt.UserSessionListener;
+
+/**
+ * An event adapter meant to catch all the com.apple.eawt events.
+ * 
+ * @author Meshulam Silk (moomoohk@ymail.com)
+ * @since Sep 27, 2014
+ */
+public abstract class MacOSXAppEventAdapter implements AboutHandler, PreferencesHandler, PrintFilesHandler, OpenFilesHandler, OpenURIHandler, QuitHandler, AppReOpenedListener, AppForegroundListener, AppHiddenListener, UserSessionListener, ScreenSleepListener, SystemSleepListener
+{
+    /**
+     * Constructor
+     * 
+     * Registers this instance with the com.apple.eawt system
+     */
+    public MacOSXAppEventAdapter()
+    {
+        Application.getApplication().addAppEventListener(this);
+        Application.getApplication().setAboutHandler(this);
+        Application.getApplication().setPreferencesHandler(this);
+        Application.getApplication().setPrintFileHandler(this);
+        Application.getApplication().setOpenFileHandler(this);
+        Application.getApplication().setOpenURIHandler(this);
+        Application.getApplication().setQuitHandler(this);
+    }
+    
+    @Override
+    public abstract void systemAboutToSleep(SystemSleepEvent paramSystemSleepEvent);
+    
+    @Override
+    public abstract void systemAwoke(SystemSleepEvent paramSystemSleepEvent);
+    
+    @Override
+    public abstract void screenAboutToSleep(ScreenSleepEvent paramScreenSleepEvent);
+    
+    @Override
+    public abstract void screenAwoke(ScreenSleepEvent paramScreenSleepEvent);
+    
+    @Override
+    public abstract void userSessionDeactivated(UserSessionEvent paramUserSessionEvent);
+    
+    @Override
+    public abstract void userSessionActivated(UserSessionEvent paramUserSessionEvent);
+    
+    @Override
+    public abstract void appHidden(AppHiddenEvent paramAppHiddenEvent);
+    
+    @Override
+    public abstract void appUnhidden(AppHiddenEvent paramAppHiddenEvent);
+    
+    @Override
+    public abstract void appRaisedToForeground(AppForegroundEvent paramAppForegroundEvent);
+    
+    @Override
+    public abstract void appMovedToBackground(AppForegroundEvent paramAppForegroundEvent);
+    
+    @Override
+    public abstract void appReOpened(AppReOpenedEvent paramAppReOpenedEvent);
+    
+    @Override
+    public abstract void handleQuitRequestWith(QuitEvent arg0, QuitResponse arg1);
+    
+    @Override
+    public abstract void openURI(OpenURIEvent paramOpenURIEvent);
+    
+    @Override
+    public abstract void openFiles(OpenFilesEvent paramOpenFilesEvent);
+    
+    @Override
+    public abstract void handlePreferences(PreferencesEvent paramPreferencesEvent);
+    
+    @Override
+    public abstract void printFiles(PrintFilesEvent paramPrintFilesEvent);
+    
+    @Override
+    public abstract void handleAbout(AboutEvent paramAboutEvent);
+}
+</code></pre>
+
+<h2>Menu Items</h2>
+<p>The first thing you'll want to do is add and customize the default OSX menu items (About, Preferences, etc.).</p>
+
+<p>It was super confusing to figure out due to all the outdated tutorials and docs I've found online coupled with the fact that a lot of classes are deprecated.</p>
+
+<p>You'll notice that by default your app bundle doesn't have a “Preferences” item in the main app menu. I assume this is because most people won't implement their own preferences implementation. Most (if not all) of the guides I came across online state that you should call <code>macApplication.setEnabledPreferencesMenu(true);</code> or <code>macApplication.addPreferencesMenuItem()</code> to get the item to show up. However, these methods are deprecated and I therefore recommend you don't use them.</p>
+
+<p>To get the “Preferences” item to show up all you seemingly need to do is implement a handler for that item, like so:</p>
+
+<pre><code>macApplication.setPreferencesHandler(new PreferencesHandler()
+{
+    @Override
+    public void handlePreferences(PreferencesEvent paramPreferencesEvent)
+    {
+        // Make preferences window appear here
+    }
+});
+</code></pre>
+
+<p>This appears to be applicable to the “About” menu item as well:</p>
+
+<pre><code>macApplication.setAboutHandler(new AboutHandler()
+{
+    @Override
+    public void handleAbout(AboutEvent paramAboutEvent)
+    {
+        // Make about window appear here
+    }
+});
+</code></pre>
+
+<p>This code should replace <code>macApplication.setEnabledAboutMenuItem(true);</code> and <code>macApplication.addAboutMenuItem();</code>.</p>
+
+<h2>Fullscreen</h2>
+<p>In Mac OS X Lion (10.7) Apple introduced full screen apps.</p>
+
+<p>Calling <code>FullScreenUtilities.setWindowCanFullScreen(frame, true);</code>, where <code>frame</code> is your window object (as in, extends <code>java.awt.Window</code>. This includes <code>javax.swing.JFrame</code>), will enable this functionality.</p>
+
+<p>Before enabling full screen:</p>
+
+<p><img src="assets/java_osx/java_osx_1.png" alt="" title="Standard JFrame" /></p>
+
+<p>After enabling full screen:</p>
+
+<p><img src="assets/java_osx/java_osx_2.png" alt="" title="Fabulous JFrame" /></p>
+
+<p>To programmatically toggle full screen mode call <code>macApplication.requestToggleFullScreen(frame);</code>. There’s no way to set the fullscreen state manually, only a toggle.</p>
+
+<h3>Note</h3>
+<p>I'm not sure how <code>com.apple.eawt</code> handles these calls on systems older than 10.7. Here's a more complete example with a (possibly redundant) check to make sure the system is at least Mac OS X Lion: </p>
+
+<pre><code>if (System.getProperty("os.name").startsWith("Mac OS X"))
+{
+    String osVer = System.getProperty("os.version");
+    int major = Integer.parseInt(osVer.substring(0, osVer.indexOf(".")));
+    osVer = osVer.substring(osVer.indexOf(".") + 1);
+    int minor = Integer.parseInt(osVer.substring(0, osVer.indexOf(".")));
+    if (major &gt;= 10 &amp;&amp; minor &gt;= 7)
+    {
+        FullScreenUtilities.setWindowCanFullScreen(frame, true);
+        macApplication.requestToggleFullScreen(frame);
+    }
+}
+</code></pre>
+
+	</article>
+</section>
+<section>
+	<h1>Document Changelog</h1>
+<ul>
+  <li>27/9/14: Created</li>
+</ul>
+
+</section>
+
+		<section id="footer">
+			© moomoohk 2014
+		</section>
+	</body>
+</html>

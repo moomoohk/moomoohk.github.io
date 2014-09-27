@@ -42,7 +42,7 @@
 <script src='template/assets/js/snaptortoise-konami-js-93c5489/konami.js'></script>
 
 		<link href="template/assets/favicon.ico" rel="shortcut icon">
-		<title>projects</title>
+		<title>moomoohk/projects</title>
 		<script type="application/javascript">
 			$(document).ready(function() {
 				/* Oh what's this */
@@ -56,14 +56,11 @@
 					if ($(this).children().length == 1)
 						$(this).remove();
 				});
-				var footerBgColor = $("#footer").css("background-color");
 				var textContents = $("#footer").text().trim();
 				$("#footer").on("mouseenter", function() {
 					$(this).text("Return to top");
-					$(this).css("background-color", "#8999A7");
 				}).on("mouseleave", function() {
 					$(this).text(textContents);
-					$(this).css("background-color", footerBgColor);
 				}).mousedown(function(event) {
 					if (event.which == 1)
 						$("html, body").animate({
@@ -129,6 +126,8 @@
 			</ul>
 		</li>
 		<li><div class="headerDivider"></div></li>
+		<li><a href="/snippets.html">Snippets</a></li>
+		<li><div class="headerDivider"></div></li>
 		<li><a href="/contact.html">Contact</a>
 			<ul>
 				<li>
@@ -150,12 +149,6 @@
 </nav>
 		</header>
 
-		<section class="announcement">
-			<p>
-				This site is still very much under construction! Sorry for all the empty pages and 404's
-			</p>
-		</section>
-
 
 <section>
 	<style type="text/css">
@@ -171,6 +164,9 @@
 		}
 
 		h2.projectName {
+			padding: 5px;
+			background-color: #D6D6D6;
+			text-align: center;
 			cursor: pointer;
 			margin-bottom: 0px;
 			-webkit-transition: color ease 0.5s, border-color ease 0.5s;
@@ -212,7 +208,7 @@
 
 		.tile {
 			margin-right: 5px;
-			margin-bottom: 5px;
+			margin-bottom: 2px;
 			height: 30px;
 			vertical-align: middle;
 		}
@@ -220,17 +216,15 @@
 	<script type="application/javascript">
 		$(document).ready(function() {
 			function expand(obj) {
-				obj.next().slideDown();
+				obj.next().slideDown(200);
 				obj.addClass("open");
 				obj.css("color", "rgb(0, 0, 0)");
-				obj.css("border-color", "rgb(156, 156, 156)");
 			}
 
 			function collapse(obj) {
-				obj.next().slideUp();
+				obj.next().slideUp(200);
 				obj.removeClass("open");
 				obj.css("color", "#505050");
-				obj.css("border-color", "#cacaca");
 			}
 
 
@@ -241,6 +235,9 @@
 				} else {
 					collapse($(this));
 				}
+			}).on("dblclick", function() {
+				console.log($(this).next().children("a.projectlink"));
+				window.location = $(this).next().children("a.projectlink").attr("href");
 			});
 
 			$("#expandall").on("mousedown", function() {
