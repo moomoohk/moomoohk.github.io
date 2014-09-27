@@ -44,26 +44,24 @@ section {
   box-shadow: 0px 10px 15px #f5f5f5;
   border-radius: 4px;
   padding: 20px;
-  /* THANK YOU http://perishablepress.com/perfect-pre-tags/ */
   /* no vertical scrollbars for IE 7 */
   /* no vertical scrollbars for IE 6 */ }
   section p {
     margin-top: 5px;
     margin-bottom: 5px;
     padding-left: 10px; }
-    section p code {
-      font-family: "PT Mono", monospace;
-      word-wrap: break-word; }
   section ul, section ol {
     padding-left: 30px; }
   section code {
+    font-family: "PT Mono", monospace;
     border-radius: 3px;
     background: #FFFFFF;
     padding-left: 3px;
     padding-right: 3px;
     padding-bottom: 1px;
     padding-top: 1px;
-    font-size: 14px; }
+    font-size: 14px;
+    word-wrap: break-word; }
   section a {
     color: #444444;
     font-weight: bold;
@@ -99,7 +97,8 @@ section {
     section pre code {
       border: none;
       background: none;
-      padding: 0px; }
+      padding: 0px;
+      word-wrap: normal; }
   section *:first-child + html pre {
     padding-bottom: 20px;
     overflow-y: hidden;
