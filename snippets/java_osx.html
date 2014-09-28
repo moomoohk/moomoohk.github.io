@@ -77,11 +77,10 @@
 			<!-- @todo Do mobile styling -->
 
 <nav id="main">
+	<a href="#" id="menu-icon">Menu</a>
 	<ul id="topList">
 		<li><p unselectable="on">moomoohk</p></li>
-		<li><div class="headerDivider"></div></li>
 		<li><a href="/index.html">Home</a></li>
-		<li><div class="headerDivider"></div></li>
 		<li><a href="/projects.html">Projects</a>
 			<ul>
 				<li><a href="/grame/">Grame</a>
@@ -126,9 +125,7 @@
 				</li>
 			</ul>
 		</li>
-		<li><div class="headerDivider"></div></li>
 		<li><a href="/snippets.html">Snippets</a></li>
-		<li><div class="headerDivider"></div></li>
 		<li><a href="/contact.html">Contact</a>
 			<ul>
 				<li>
@@ -145,7 +142,6 @@
 				</li>
 			</ul>
 		</li>
-		<li><div class="headerDivider"></div></li>
 	</ul>
 </nav>
 		</header>
@@ -190,9 +186,11 @@
 <section>
 	<article>
 		<h1>Developing an OSX Application in Java</h1>
+<p><em>This article is incomplete</em></p>
+
 <p>I haven't found any good development guides for Java apps on OSX so I thought I'd write one myself.</p>
 
-<p>There will probably be a lot of missing info in this article. I want it to be both a guide and a reference. I'll try to add/edit info as I learn it through experimentation. If you have any info you think belongs in this article feel free to <a href="/contact.html">contact me</a>.</p>
+<p>I want this article to be both a guide and a reference. I'll try to add/edit info as I learn it through experimentation. If you have any info you think belongs in this article feel free to <a href="/contact.html">contact me</a>.</p>
 
 <p>All of the Apple related classes are located in the <code>com.apple.eawt</code> package which <em>should</em> come with your Mac JDK. Unfortunately these classes are not documented. I think they used to be but all links to old doc pages that I've found online lead to 404's.</p>
 
@@ -203,7 +201,7 @@
 <p><code>Application macApplication = Application.getApplication();</code></p>
 
 <h2>Events</h2>
-<p>So the whole <code>com.apple.eawt</code> system abstractifies user interaction with OSX specific app components (stuff like menubar items, I'll get to that) as well operations originating from the OS by throwing around events. This abstractification is a bit convoluted which took me quite a bit to wrap my head around.</p>
+<p>So the whole <code>com.apple.eawt</code> system abstractifies user interaction with OSX specific app components (like menubar items, I'll get to that) as well operations originating from the OS by throwing events. This abstractification is a bit convoluted and took me quite a bit to wrap my head around.</p>
 
 <p>The <code>com.apple.eawt.AppEvent</code> class contains all the different OSX specific events that might get thrown (in the form of abstract subclasses).</p>
 
@@ -230,7 +228,7 @@
   <li><code>com.apple.eawt.AppEvent.FullScreenEvent</code></li>
 </ul>
 
-<p>The names should pretty clearly indicate the purpose of each event.</p>
+<p>The names of these events should pretty clearly indicate their purpose.</p>
 
 <h3>Miscellaneous Events (aka I'm not exactly sure what these do)</h3>
 <ul>
