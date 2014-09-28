@@ -192,6 +192,8 @@
 
 <p>I want this article to be both a guide and a reference. I'll try to add/edit info as I learn it through experimentation. If you have any info you think belongs in this article feel free to <a href="/contact.html">contact me</a>.</p>
 
+<p><a href="https://www.reddit.com/r/java/comments/2hnvsn/developing_an_osx_application_in_java/ckuf7q0">Someone</a> suggested I write a demo app that is fully OS X capable. When I feel like I’ve aggregated enough information here I will definitely do that. </p>
+
 <p>All of the Apple related classes are located in the <code>com.apple.eawt</code> package which <em>should</em> come with your Mac JDK. Unfortunately these classes are not documented. I think they used to be but all links to old doc pages that I've found online lead to 404's.</p>
 
 <p>There quite a few classes in the <code>com.apple.eawt</code> package but the most important one is <code>Application</code>. This class lets you get an <code>Application</code> instance through the static <code>getApplication()</code> method which represents your app on OSX. Through this instance you'll be able to add all kinds of cool functionality which will make your app feel a lot more native to OSX.</p>
@@ -460,12 +462,87 @@ public abstract class MacOSXAppEventAdapter implements AboutHandler, Preferences
 }
 </code></pre>
 
+<h2>Notification Center</h2>
+<p><code>com.apple.eawt</code> does not provide any way to send NC notifications. </p>
+
+<p>Apple implemented NC in Mountain Lion (10.8), one version after Lion (10.7). Since <code>com.apple.eawt</code> includes full screen capabilities I can only assume that the package hasn't been updated since Lion was a thing, which would be 2011. This might explain why there's no NC capabilities in <code>com.apple.eawt</code>. Here's to hoping that gets patched in before long.</p>
+
+<h3>Workarounds/Alternatives</h3>
+<p>Unfortunately I haven’t tried any of these solutions so I can't really provide much more than information I've found online (for now).</p>
+
+<ul>
+  <li>
+    <p><a href="http://growl.info/">Growl</a>: I don’t really like Growl and wouldn’t use it if I had the choice but it seems like a pretty viable solution, especially since it lets users set whether Growl notifications get forwarded to NC. That’s as close as you'll get without some weird hack (coming up next).</p>
+
+    <p>Here are two libraries that provide Java bindings for Growl (found on <a href="http://growl.info/documentation/developer/bindings.php">this</a> page):</p>
+
+    <ul>
+      <li><a href="http://code.google.com/p/jgntp/">JGNTP</a></li>
+      <li><a href="http://sourceforge.net/projects/libgrowl/">LibGrowl</a></li>
+    </ul>
+
+    <p>After a short googling I found <a href="https://github.com/tjun/Java-libgrowl-Sample/blob/master/src/com/test/growl/GrowlSample.java">this</a> sample class for LibGrowl that should help get you started with it.</p>
+  </li>
+  <li>
+    <p><strong>"Using JNA to manipulate NSObjects"</strong>: I put that in quotes because I have close to no idea what it actually means. </p>
+
+    <p>This solution relies on writing an Objective-C library and using it through JNA (Java Native Access). The concept sounds simple enough but for someone with no Objective-C/Cocoa experience is probably impossible to implement. </p>
+
+    <p>Lots of people on Stack Overflow seemed to know what they were doing with this and got some systems working. Here are some threads for extended reading:</p>
+
+    <ul>
+      <li><a href="http://stackoverflow.com/questions/11720652/using-10-8-notification-center-in-java">Using 10.8 Notification Center in Java</a></li>
+      <li><a href="http://stackoverflow.com/questions/13638092/using-os-x-10-8-notification-center-nsusernotification-with-java">Using OS X 10.8 Notification Center (NSUserNotification) with Java</a></li>
+      <li><a href="http://stackoverflow.com/questions/14263020/can-i-use-mountain-lions-notification-center-from-java">Can I use Mountain Lion's Notification Center from Java?</a></li>
+      <li><a href="http://stackoverflow.com/questions/11712535/mac-mountain-lion-send-notification-from-cli-app">Mac Mountain Lion send notification from CLI app</a></li>
+    </ul>
+  </li>
+  <li>
+    <p><a href="https://github.com/wokier/java-to-OS-notify">wokier/java-to-OS-notify</a>: This library relies on and communicates with CLI tools. It covers more than just NC on OS X.</p>
+
+    <p>For our purposes this library seems like a last resort (multiple dependencies and lots of overhead).</p>
+  </li>
+</ul>
+
+<p>Ideally we shouldn’t have to go through all this trouble. Again, I hope Apple updates <code>com.apple.eawt</code> sometime soon.</p>
+
+<h2>My Beef With com.apple.eawt</h2>
+
+<p>Throughout the article I’ve tried to keep my personal opinions on the <code>com.apple.eawt</code> package bottled up but I feel like some aspects of it that I find too problematic to ignore.</p>
+
+<ul>
+  <li>
+    <p><strong>It has zero official documentation</strong></p>
+
+    <p>Why would anyone make a package like this and not include any docs? Am I missing something? I decompiled and reverse engineered the package to provide what I have in this article.</p>
+
+    <p>Solution: Obviously, make docs.</p>
+  </li>
+  <li>
+    <p><strong>It’s a (seemingly) inconsistent system</strong></p>
+
+    <p>As noted above in the “Events” section, the package handles different types of events in different ways. Some require a “handler” while others require a “listener”. This makes absolutely no sense and just creates confusion.</p>
+
+    <p>I say “seemingly” because there is probably some logic behind this design decision. I proposed a possibility above (“handlers” = user input, “listener” = OS operations), another could be that this is a carry over from the Objective-C/Cocoa system. After all, I did notice that a lot of the internal classes in <code>com.apple.eawt</code> follow a lot of naming and coding conventions that aren’t very Java.</p>
+
+    <p>Solution: Much like in Swing’s system, all events should be made to have a respective listener and all listeners should behave the same way. No weird exceptions.</p>
+  </li>
+  <li>
+    <p><strong>It's old</strong></p>
+
+    <p>I'm sure the exact age of the package can be found online but above I estimated it to be around 3 years old. Since then there have been 2 new iterations of OS X (10.8 Mountain Lion and 10.9 Mavericks, 10.10 Yosemite's public release is right around the corner) and new native features have been added (like Notification Center). Without an update to this package none of these recent features are easily accessible which is a super bummer.</p>
+
+    <p>Solution: Update the package!</p>
+  </li>
+</ul>
+
 	</article>
 </section>
 <section>
 	<h1>Document Changelog</h1>
 <ul>
   <li>27/9/14: Created</li>
+  <li>28/9/14: Added Notification Center and Beef sections</li>
 </ul>
 
 </section>
