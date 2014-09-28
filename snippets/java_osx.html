@@ -506,6 +506,24 @@ public abstract class MacOSXAppEventAdapter implements AboutHandler, Preferences
 
 <p>Ideally we shouldn’t have to go through all this trouble. Again, I hope Apple updates <code>com.apple.eawt</code> sometime soon.</p>
 
+<h2>Setting The Menu Bar Title (App Name)</h2>
+<p><em>I still have to thoroughly test this and revise this section</em></p>
+
+<p>So this is super quirky but here’s the correct way to do it.</p>
+
+<p>All the guides that I came across stated that you have to set the <code>com.apple.mrj.application.apple.menu.about.name</code> property to the name of your app and it should work.</p>
+
+<p>Now that will indeed work right off the bat if you set the property through command line, but if you're like me you'll be wanting to do it programmatically:</p>
+
+<pre><code>System.setProperty("com.apple.mrj.application.apple.menu.about.name", "This is my app name!");
+</code></pre>
+
+<p>Here's the quirky bit: <a href="http://stackoverflow.com/a/11616853/1124853">Apparently</a> this won't work if you make the call after you either interact with <code>java.awt.Toolkit</code> or set your app's look and feel.</p>
+
+<p>So just make the call first thing in the main right? Not quite. Interacting with <code>java.awt.Toolkit</code> includes <em>loading</em> a class that extends <code>javax.swing.JFrame</code>. This means that if your main method is in a subclass of <code>javax.swing.JFrame</code> it won’t work (since the class is loaded right away)!</p>
+
+<p>To remedy this simply extract your main method to a separate class and you’re good to go.</p>
+
 <h2>My Beef With com.apple.eawt</h2>
 
 <p>Throughout the article I’ve tried to keep my personal opinions on the <code>com.apple.eawt</code> package bottled up but I feel like some aspects of it that I find too problematic to ignore.</p>
@@ -542,7 +560,9 @@ public abstract class MacOSXAppEventAdapter implements AboutHandler, Preferences
 	<h1>Document Changelog</h1>
 <ul>
   <li>27/9/14: Created</li>
-  <li>28/9/14: Added Notification Center and Beef sections</li>
+  <li>28/9/14: Added Notification Center section</li>
+  <li>28/9/14: Added Beef section</li>
+  <li>28/9/14: Added Menu Bar App Title section</li>
 </ul>
 
 </section>
