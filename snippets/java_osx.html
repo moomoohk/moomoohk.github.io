@@ -468,9 +468,56 @@ public abstract class MacOSXAppEventAdapter implements AboutHandler, Preferences
 <p>Apple implemented NC in Mountain Lion (10.8), one version after Lion (10.7). Since <code>com.apple.eawt</code> includes full screen capabilities I can only assume that the package hasn't been updated since Lion was a thing, which would be 2011. This might explain why there's no NC capabilities in <code>com.apple.eawt</code>. Here's to hoping that gets patched in before long.</p>
 
 <h3>Workarounds/Alternatives</h3>
-<p>Unfortunately I haven’t tried any of these solutions so I can't really provide much more than information I've found online (for now).</p>
+<p>Unfortunately I haven’t tried most of these solutions so I can't really provide much more than information I've found online (for now).</p>
 
 <ul>
+  <li>
+    <p><strong>AppleScript</strong>: <a href="http://www.reddit.com/r/java/comments/2hnvsn/developing_an_osx_application_in_java/ckuqh71">Someone suggested</a> executing an AppleScript command that produces a notification.</p>
+
+    <p>The “<a href="https://developer.apple.com/library/mac/documentation/applescript/conceptual/applescriptlangguide/reference/aslr_cmds.html#//apple_ref/doc/uid/TP40000983-CH216-SW224">display notification</a>” command will do exactly that.</p>
+
+    <p>Optional parameters for the command:</p>
+
+    <ul>
+      <li>“with title”</li>
+      <li>“subtitle”</li>
+      <li>“sound name” (Look in /System/Library/Sounds/ for all the available sounds)</li>
+    </ul>
+
+    <p>Here’s an example:</p>
+
+    <pre><code>display notification "Message" with title "Title" subtitle "Subtitle" sound name "Glass"
+</code></pre>
+
+    <p>will produce this (while playing /System/Library/Sounds/Glass.aiff):</p>
+
+    <p><img src="assets/java_osx/java_osx_3.png" alt="" title="Sample notification" /></p>
+
+    <p>That's the full extent of what you can achieve with the command. You can't set the app icon or create interactive notifications.</p>
+
+    <p>So the upside to this approach is that it's fully vanilla Java, the downside is that you're extremely limited.</p>
+
+    <p>There are multiple way to run this AppleScript from within Java:</p>
+
+    <p><strong>Runtime.exec</strong></p>
+
+    <pre><code>Runtime.getRuntime().exec(new String[] { "osascript", "-e", "display notification \"Message\" with title \"Title\" subtitle \"Subtitle\" sound name \"Glass\"" });
+</code></pre>
+
+    <p><strong>ProcessBuilder</strong></p>
+
+    <pre><code>new ProcessBuilder("osascript", "-e", "display notification \"Message\" with title \"Title\" subtitle \"Subtitle\" sound name \"Glass\"").start();
+</code></pre>
+
+    <p><strong>ScriptEngine</strong></p>
+
+    <p>According <a href="https://developer.apple.com/library/mac/documentation/Java/Conceptual/Java14Development/07-NativePlatformIntegration/NativePlatformIntegration.html#//apple_ref/doc/uid/TP40001909-212907-TPXREF140">this</a> article by Apple the correct way to run AppleScript from Java is with <code>javax.script.ScriptEngine</code>.</p>
+
+    <p>I’m on OS X Mavericks (10.9) and I tried this solution with both Java 1.6 and 1.7 but neither worked.</p>
+
+    <pre><code>new ScriptEngineManager().getEngineByName("AppleScript").eval("display notification \"Message\" with title \"Title\" subtitle \"Subtitle\" sound name \"Glass\"");
+</code></pre>
+  </li>
   <li>
     <p><a href="http://growl.info/">Growl</a>: I don’t really like Growl and wouldn’t use it if I had the choice but it seems like a pretty viable solution, especially since it lets users set whether Growl notifications get forwarded to NC. That’s as close as you'll get without some weird hack (coming up next).</p>
 
@@ -563,6 +610,7 @@ public abstract class MacOSXAppEventAdapter implements AboutHandler, Preferences
   <li>28/9/14: Added Notification Center section</li>
   <li>28/9/14: Added Beef section</li>
   <li>28/9/14: Added Menu Bar App Title section</li>
+  <li>28/9/14: Expanded Notification Center section</li>
 </ul>
 
 </section>
