@@ -65,6 +65,7 @@ section {
     section h2.projectName {
       color: #505050; }
   section pre {
+    max-height: 400px;
     border-radius: 5px;
     padding: 5px;
     overflow: auto;
