@@ -101,7 +101,7 @@ section {
     margin-bottom: 25px;
     text-align: center; }
   section#footer {
-    cursor: pointer;
+    cursor: default;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -112,16 +112,17 @@ section {
     margin-top: 20px;
     margin-bottom: 20px;
     padding: 5px;
-    /*box-shadow:  0px 0px 10px #494f69;*/
     border-radius: 4px;
-    -o-transition: background-color ease .2s;
-    -ms-transition: background-color ease .2s;
-    -moz-transition: background-color ease .2s;
-    -webkit-transition: background-color ease .2s;
-    transition: background-color ease .2s;
     text-align: center; }
-    section#footer:hover {
-      background-color: #B1EB78; }
+    section#footer.returnToTop {
+      cursor: pointer;
+      -o-transition: background-color ease .2s;
+      -ms-transition: background-color ease .2s;
+      -moz-transition: background-color ease .2s;
+      -webkit-transition: background-color ease .2s;
+      transition: background-color ease .2s; }
+      section#footer.returnToTop:hover {
+        background-color: #B1EB78; }
     section#footer p {
       margin-top: 5px;
       margin-bottom: 5px;

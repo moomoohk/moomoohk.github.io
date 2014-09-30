@@ -59,17 +59,39 @@
 					audioElement.setAttribute("autoplay", "autoplay");
 				});
 
+				if ($("body").height() > $(window).height()) {
+					$("#footer").addClass("returnToTop");
+				}
+
 				var textContents = $("#footer").text().trim();
 				$("#footer").on("mouseenter", function() {
-					$(this).text("Return to top");
+					if ($(this).hasClass("returnToTop"))
+						$(this).text("Return to top");
 				}).on("mouseleave", function() {
-					$(this).text(textContents);
+					if ($(this).hasClass("returnToTop"))
+						$(this).text(textContents);
 				}).mousedown(function(event) {
-					if (event.which == 1)
-						$("html, body").animate({
-							scrollTop : 0
-						}, 400);
+					if ($(this).hasClass("returnToTop"))
+						if (event.which == 1)
+							$("html, body").animate({
+								scrollTop : 0
+							}, 400);
 				});
+
+				var eventHandle = function() {
+					if ($("body").height() > $(window).height()) {
+						$("#footer").addClass("returnToTop");
+					} else {
+						$("#footer").removeClass("returnToTop");
+					}
+				};
+				if (window.addEventListener) {
+					window.addEventListener("resize", eventHandle, false);
+				} else if (window.attachEvent) {
+					window.attachEvent("onresize", eventHandle);
+				} else {
+					window["onresize"] = eventHandle;
+				}
 			});
 		</script>
 	</head>
