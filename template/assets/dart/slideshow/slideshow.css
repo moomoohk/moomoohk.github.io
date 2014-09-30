@@ -1,6 +1,5 @@
 .slideshow {
   height: 500px;
-  border: 1px solid #505050;
   border-radius: 5px;
   background-color: white;
   -webkit-user-select: none;
@@ -12,6 +11,10 @@
 
 .currentSlideContainer {
   position: relative;
+  border: 1px solid #505050;
+  border-bottom: none;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 }
 
 .currentSlide {
@@ -33,8 +36,6 @@
   overflow-y: auto;
   opacity: 0.5;
   text-align: center;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
   -webkit-transition: opacity 0.2s ease;
   -moz-transition: opacity 0.2s ease;
   -o-transition: opacity 0.2s ease;
@@ -46,8 +47,8 @@
   display: flex;
   flex-direction: row;
   height: 90px;
-  border-bottom-right-radius: 3px;
-  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
   padding: 5px;
   white-space: nowrap;
   background-color: #505050;
