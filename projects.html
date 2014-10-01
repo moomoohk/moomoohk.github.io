@@ -198,6 +198,7 @@
 		}
 
 		.clickable {
+			text-decoration: underline;
 			margin-right: 20px;
 			cursor: pointer;
 			-webkit-transition: color ease 0.5s;
@@ -249,16 +250,16 @@
 			}
 
 
-			$("h2.projectName").on("mousedown", function() {
+			$("h2.projectName").on("dblclick", function() {
+				console.log($(this).next().children("a.projectlink"));
+				window.location = $(this).next().children("a.projectlink").attr("href");
+			}).on("click", function() {
 				$(this).parent().css("border-color", "blue");
 				if (!$(this).hasClass("open")) {
 					expand($(this));
 				} else {
 					collapse($(this));
 				}
-			}).on("dblclick", function() {
-				console.log($(this).next().children("a.projectlink"));
-				window.location = $(this).next().children("a.projectlink").attr("href");
 			});
 
 			$("#expandall").on("mousedown", function() {
@@ -276,6 +277,8 @@
 	</script>
 	<h1>Projects</h1>
 	<p>
+		<span>Click to expand, double click to visit page</span>
+		<br />
 		<span class="clickable" id="expandall">Expand all</span>
 		<span class="clickable" id="collapseall">Collapse all</span>
 		<div class="project">
