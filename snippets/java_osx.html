@@ -42,9 +42,11 @@
 		<link rel='stylesheet' href='../template/assets/css/normalize.css'>
 <link rel='stylesheet' href='../template/assets/css/style.css'>
 <link rel='stylesheet' href='../template/assets/css/prettify.css'>
+<link rel='stylesheet' href='../template/assets/dart/slideshow/slideshow.css'>
 		<script src='../template/assets/js/jquery-1.8.3.min.js'></script>
-<script src='../template/assets/js/slideshow.js'></script>
 <script src='../template/assets/js/snaptortoise-konami-js-93c5489/konami.js'></script>
+		<script async type="application/dart" src="../template/assets/dart/slideshow/slideshow.dart"></script>
+		<script async src="../template/assets/dart/slideshow/packages/browser/dart.js"></script>
 
 		<link href="../template/assets/image/favicon.ico" rel="shortcut icon">
 		<title>moomoohk/snippets/java_osx</title>
@@ -57,17 +59,39 @@
 					audioElement.setAttribute("autoplay", "autoplay");
 				});
 
+				if ($("body").height() > $(window).height()) {
+					$("#footer").addClass("returnToTop");
+				}
+
 				var textContents = $("#footer").text().trim();
 				$("#footer").on("mouseenter", function() {
-					$(this).text("Return to top");
+					if ($(this).hasClass("returnToTop"))
+						$(this).text("Return to top");
 				}).on("mouseleave", function() {
-					$(this).text(textContents);
+					if ($(this).hasClass("returnToTop"))
+						$(this).text(textContents);
 				}).mousedown(function(event) {
-					if (event.which == 1)
-						$("html, body").animate({
-							scrollTop : 0
-						}, 400);
+					if ($(this).hasClass("returnToTop"))
+						if (event.which == 1)
+							$("html, body").animate({
+								scrollTop : 0
+							}, 400);
 				});
+
+				var eventHandle = function() {
+					if ($("body").height() > $(window).height()) {
+						$("#footer").addClass("returnToTop");
+					} else {
+						$("#footer").removeClass("returnToTop");
+					}
+				};
+				if (window.addEventListener) {
+					window.addEventListener("resize", eventHandle, false);
+				} else if (window.attachEvent) {
+					window.attachEvent("onresize", eventHandle);
+				} else {
+					window["onresize"] = eventHandle;
+				}
 			});
 		</script>
 	</head>
@@ -101,25 +125,25 @@
 				</li>
 				<li><a href="/moocommands/">MooCommands</a>
 					<ul>
-						<li><a href="/moocommands/docs">JavaDocs</a></li>
+						<li><a href="/moocommands/docs/">JavaDocs</a></li>
 						<li><a href="/moocommands/#downloads">Download</a></li>
 					</ul>
 				</li>
 				<li><a href="/mooconsole/">MooConsole</a>
 					<ul>
-						<li><a href="/mooconsole/docs">JavaDocs</a></li>
+						<li><a href="/mooconsole/docs/">JavaDocs</a></li>
 						<li><a href="/mooconsole/#downloads">Download</a></li>
 					</ul>
 				</li>
 				<li><a href="/mootilities/">Mootilities</a>
 					<ul>
-						<li><a href="/mootilities/docs">JavaDocs</a></li>
+						<li><a href="/mootilities/docs/">JavaDocs</a></li>
 						<li><a href="/mootilities/#downloads">Download</a></li>
 					</ul>
 				</li>
 				<li><a href="/moobootstrap/">MooBootstrap</a>
 					<ul>
-						<li><a href="/moobootstrap/docs">JavaDocs</a></li>
+						<li><a href="/moobootstrap/docs/">JavaDocs</a></li>
 						<li><a href="/moobootstrap/#downloads">Download</a></li>
 					</ul>
 				</li>
@@ -129,16 +153,16 @@
 		<li><a href="/contact.html">Contact</a>
 			<ul>
 				<li>
-					<a href="http://twitter.com/moomoohk" target="_blank">Twitter</a>
+					<a href="http://twitter.com/moomoohk/" target="_blank">Twitter</a>
 				</li>
 				<li>
-					<a href="http://youtube.com/moomoohk" target="_blank">YouTube</a>
+					<a href="http://youtube.com/moomoohk/" target="_blank">YouTube</a>
 				</li>
 				<li>
-					<a href="http://webchat.freenode.net?channels=%23moomoohk&uio=Mj10cnVlJjQ9dHJ1ZSYxMT0yMzYff" target="_blank">IRC</a>
+					<a href="http://webchat.freenode.net?channels=%23moomoohk&uio=Mj10cnVlJjQ9dHJ1ZSYxMT0yMzYff/" target="_blank">IRC</a>
 				</li>
 				<li>
-					<a href="http://github.com/moomoohk" target="_blank">GitHub</a>
+					<a href="http://github.com/moomoohk/" target="_blank">GitHub</a>
 				</li>
 			</ul>
 		</li>
@@ -194,7 +218,7 @@
 
 <p><a href="https://www.reddit.com/r/java/comments/2hnvsn/developing_an_osx_application_in_java/ckuf7q0">Someone</a> suggested I write a demo app that is fully OS X capable. When I feel like I’ve aggregated enough information here I will definitely do that. </p>
 
-<p>All of the Apple related classes are located in the <code>com.apple.eawt</code> package which <em>should</em> come with your Mac JDK. Unfortunately these classes are not documented. I think they used to be but all links to old doc pages that I've found online lead to 404's.</p>
+<p>All of the Apple related classes are located in the <code>com.apple.eawt</code> package which <em>should</em> come with your Mac JDK.</p>
 
 <p>There quite a few classes in the <code>com.apple.eawt</code> package but the most important one is <code>Application</code>. This class lets you get an <code>Application</code> instance through the static <code>getApplication()</code> method which represents your app on OSX. Through this instance you'll be able to add all kinds of cool functionality which will make your app feel a lot more native to OSX.</p>
 
@@ -495,8 +519,6 @@ public abstract class MacOSXAppEventAdapter implements AboutHandler, Preferences
 
     <p>That's the full extent of what you can achieve with the command. You can't set the app icon or create interactive notifications.</p>
 
-    <p>So the upside to this approach is that it's fully vanilla Java, the downside is that you're extremely limited.</p>
-
     <p>There are multiple way to run this AppleScript from within Java:</p>
 
     <p><strong>Runtime.exec</strong></p>
@@ -513,10 +535,12 @@ public abstract class MacOSXAppEventAdapter implements AboutHandler, Preferences
 
     <p>According <a href="https://developer.apple.com/library/mac/documentation/Java/Conceptual/Java14Development/07-NativePlatformIntegration/NativePlatformIntegration.html#//apple_ref/doc/uid/TP40001909-212907-TPXREF140">this</a> article by Apple the correct way to run AppleScript from Java is with <code>javax.script.ScriptEngine</code>.</p>
 
-    <p>I’m on OS X Mavericks (10.9) and I tried this solution with both Java 1.6 and 1.7 but neither worked.</p>
+    <p>I'm on OS X Mavericks (10.9) and I tried this solution with both Java 1.6 and 1.7 but neither worked.</p>
 
     <pre><code>new ScriptEngineManager().getEngineByName("AppleScript").eval("display notification \"Message\" with title \"Title\" subtitle \"Subtitle\" sound name \"Glass\"");
 </code></pre>
+
+    <p>So the upside to this AppleScript approach is that it's fully vanilla Java, the downside is that you're extremely limited with what you can produce.</p>
   </li>
   <li>
     <p><a href="http://growl.info/">Growl</a>: I don’t really like Growl and wouldn’t use it if I had the choice but it seems like a pretty viable solution, especially since it lets users set whether Growl notifications get forwarded to NC. That’s as close as you'll get without some weird hack (coming up next).</p>
@@ -551,12 +575,11 @@ public abstract class MacOSXAppEventAdapter implements AboutHandler, Preferences
   </li>
 </ul>
 
-<p>Ideally we shouldn’t have to go through all this trouble. Again, I hope Apple updates <code>com.apple.eawt</code> sometime soon.</p>
+<p>Ideally we shouldn’t have to go through all this trouble. Again, I hope Oracle updates <code>com.apple.eawt</code> sometime soon.</p>
 
 <h2>Setting The Menu Bar Title (App Name)</h2>
-<p><em>I still have to thoroughly test this and revise this section</em></p>
 
-<p>So this is super quirky but here’s the correct way to do it.</p>
+<p><em>This following approach doesn’t seem to work with later combinations of Java and OS X. I'm not sure whether it's the versions of Java I tried with (1.6/1.7) or my OS (Mavericks). I can’t find a way to set the menu bar title on my setup.</em></p>
 
 <p>All the guides that I came across stated that you have to set the <code>com.apple.mrj.application.apple.menu.about.name</code> property to the name of your app and it should work.</p>
 
@@ -565,11 +588,33 @@ public abstract class MacOSXAppEventAdapter implements AboutHandler, Preferences
 <pre><code>System.setProperty("com.apple.mrj.application.apple.menu.about.name", "This is my app name!");
 </code></pre>
 
-<p>Here's the quirky bit: <a href="http://stackoverflow.com/a/11616853/1124853">Apparently</a> this won't work if you make the call after you either interact with <code>java.awt.Toolkit</code> or set your app's look and feel.</p>
+<p>Here's where it gets quirky: <a href="http://stackoverflow.com/a/11616853/1124853">Apparently</a> this won't work if you make the call after you either interact with <code>java.awt.Toolkit</code> or set your app's look and feel.</p>
 
 <p>So just make the call first thing in the main right? Not quite. Interacting with <code>java.awt.Toolkit</code> includes <em>loading</em> a class that extends <code>javax.swing.JFrame</code>. This means that if your main method is in a subclass of <code>javax.swing.JFrame</code> it won’t work (since the class is loaded right away)!</p>
 
-<p>To remedy this simply extract your main method to a separate class and you’re good to go.</p>
+<p>To remedy this simply extract your main method to a separate class and you’re good to go:</p>
+
+<pre><code>public class Launcher
+{
+    public static void main(String[] args)
+    {
+        System.setProperty("com.apple.mrj.application.apple.menu.about.name", "This is my app");
+        MyJFrame frame = new MyJFrame();
+        frame.setVisible(true);
+    }
+}
+</code></pre>
+
+<p>I also found mention of setting the <code>-Xdock:name</code> nonstandard JVM flag to your title:</p>
+
+<pre><code>-Xdoxk:name="This is my app"
+</code></pre>
+
+<p>You can set this through the “VM Options” section when exporting your Mac Application Bundle in Eclipse.</p>
+
+<p><em>This approach doesn’t appear to work either as a result of a bug with Java. It has been reported <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=381970">here</a> and <a href="https://bugs.openjdk.java.net/browse/JDK-8029440">here</a></em></p>
+
+<p>Effectively, there appears to be no way to set the menu bar title in later versions of OS X coupled with later versions of Java.</p>
 
 <h2>My Beef With com.apple.eawt</h2>
 
@@ -577,27 +622,16 @@ public abstract class MacOSXAppEventAdapter implements AboutHandler, Preferences
 
 <ul>
   <li>
-    <p><strong>It has zero official documentation</strong></p>
-
-    <p>Why would anyone make a package like this and not include any docs? Am I missing something? I decompiled and reverse engineered the package to provide what I have in this article.</p>
-
-    <p>Solution: Obviously, make docs.</p>
-  </li>
-  <li>
     <p><strong>It’s a (seemingly) inconsistent system</strong></p>
 
     <p>As noted above in the “Events” section, the package handles different types of events in different ways. Some require a “handler” while others require a “listener”. This makes absolutely no sense and just creates confusion.</p>
 
     <p>I say “seemingly” because there is probably some logic behind this design decision. I proposed a possibility above (“handlers” = user input, “listener” = OS operations), another could be that this is a carry over from the Objective-C/Cocoa system. After all, I did notice that a lot of the internal classes in <code>com.apple.eawt</code> follow a lot of naming and coding conventions that aren’t very Java.</p>
-
-    <p>Solution: Much like in Swing’s system, all events should be made to have a respective listener and all listeners should behave the same way. No weird exceptions.</p>
   </li>
   <li>
     <p><strong>It's old</strong></p>
 
     <p>I'm sure the exact age of the package can be found online but above I estimated it to be around 3 years old. Since then there have been 2 new iterations of OS X (10.8 Mountain Lion and 10.9 Mavericks, 10.10 Yosemite's public release is right around the corner) and new native features have been added (like Notification Center). Without an update to this package none of these recent features are easily accessible which is a super bummer.</p>
-
-    <p>Solution: Update the package!</p>
   </li>
 </ul>
 
@@ -611,6 +645,7 @@ public abstract class MacOSXAppEventAdapter implements AboutHandler, Preferences
   <li>28/9/14: Added Beef section</li>
   <li>28/9/14: Added Menu Bar App Title section</li>
   <li>28/9/14: Expanded Notification Center section</li>
+  <li>1/10/14: Revised Menu Bar Title section</li>
 </ul>
 
 </section>
