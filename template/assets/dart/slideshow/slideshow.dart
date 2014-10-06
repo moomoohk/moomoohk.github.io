@@ -17,35 +17,10 @@ void main() {
   });
 }
 
-/*function changeImage2(thumbnail) {
-  if (thumbnail.hasClass("selected")) {
-    return;
-  }
-  setTimer(false);
-  $(".currSlide").fadeOut(100, function() {
-    $(".currSlide").attr("src", thumbnail.attr("src"));
-  });
-  $(".currSlide").fadeIn(100);
-  if (!thumbnail.hasClass("mouseover")) {
-    setTimer(true);
-  }
-
-  $(".selected").animate({
-    borderWidth : "0px"
-  }, 100);
-
-  $(".selected").removeClass("selected");
-  thumbnail.addClass("selected");
-
-  $(".selected").animate({
-    borderWidth : "3px"
-  }, 100);
-}*/
-
 class Slideshow {
   Timer _timer;
   List<Element> _thumbnails;
-  Element _currentSlide, _selectedThumbnail, _currentSlideText;
+  Element _slideshowContainer, _currentSlide, _selectedThumbnail, _currentSlideText;
   num _pauseDuration;
 
   Slideshow(DivElement container, {num pauseDuration: 5000}) : _pauseDuration = pauseDuration {
@@ -54,10 +29,13 @@ class Slideshow {
       container.children.clear();
       DivElement ribbon, thumbnails;
       container.children
-          ..add(new DivElement()
+          ..add(_slideshowContainer = new DivElement()
               ..classes.add("currentSlideContainer")
               ..children.add(_currentSlide = new ImageElement()..classes.add("currentSlide"))
-              ..children.add(_currentSlideText = new SpanElement()..classes.add("currentSlideText")))
+              ..children.add(_currentSlideText = new SpanElement()
+                  ..classes.add("currentSlideText")
+                  ..onMouseEnter.listen((event) => setTimer(false))
+                  ..onMouseLeave.listen((event) => setTimer(true))))
           ..add(ribbon = new DivElement()..classes.add("ribbon"));
       ribbon.children
           ..add(new DivElement()
@@ -83,6 +61,9 @@ class Slideshow {
             ..classes.add("thumbnail")
             ..onClick.listen((event) => _changeImage(slide));
         thumbnails.children.add(slide);
+      });
+      _slideshowContainer.onClick.listen((event) {
+        if (_selectedThumbnail.attributes["href"] != null) window.location.assign(_selectedThumbnail.attributes["href"]);
       });
       _changeImage(_thumbnails[0]);
       _initTimer();
@@ -114,6 +95,7 @@ class Slideshow {
     if (_currentSlideText.text != "") ShowHide.begin(ShowHideAction.HIDE, _currentSlideText, duration: 500, effectTiming: EffectTiming.ease).then((result) {
       _currentSlideText.text = thumbnail.alt;
     }); else _currentSlideText.text = thumbnail.alt;
+    if (thumbnail.attributes["href"] != null) _slideshowContainer.classes.add("link"); else _slideshowContainer.classes.remove("link");
     ShowHide.show(_currentSlideText, effect: new FadeEffect(), duration: 500);
   }
 

@@ -6454,7 +6454,7 @@ var $$ = {};
   },
   HtmlElement: {
     "^": "Element;",
-    "%": "HTMLAppletElement|HTMLBRElement|HTMLBaseElement|HTMLBodyElement|HTMLButtonElement|HTMLCanvasElement|HTMLContentElement|HTMLDListElement|HTMLDataListElement|HTMLDetailsElement|HTMLDialogElement|HTMLDirectoryElement|HTMLDivElement|HTMLFieldSetElement|HTMLFontElement|HTMLFrameElement|HTMLFrameSetElement|HTMLHRElement|HTMLHeadElement|HTMLHeadingElement|HTMLHtmlElement|HTMLKeygenElement|HTMLLIElement|HTMLLabelElement|HTMLLegendElement|HTMLLinkElement|HTMLMapElement|HTMLMarqueeElement|HTMLMenuElement|HTMLMetaElement|HTMLMeterElement|HTMLModElement|HTMLOListElement|HTMLObjectElement|HTMLOptGroupElement|HTMLOptionElement|HTMLOutputElement|HTMLParagraphElement|HTMLParamElement|HTMLPreElement|HTMLProgressElement|HTMLQuoteElement|HTMLShadowElement|HTMLSpanElement|HTMLStyleElement|HTMLTableCaptionElement|HTMLTableCellElement|HTMLTableColElement|HTMLTableDataCellElement|HTMLTableElement|HTMLTableHeaderCellElement|HTMLTableRowElement|HTMLTableSectionElement|HTMLTemplateElement|HTMLTextAreaElement|HTMLTitleElement|HTMLUListElement|HTMLUnknownElement;HTMLElement"
+    "%": "HTMLAppletElement|HTMLBRElement|HTMLBaseElement|HTMLBodyElement|HTMLCanvasElement|HTMLContentElement|HTMLDListElement|HTMLDataListElement|HTMLDetailsElement|HTMLDialogElement|HTMLDirectoryElement|HTMLDivElement|HTMLFontElement|HTMLFrameElement|HTMLFrameSetElement|HTMLHRElement|HTMLHeadElement|HTMLHeadingElement|HTMLHtmlElement|HTMLLabelElement|HTMLLegendElement|HTMLLinkElement|HTMLMarqueeElement|HTMLMenuElement|HTMLModElement|HTMLOListElement|HTMLOptGroupElement|HTMLParagraphElement|HTMLPreElement|HTMLQuoteElement|HTMLShadowElement|HTMLSpanElement|HTMLStyleElement|HTMLTableCaptionElement|HTMLTableCellElement|HTMLTableColElement|HTMLTableDataCellElement|HTMLTableElement|HTMLTableHeaderCellElement|HTMLTableRowElement|HTMLTableSectionElement|HTMLTemplateElement|HTMLTitleElement|HTMLUListElement|HTMLUnknownElement;HTMLElement"
   },
   AnchorElement: {
     "^": "HtmlElement;",
@@ -6469,6 +6469,10 @@ var $$ = {};
       return receiver.toString();
     },
     "%": "HTMLAreaElement"
+  },
+  ButtonElement: {
+    "^": "HtmlElement;name=,value=",
+    "%": "HTMLButtonElement"
   },
   CharacterData: {
     "^": "Node;length=",
@@ -6530,6 +6534,9 @@ var $$ = {};
   },
   Element: {
     "^": "Node;className%",
+    get$attributes: function(receiver) {
+      return new W._ElementAttributeMap(receiver);
+    },
     get$children: function(receiver) {
       return new W._ChildrenElementList(receiver, receiver.children);
     },
@@ -6560,7 +6567,7 @@ var $$ = {};
     "%": ";Element"
   },
   EmbedElement: {
-    "^": "HtmlElement;src=",
+    "^": "HtmlElement;name=,src=",
     "%": "HTMLEmbedElement"
   },
   ErrorEvent: {
@@ -6581,8 +6588,12 @@ var $$ = {};
     },
     "%": "MediaStream;EventTarget"
   },
+  FieldSetElement: {
+    "^": "HtmlElement;name=",
+    "%": "HTMLFieldSetElement"
+  },
   FormElement: {
-    "^": "HtmlElement;length=",
+    "^": "HtmlElement;length=,name=",
     "%": "HTMLFormElement"
   },
   HtmlCollection: {
@@ -6616,7 +6627,7 @@ var $$ = {};
     "%": "HTMLCollection|HTMLFormControlsCollection|HTMLOptionsCollection"
   },
   IFrameElement: {
-    "^": "HtmlElement;src=",
+    "^": "HtmlElement;name=,src=",
     "%": "HTMLIFrameElement"
   },
   ImageElement: {
@@ -6625,13 +6636,40 @@ var $$ = {};
     "%": "HTMLImageElement"
   },
   InputElement: {
-    "^": "HtmlElement;alt=,src=",
+    "^": "HtmlElement;alt=,name=,src=,value=",
     $isElement: true,
     "%": "HTMLInputElement"
+  },
+  KeygenElement: {
+    "^": "HtmlElement;name=",
+    "%": "HTMLKeygenElement"
+  },
+  LIElement: {
+    "^": "HtmlElement;value=",
+    "%": "HTMLLIElement"
+  },
+  Location: {
+    "^": "Interceptor;",
+    toString$0: function(receiver) {
+      return receiver.toString();
+    },
+    "%": "Location"
+  },
+  MapElement: {
+    "^": "HtmlElement;name=",
+    "%": "HTMLMapElement"
   },
   MediaElement: {
     "^": "HtmlElement;error=,src=",
     "%": "HTMLAudioElement|HTMLMediaElement|HTMLVideoElement"
+  },
+  MetaElement: {
+    "^": "HtmlElement;name=",
+    "%": "HTMLMetaElement"
+  },
+  MeterElement: {
+    "^": "HtmlElement;value=",
+    "%": "HTMLMeterElement"
   },
   MouseEvent: {
     "^": "UIEvent;",
@@ -6667,7 +6705,7 @@ var $$ = {};
     _replaceChild$2: function(receiver, newChild, oldChild) {
       return receiver.replaceChild(newChild, oldChild);
     },
-    "%": "Attr|Document|DocumentFragment|DocumentType|HTMLDocument|Notation|ShadowRoot|XMLDocument;Node"
+    "%": "Document|DocumentFragment|DocumentType|HTMLDocument|Notation|ShadowRoot|XMLDocument;Node"
   },
   NodeList: {
     "^": "Interceptor_ListMixin_ImmutableListMixin0;",
@@ -6699,12 +6737,32 @@ var $$ = {};
     $isJavaScriptIndexingBehavior: true,
     "%": "NodeList|RadioNodeList"
   },
+  ObjectElement: {
+    "^": "HtmlElement;name=",
+    "%": "HTMLObjectElement"
+  },
+  OptionElement: {
+    "^": "HtmlElement;value=",
+    "%": "HTMLOptionElement"
+  },
+  OutputElement: {
+    "^": "HtmlElement;name=,value=",
+    "%": "HTMLOutputElement"
+  },
+  ParamElement: {
+    "^": "HtmlElement;name=,value=",
+    "%": "HTMLParamElement"
+  },
+  ProgressElement: {
+    "^": "HtmlElement;value=",
+    "%": "HTMLProgressElement"
+  },
   ScriptElement: {
     "^": "HtmlElement;src=",
     "%": "HTMLScriptElement"
   },
   SelectElement: {
-    "^": "HtmlElement;length=",
+    "^": "HtmlElement;length=,name=,value=",
     "%": "HTMLSelectElement"
   },
   SourceElement: {
@@ -6714,6 +6772,10 @@ var $$ = {};
   SpeechRecognitionError: {
     "^": "Event;error=",
     "%": "SpeechRecognitionError"
+  },
+  TextAreaElement: {
+    "^": "HtmlElement;name=,value=",
+    "%": "HTMLTextAreaElement"
   },
   TrackElement: {
     "^": "HtmlElement;src=",
@@ -6729,6 +6791,10 @@ var $$ = {};
       return receiver.toString();
     },
     "%": "DOMWindow|Window"
+  },
+  _Attr: {
+    "^": "Node;name=,value=",
+    "%": "Attr"
   },
   _ClientRect: {
     "^": "Interceptor;bottom=,height=,left=,right=,top=,width=",
@@ -6837,7 +6903,7 @@ var $$ = {};
     }
   },
   _ChildrenElementList: {
-    "^": "ListBase;_html$_element,_childElements",
+    "^": "ListBase;_element,_childElements",
     get$length: function(_) {
       return this._childElements.length;
     },
@@ -6851,13 +6917,13 @@ var $$ = {};
       var t1 = this._childElements;
       if (index >>> 0 !== index || index >= t1.length)
         return H.ioore(t1, index);
-      this._html$_element.replaceChild(value, t1[index]);
+      this._element.replaceChild(value, t1[index]);
     },
     set$length: function(_, newLength) {
       throw H.wrapException(P.UnsupportedError$("Cannot resize element lists"));
     },
     add$1: function(_, value) {
-      this._html$_element.appendChild(value);
+      this._element.appendChild(value);
       return value;
     },
     get$iterator: function(_) {
@@ -6871,7 +6937,7 @@ var $$ = {};
       return false;
     },
     clear$0: function(_) {
-      J._clearChildren$0$x(this._html$_element);
+      J._clearChildren$0$x(this._element);
     },
     $asListBase: function() {
       return [W.Element];
@@ -7020,6 +7086,72 @@ var $$ = {};
     },
     $isEfficientLength: true
   },
+  _AttributeMap: {
+    "^": "Object;",
+    forEach$1: function(_, f) {
+      var t1, key;
+      for (t1 = this.get$keys(), t1 = new H.ListIterator(t1, t1.length, 0, null); t1.moveNext$0();) {
+        key = t1._current;
+        f.call$2(key, this.$index(0, key));
+      }
+    },
+    get$keys: function() {
+      var attributes, keys, len, i;
+      attributes = this._element.attributes;
+      keys = H.setRuntimeTypeInfo([], [P.String]);
+      for (len = attributes.length, i = 0; i < len; ++i) {
+        if (i >= attributes.length)
+          return H.ioore(attributes, i);
+        if (this._matches$1(attributes[i])) {
+          if (i >= attributes.length)
+            return H.ioore(attributes, i);
+          keys.push(J.get$name$x(attributes[i]));
+        }
+      }
+      return keys;
+    },
+    get$values: function(_) {
+      var attributes, values, len, i;
+      attributes = this._element.attributes;
+      values = H.setRuntimeTypeInfo([], [P.String]);
+      for (len = attributes.length, i = 0; i < len; ++i) {
+        if (i >= attributes.length)
+          return H.ioore(attributes, i);
+        if (this._matches$1(attributes[i])) {
+          if (i >= attributes.length)
+            return H.ioore(attributes, i);
+          values.push(J.get$value$x(attributes[i]));
+        }
+      }
+      return values;
+    },
+    $isMap: true,
+    $asMap: function() {
+      return [P.String, P.String];
+    }
+  },
+  _ElementAttributeMap: {
+    "^": "_AttributeMap;_element",
+    $index: function(_, key) {
+      return this._element.getAttribute(key);
+    },
+    $indexSet: function(_, key, value) {
+      this._element.setAttribute(key, value);
+    },
+    remove$1: function(_, key) {
+      var t1, value;
+      t1 = this._element;
+      value = t1.getAttribute(key);
+      t1.removeAttribute(key);
+      return value;
+    },
+    get$length: function(_) {
+      return this.get$keys().length;
+    },
+    _matches$1: function(node) {
+      return node.namespaceURI == null;
+    }
+  },
   _MultiElementCssClassSet: {
     "^": "CssClassSetImpl;_elementIterable,_elementCssClassSetIterable",
     readClasses$0: function() {
@@ -7082,11 +7214,11 @@ var $$ = {};
     }
   },
   _ElementCssClassSet: {
-    "^": "CssClassSetImpl;_html$_element",
+    "^": "CssClassSetImpl;_element",
     readClasses$0: function() {
       var s, t1, trimmed;
       s = P.LinkedHashSet_LinkedHashSet(null, null, null, P.String);
-      for (t1 = J.get$className$x(this._html$_element).split(" "), t1 = new H.ListIterator(t1, t1.length, 0, null); t1.moveNext$0();) {
+      for (t1 = J.get$className$x(this._element).split(" "), t1 = new H.ListIterator(t1, t1.length, 0, null); t1.moveNext$0();) {
         trimmed = J.trim$0$s(t1._current);
         if (trimmed.length !== 0)
           s.add$1(0, trimmed);
@@ -7095,7 +7227,7 @@ var $$ = {};
     },
     writeClasses$1: function(s) {
       P.List_List$from(s, true, null);
-      J.set$className$x(this._html$_element, s.join$1(0, " "));
+      J.set$className$x(this._element, s.join$1(0, " "));
     }
   },
   EventStreamProvider: {
@@ -7697,7 +7829,7 @@ var $$ = {};
     "^": "Object;initialComputedDisplay<,initialLocalDisplay,currentState@"
   },
   _AnimatingValues: {
-    "^": "Object;_element,_cleanupAction,_finishFunc,_completer,_effects$_timer",
+    "^": "Object;_effects$_element,_cleanupAction,_finishFunc,_completer,_effects$_timer",
     _cleanupAction$1: function(arg0) {
       return this._cleanupAction.call$1(arg0);
     },
@@ -7718,14 +7850,14 @@ var $$ = {};
     },
     _complete$0: [function() {
       this._cleanup$0();
-      this._finishFunc$1(this._element);
+      this._finishFunc$1(this._effects$_element);
       var t1 = this._completer.future;
       if (t1._state !== 0)
         H.throwExpression(P.StateError$("Future already completed"));
       t1._asyncComplete$1(C.ShowHideResult_animated);
     }, "call$0", "get$_complete", 0, 0, 2],
     _cleanup$0: function() {
-      var t1 = this._element;
+      var t1 = this._effects$_element;
       this._cleanupAction$1(t1);
       $.get$_AnimatingValues__aniValues().$indexSet(0, t1, null);
     },
@@ -7930,7 +8062,7 @@ var $$ = {};
     }
   },
   Slideshow: {
-    "^": "Object;_timer,_thumbnails,_currentSlide,_selectedThumbnail,_currentSlideText,_pauseDuration",
+    "^": "Object;_timer,_thumbnails,_slideshowContainer,_currentSlide,_selectedThumbnail,_currentSlideText,_pauseDuration",
     _nextImage$0: function() {
       var t1, index, t2, t3;
       t1 = this._thumbnails;
@@ -7977,6 +8109,12 @@ var $$ = {};
         Y.ShowHide_begin(C.ShowHideAction_hide, t2, 500, null, $.get$EffectTiming_ease()).then$1(new L.Slideshow__changeImage_closure0(this, thumbnail));
       else
         t2.textContent = t1.get$alt(thumbnail);
+      t1 = t1.get$attributes(thumbnail)._element.getAttribute("href");
+      t2 = this._slideshowContainer;
+      if (t1 != null)
+        J.get$classes$x(t2).add$1(0, "link");
+      else
+        J.get$classes$x(t2).remove$1(0, "link");
       t1 = this._currentSlideText;
       t2 = P.LinkedHashMap_LinkedHashMap(null, null, null, P.String, P.String);
       t2 = new Y.FadeEffect("opacity", t2);
@@ -7998,7 +8136,7 @@ var $$ = {};
       this._timer = P.Timer_Timer(P.Duration$(0, 0, 0, this._pauseDuration, 0, 0), new L.Slideshow__initTimer_closure(this));
     },
     Slideshow$2$pauseDuration: function(container, pauseDuration, box_0) {
-      var t1, t2, t3, t4, e, ribbon, thumbnails;
+      var t1, t2, t3, t4, e, t5, t6, ribbon, thumbnails;
       t1 = J.getInterceptor$x(container);
       t2 = t1.get$children(container);
       if (t2.every$1(t2, new L.Slideshow_closure())) {
@@ -8017,9 +8155,15 @@ var $$ = {};
         t4.add$1(0, e);
         t3 = t3.get$children(t2);
         t4 = document.createElement("span", null);
-        J.get$classes$x(t4).add$1(0, "currentSlideText");
+        t5 = J.getInterceptor$x(t4);
+        t5.get$classes(t4).add$1(0, "currentSlideText");
+        t6 = t5.get$onMouseEnter(t4);
+        H.setRuntimeTypeInfo(new W._EventStreamSubscription(0, t6._target, t6._eventType, W._wrapZone(new L.Slideshow_closure0(this)), t6._useCapture), [H.getTypeArgumentByIndex(t6, 0)])._tryResume$0();
+        t5 = t5.get$onMouseLeave(t4);
+        H.setRuntimeTypeInfo(new W._EventStreamSubscription(0, t5._target, t5._eventType, W._wrapZone(new L.Slideshow_closure1(this)), t5._useCapture), [H.getTypeArgumentByIndex(t5, 0)])._tryResume$0();
         this._currentSlideText = t4;
         t3.add$1(0, t4);
+        this._slideshowContainer = t2;
         t1.add$1(0, t2);
         ribbon = document.createElement("div", null);
         t2 = J.getInterceptor$x(ribbon);
@@ -8031,7 +8175,7 @@ var $$ = {};
         t4 = J.getInterceptor$x(t1);
         t4.get$classes(t1).add$1(0, "slideshowControl left");
         t4 = t4.get$onClick(t1);
-        H.setRuntimeTypeInfo(new W._EventStreamSubscription(0, t4._target, t4._eventType, W._wrapZone(new L.Slideshow_closure0(this)), t4._useCapture), [H.getTypeArgumentByIndex(t4, 0)])._tryResume$0();
+        H.setRuntimeTypeInfo(new W._EventStreamSubscription(0, t4._target, t4._eventType, W._wrapZone(new L.Slideshow_closure2(this)), t4._useCapture), [H.getTypeArgumentByIndex(t4, 0)])._tryResume$0();
         t2.add$1(0, t1);
         thumbnails = document.createElement("div", null);
         J.get$classes$x(thumbnails).add$1(0, "thumbnails");
@@ -8042,11 +8186,13 @@ var $$ = {};
         t4 = J.getInterceptor$x(t1);
         t4.get$classes(t1).add$1(0, "slideshowControl right");
         t4 = t4.get$onClick(t1);
-        H.setRuntimeTypeInfo(new W._EventStreamSubscription(0, t4._target, t4._eventType, W._wrapZone(new L.Slideshow_closure1(this)), t4._useCapture), [H.getTypeArgumentByIndex(t4, 0)])._tryResume$0();
+        H.setRuntimeTypeInfo(new W._EventStreamSubscription(0, t4._target, t4._eventType, W._wrapZone(new L.Slideshow_closure3(this)), t4._useCapture), [H.getTypeArgumentByIndex(t4, 0)])._tryResume$0();
         t2.add$1(0, t1);
         t1 = this._thumbnails;
         t1.toString;
-        H.IterableMixinWorkaround_forEach(t1, new L.Slideshow_closure2(box_0, this));
+        H.IterableMixinWorkaround_forEach(t1, new L.Slideshow_closure4(box_0, this));
+        t1 = J.get$onClick$x(this._slideshowContainer);
+        H.setRuntimeTypeInfo(new W._EventStreamSubscription(0, t1._target, t1._eventType, W._wrapZone(new L.Slideshow_closure5(this)), t1._useCapture), [H.getTypeArgumentByIndex(t1, 0)])._tryResume$0();
         t1 = this._thumbnails;
         if (0 >= t1.length)
           return H.ioore(t1, 0);
@@ -8055,7 +8201,7 @@ var $$ = {};
       }
     },
     static: {Slideshow$: function(container, pauseDuration) {
-        var t1 = new L.Slideshow(null, null, null, null, null, pauseDuration);
+        var t1 = new L.Slideshow(null, null, null, null, null, null, pauseDuration);
         t1.Slideshow$2$pauseDuration(container, pauseDuration, {});
         return t1;
       }}
@@ -8069,8 +8215,20 @@ var $$ = {};
   Slideshow_closure0: {
     "^": "Closure:14;this_1",
     call$1: function($event) {
+      return this.this_1.setTimer$1(false);
+    }
+  },
+  Slideshow_closure1: {
+    "^": "Closure:14;this_2",
+    call$1: function($event) {
+      return this.this_2.setTimer$1(true);
+    }
+  },
+  Slideshow_closure2: {
+    "^": "Closure:14;this_3",
+    call$1: function($event) {
       var t1, t2, index, t3;
-      t1 = this.this_1;
+      t1 = this.this_3;
       t2 = t1._thumbnails;
       index = H.Lists_indexOf(t2, t1._selectedThumbnail, 0, t2.length);
       t2 = t1._thumbnails;
@@ -8086,19 +8244,19 @@ var $$ = {};
       return;
     }
   },
-  Slideshow_closure1: {
-    "^": "Closure:14;this_2",
+  Slideshow_closure3: {
+    "^": "Closure:14;this_4",
     call$1: function($event) {
-      return this.this_2._nextImage$0();
+      return this.this_4._nextImage$0();
     }
   },
-  Slideshow_closure2: {
-    "^": "Closure:24;box_0,this_3",
+  Slideshow_closure4: {
+    "^": "Closure:24;box_0,this_5",
     call$1: function(slide) {
       var t1, t2;
       t1 = J.getInterceptor$x(slide);
       t1.get$classes(slide).clear$0(0);
-      t2 = this.this_3;
+      t2 = this.this_5;
       t1.get$onMouseEnter(slide).listen$1(new L.Slideshow__closure(t2, slide));
       t1.get$onMouseLeave(slide).listen$1(new L.Slideshow__closure0(t2, slide));
       t1.get$classes(slide).add$1(0, "thumbnail");
@@ -8107,31 +8265,39 @@ var $$ = {};
     }
   },
   Slideshow__closure: {
-    "^": "Closure:14;this_4,slide_5",
-    call$1: function($event) {
-      var t1, t2;
-      t1 = this.slide_5;
-      t2 = J.getInterceptor$x(t1);
-      t2.get$classes(t1).add$1(0, "mouseOver");
-      if (t2.get$classes(t1).readClasses$0().contains$1(0, "selectedThumbnail"))
-        this.this_4.setTimer$1(false);
-    }
-  },
-  Slideshow__closure0: {
     "^": "Closure:14;this_6,slide_7",
     call$1: function($event) {
       var t1, t2;
       t1 = this.slide_7;
       t2 = J.getInterceptor$x(t1);
+      t2.get$classes(t1).add$1(0, "mouseOver");
+      if (t2.get$classes(t1).readClasses$0().contains$1(0, "selectedThumbnail"))
+        this.this_6.setTimer$1(false);
+    }
+  },
+  Slideshow__closure0: {
+    "^": "Closure:14;this_8,slide_9",
+    call$1: function($event) {
+      var t1, t2;
+      t1 = this.slide_9;
+      t2 = J.getInterceptor$x(t1);
       t2.get$classes(t1).remove$1(0, "mouseOver");
       if (t2.get$classes(t1).readClasses$0().contains$1(0, "selectedThumbnail"))
-        this.this_6.setTimer$1(true);
+        this.this_8.setTimer$1(true);
     }
   },
   Slideshow__closure1: {
-    "^": "Closure:14;this_8,slide_9",
+    "^": "Closure:14;this_10,slide_11",
     call$1: function($event) {
-      return this.this_8._changeImage$1(this.slide_9);
+      return this.this_10._changeImage$1(this.slide_11);
+    }
+  },
+  Slideshow_closure5: {
+    "^": "Closure:14;this_12",
+    call$1: function($event) {
+      var t1 = this.this_12;
+      if (J.get$attributes$x(t1._selectedThumbnail)._element.getAttribute("href") != null)
+        window.location.assign(J.get$attributes$x(t1._selectedThumbnail)._element.getAttribute("href"));
     }
   },
   Slideshow__changeImage_closure: {
@@ -8366,6 +8532,9 @@ J.forEach$1$ax = function(receiver, a0) {
 J.get$alt$x = function(receiver) {
   return J.getInterceptor$x(receiver).get$alt(receiver);
 };
+J.get$attributes$x = function(receiver) {
+  return J.getInterceptor$x(receiver).get$attributes(receiver);
+};
 J.get$children$x = function(receiver) {
   return J.getInterceptor$x(receiver).get$children(receiver);
 };
@@ -8396,6 +8565,12 @@ J.get$last$ax = function(receiver) {
 J.get$length$asx = function(receiver) {
   return J.getInterceptor$asx(receiver).get$length(receiver);
 };
+J.get$name$x = function(receiver) {
+  return J.getInterceptor$x(receiver).get$name(receiver);
+};
+J.get$onClick$x = function(receiver) {
+  return J.getInterceptor$x(receiver).get$onClick(receiver);
+};
 J.get$opacity$x = function(receiver) {
   return J.getInterceptor$x(receiver).get$opacity(receiver);
 };
@@ -8404,6 +8579,9 @@ J.get$setProperty$x = function(receiver) {
 };
 J.get$src$x = function(receiver) {
   return J.getInterceptor$x(receiver).get$src(receiver);
+};
+J.get$value$x = function(receiver) {
+  return J.getInterceptor$x(receiver).get$value(receiver);
 };
 J.getComputedStyle$0$x = function(receiver) {
   return J.getInterceptor$x(receiver).getComputedStyle$0(receiver);
@@ -9233,6 +9411,12 @@ function dart_precompiled($collectedClasses) {
   if ($desc instanceof Array)
     $desc = $desc[1];
   ButtonElement.prototype = $desc;
+  ButtonElement.prototype.get$name = function(receiver) {
+    return receiver.name;
+  };
+  ButtonElement.prototype.get$value = function(receiver) {
+    return receiver.value;
+  };
   function CDataSection() {
   }
   CDataSection.builtin$cls = "CDataSection";
@@ -9452,6 +9636,9 @@ function dart_precompiled($collectedClasses) {
   if ($desc instanceof Array)
     $desc = $desc[1];
   EmbedElement.prototype = $desc;
+  EmbedElement.prototype.get$name = function(receiver) {
+    return receiver.name;
+  };
   EmbedElement.prototype.get$src = function(receiver) {
     return receiver.src;
   };
@@ -9494,6 +9681,9 @@ function dart_precompiled($collectedClasses) {
   if ($desc instanceof Array)
     $desc = $desc[1];
   FieldSetElement.prototype = $desc;
+  FieldSetElement.prototype.get$name = function(receiver) {
+    return receiver.name;
+  };
   function FileError() {
   }
   FileError.builtin$cls = "FileError";
@@ -9523,6 +9713,9 @@ function dart_precompiled($collectedClasses) {
   FormElement.prototype = $desc;
   FormElement.prototype.get$length = function(receiver) {
     return receiver.length;
+  };
+  FormElement.prototype.get$name = function(receiver) {
+    return receiver.name;
   };
   function HRElement() {
   }
@@ -9614,6 +9807,9 @@ function dart_precompiled($collectedClasses) {
   if ($desc instanceof Array)
     $desc = $desc[1];
   IFrameElement.prototype = $desc;
+  IFrameElement.prototype.get$name = function(receiver) {
+    return receiver.name;
+  };
   IFrameElement.prototype.get$src = function(receiver) {
     return receiver.src;
   };
@@ -9644,8 +9840,14 @@ function dart_precompiled($collectedClasses) {
   InputElement.prototype.get$alt = function(receiver) {
     return receiver.alt;
   };
+  InputElement.prototype.get$name = function(receiver) {
+    return receiver.name;
+  };
   InputElement.prototype.get$src = function(receiver) {
     return receiver.src;
+  };
+  InputElement.prototype.get$value = function(receiver) {
+    return receiver.value;
   };
   function InstallEvent() {
   }
@@ -9683,6 +9885,9 @@ function dart_precompiled($collectedClasses) {
   if ($desc instanceof Array)
     $desc = $desc[1];
   KeygenElement.prototype = $desc;
+  KeygenElement.prototype.get$name = function(receiver) {
+    return receiver.name;
+  };
   function LIElement() {
   }
   LIElement.builtin$cls = "LIElement";
@@ -9692,6 +9897,9 @@ function dart_precompiled($collectedClasses) {
   if ($desc instanceof Array)
     $desc = $desc[1];
   LIElement.prototype = $desc;
+  LIElement.prototype.get$value = function(receiver) {
+    return receiver.value;
+  };
   function LabelElement() {
   }
   LabelElement.builtin$cls = "LabelElement";
@@ -9719,6 +9927,15 @@ function dart_precompiled($collectedClasses) {
   if ($desc instanceof Array)
     $desc = $desc[1];
   LinkElement.prototype = $desc;
+  function Location() {
+  }
+  Location.builtin$cls = "Location";
+  if (!"name" in Location)
+    Location.name = "Location";
+  $desc = $collectedClasses.Location;
+  if ($desc instanceof Array)
+    $desc = $desc[1];
+  Location.prototype = $desc;
   function MapElement() {
   }
   MapElement.builtin$cls = "MapElement";
@@ -9728,6 +9945,9 @@ function dart_precompiled($collectedClasses) {
   if ($desc instanceof Array)
     $desc = $desc[1];
   MapElement.prototype = $desc;
+  MapElement.prototype.get$name = function(receiver) {
+    return receiver.name;
+  };
   function MediaElement() {
   }
   MediaElement.builtin$cls = "MediaElement";
@@ -9842,6 +10062,9 @@ function dart_precompiled($collectedClasses) {
   if ($desc instanceof Array)
     $desc = $desc[1];
   MetaElement.prototype = $desc;
+  MetaElement.prototype.get$name = function(receiver) {
+    return receiver.name;
+  };
   function MeterElement() {
   }
   MeterElement.builtin$cls = "MeterElement";
@@ -9851,6 +10074,9 @@ function dart_precompiled($collectedClasses) {
   if ($desc instanceof Array)
     $desc = $desc[1];
   MeterElement.prototype = $desc;
+  MeterElement.prototype.get$value = function(receiver) {
+    return receiver.value;
+  };
   function MidiConnectionEvent() {
   }
   MidiConnectionEvent.builtin$cls = "MidiConnectionEvent";
@@ -9941,6 +10167,9 @@ function dart_precompiled($collectedClasses) {
   if ($desc instanceof Array)
     $desc = $desc[1];
   ObjectElement.prototype = $desc;
+  ObjectElement.prototype.get$name = function(receiver) {
+    return receiver.name;
+  };
   function OptGroupElement() {
   }
   OptGroupElement.builtin$cls = "OptGroupElement";
@@ -9959,6 +10188,9 @@ function dart_precompiled($collectedClasses) {
   if ($desc instanceof Array)
     $desc = $desc[1];
   OptionElement.prototype = $desc;
+  OptionElement.prototype.get$value = function(receiver) {
+    return receiver.value;
+  };
   function OutputElement() {
   }
   OutputElement.builtin$cls = "OutputElement";
@@ -9968,6 +10200,12 @@ function dart_precompiled($collectedClasses) {
   if ($desc instanceof Array)
     $desc = $desc[1];
   OutputElement.prototype = $desc;
+  OutputElement.prototype.get$name = function(receiver) {
+    return receiver.name;
+  };
+  OutputElement.prototype.get$value = function(receiver) {
+    return receiver.value;
+  };
   function OverflowEvent() {
   }
   OverflowEvent.builtin$cls = "OverflowEvent";
@@ -10004,6 +10242,12 @@ function dart_precompiled($collectedClasses) {
   if ($desc instanceof Array)
     $desc = $desc[1];
   ParamElement.prototype = $desc;
+  ParamElement.prototype.get$name = function(receiver) {
+    return receiver.name;
+  };
+  ParamElement.prototype.get$value = function(receiver) {
+    return receiver.value;
+  };
   function PopStateEvent() {
   }
   PopStateEvent.builtin$cls = "PopStateEvent";
@@ -10049,6 +10293,9 @@ function dart_precompiled($collectedClasses) {
   if ($desc instanceof Array)
     $desc = $desc[1];
   ProgressElement.prototype = $desc;
+  ProgressElement.prototype.get$value = function(receiver) {
+    return receiver.value;
+  };
   function ProgressEvent() {
   }
   ProgressEvent.builtin$cls = "ProgressEvent";
@@ -10135,6 +10382,12 @@ function dart_precompiled($collectedClasses) {
   SelectElement.prototype = $desc;
   SelectElement.prototype.get$length = function(receiver) {
     return receiver.length;
+  };
+  SelectElement.prototype.get$name = function(receiver) {
+    return receiver.name;
+  };
+  SelectElement.prototype.get$value = function(receiver) {
+    return receiver.value;
   };
   function ShadowElement() {
   }
@@ -10313,6 +10566,12 @@ function dart_precompiled($collectedClasses) {
   if ($desc instanceof Array)
     $desc = $desc[1];
   TextAreaElement.prototype = $desc;
+  TextAreaElement.prototype.get$name = function(receiver) {
+    return receiver.name;
+  };
+  TextAreaElement.prototype.get$value = function(receiver) {
+    return receiver.value;
+  };
   function TextEvent() {
   }
   TextEvent.builtin$cls = "TextEvent";
@@ -10442,6 +10701,12 @@ function dart_precompiled($collectedClasses) {
   if ($desc instanceof Array)
     $desc = $desc[1];
   _Attr.prototype = $desc;
+  _Attr.prototype.get$name = function(receiver) {
+    return receiver.name;
+  };
+  _Attr.prototype.get$value = function(receiver) {
+    return receiver.value;
+  };
   function _ClientRect() {
   }
   _ClientRect.builtin$cls = "_ClientRect";
@@ -13610,8 +13875,8 @@ function dart_precompiled($collectedClasses) {
   if ($desc instanceof Array)
     $desc = $desc[1];
   CssStyleDeclarationBase.prototype = $desc;
-  function _ChildrenElementList(_html$_element, _childElements) {
-    this._html$_element = _html$_element;
+  function _ChildrenElementList(_element, _childElements) {
+    this._element = _element;
     this._childElements = _childElements;
   }
   _ChildrenElementList.builtin$cls = "_ChildrenElementList";
@@ -13705,6 +13970,25 @@ function dart_precompiled($collectedClasses) {
   if ($desc instanceof Array)
     $desc = $desc[1];
   Interceptor_ListMixin_ImmutableListMixin1.prototype = $desc;
+  function _AttributeMap() {
+  }
+  _AttributeMap.builtin$cls = "_AttributeMap";
+  if (!"name" in _AttributeMap)
+    _AttributeMap.name = "_AttributeMap";
+  $desc = $collectedClasses._AttributeMap;
+  if ($desc instanceof Array)
+    $desc = $desc[1];
+  _AttributeMap.prototype = $desc;
+  function _ElementAttributeMap(_element) {
+    this._element = _element;
+  }
+  _ElementAttributeMap.builtin$cls = "_ElementAttributeMap";
+  if (!"name" in _ElementAttributeMap)
+    _ElementAttributeMap.name = "_ElementAttributeMap";
+  $desc = $collectedClasses._ElementAttributeMap;
+  if ($desc instanceof Array)
+    $desc = $desc[1];
+  _ElementAttributeMap.prototype = $desc;
   function _MultiElementCssClassSet(_elementIterable, _elementCssClassSetIterable) {
     this._elementIterable = _elementIterable;
     this._elementCssClassSetIterable = _elementCssClassSetIterable;
@@ -13765,8 +14049,8 @@ function dart_precompiled($collectedClasses) {
   if ($desc instanceof Array)
     $desc = $desc[1];
   _MultiElementCssClassSet__modifyWithReturnValue_closure.prototype = $desc;
-  function _ElementCssClassSet(_html$_element) {
-    this._html$_element = _html$_element;
+  function _ElementCssClassSet(_element) {
+    this._element = _element;
   }
   _ElementCssClassSet.builtin$cls = "_ElementCssClassSet";
   if (!"name" in _ElementCssClassSet)
@@ -14070,8 +14354,8 @@ function dart_precompiled($collectedClasses) {
   _ShowHideValues.prototype.set$currentState = function(v) {
     return this.currentState = v;
   };
-  function _AnimatingValues(_element, _cleanupAction, _finishFunc, _completer, _effects$_timer) {
-    this._element = _element;
+  function _AnimatingValues(_effects$_element, _cleanupAction, _finishFunc, _completer, _effects$_timer) {
+    this._effects$_element = _effects$_element;
     this._cleanupAction = _cleanupAction;
     this._finishFunc = _finishFunc;
     this._completer = _completer;
@@ -14178,9 +14462,10 @@ function dart_precompiled($collectedClasses) {
   if ($desc instanceof Array)
     $desc = $desc[1];
   main_closure.prototype = $desc;
-  function Slideshow(_timer, _thumbnails, _currentSlide, _selectedThumbnail, _currentSlideText, _pauseDuration) {
+  function Slideshow(_timer, _thumbnails, _slideshowContainer, _currentSlide, _selectedThumbnail, _currentSlideText, _pauseDuration) {
     this._timer = _timer;
     this._thumbnails = _thumbnails;
+    this._slideshowContainer = _slideshowContainer;
     this._currentSlide = _currentSlide;
     this._selectedThumbnail = _selectedThumbnail;
     this._currentSlideText = _currentSlideText;
@@ -14222,8 +14507,7 @@ function dart_precompiled($collectedClasses) {
   if ($desc instanceof Array)
     $desc = $desc[1];
   Slideshow_closure1.prototype = $desc;
-  function Slideshow_closure2(box_0, this_3) {
-    this.box_0 = box_0;
+  function Slideshow_closure2(this_3) {
     this.this_3 = this_3;
   }
   Slideshow_closure2.builtin$cls = "Slideshow_closure2";
@@ -14233,9 +14517,30 @@ function dart_precompiled($collectedClasses) {
   if ($desc instanceof Array)
     $desc = $desc[1];
   Slideshow_closure2.prototype = $desc;
-  function Slideshow__closure(this_4, slide_5) {
+  function Slideshow_closure3(this_4) {
     this.this_4 = this_4;
-    this.slide_5 = slide_5;
+  }
+  Slideshow_closure3.builtin$cls = "Slideshow_closure3";
+  if (!"name" in Slideshow_closure3)
+    Slideshow_closure3.name = "Slideshow_closure3";
+  $desc = $collectedClasses.Slideshow_closure3;
+  if ($desc instanceof Array)
+    $desc = $desc[1];
+  Slideshow_closure3.prototype = $desc;
+  function Slideshow_closure4(box_0, this_5) {
+    this.box_0 = box_0;
+    this.this_5 = this_5;
+  }
+  Slideshow_closure4.builtin$cls = "Slideshow_closure4";
+  if (!"name" in Slideshow_closure4)
+    Slideshow_closure4.name = "Slideshow_closure4";
+  $desc = $collectedClasses.Slideshow_closure4;
+  if ($desc instanceof Array)
+    $desc = $desc[1];
+  Slideshow_closure4.prototype = $desc;
+  function Slideshow__closure(this_6, slide_7) {
+    this.this_6 = this_6;
+    this.slide_7 = slide_7;
   }
   Slideshow__closure.builtin$cls = "Slideshow__closure";
   if (!"name" in Slideshow__closure)
@@ -14244,9 +14549,9 @@ function dart_precompiled($collectedClasses) {
   if ($desc instanceof Array)
     $desc = $desc[1];
   Slideshow__closure.prototype = $desc;
-  function Slideshow__closure0(this_6, slide_7) {
-    this.this_6 = this_6;
-    this.slide_7 = slide_7;
+  function Slideshow__closure0(this_8, slide_9) {
+    this.this_8 = this_8;
+    this.slide_9 = slide_9;
   }
   Slideshow__closure0.builtin$cls = "Slideshow__closure0";
   if (!"name" in Slideshow__closure0)
@@ -14255,9 +14560,9 @@ function dart_precompiled($collectedClasses) {
   if ($desc instanceof Array)
     $desc = $desc[1];
   Slideshow__closure0.prototype = $desc;
-  function Slideshow__closure1(this_8, slide_9) {
-    this.this_8 = this_8;
-    this.slide_9 = slide_9;
+  function Slideshow__closure1(this_10, slide_11) {
+    this.this_10 = this_10;
+    this.slide_11 = slide_11;
   }
   Slideshow__closure1.builtin$cls = "Slideshow__closure1";
   if (!"name" in Slideshow__closure1)
@@ -14266,6 +14571,16 @@ function dart_precompiled($collectedClasses) {
   if ($desc instanceof Array)
     $desc = $desc[1];
   Slideshow__closure1.prototype = $desc;
+  function Slideshow_closure5(this_12) {
+    this.this_12 = this_12;
+  }
+  Slideshow_closure5.builtin$cls = "Slideshow_closure5";
+  if (!"name" in Slideshow_closure5)
+    Slideshow_closure5.name = "Slideshow_closure5";
+  $desc = $collectedClasses.Slideshow_closure5;
+  if ($desc instanceof Array)
+    $desc = $desc[1];
+  Slideshow_closure5.prototype = $desc;
   function Slideshow__changeImage_closure(this_0, thumbnail_1) {
     this.this_0 = this_0;
     this.thumbnail_1 = thumbnail_1;
@@ -14298,5 +14613,5 @@ function dart_precompiled($collectedClasses) {
   if ($desc instanceof Array)
     $desc = $desc[1];
   Slideshow__initTimer_closure.prototype = $desc;
-  return [HtmlElement, AnchorElement, AnimationEvent, AreaElement, AudioElement, AutocompleteErrorEvent, BRElement, BaseElement, BeforeLoadEvent, BeforeUnloadEvent, BodyElement, ButtonElement, CDataSection, CanvasElement, CharacterData, CloseEvent, Comment, CompositionEvent, ContentElement, CssFontFaceLoadEvent, CssStyleDeclaration, CustomEvent, DListElement, DataListElement, DetailsElement, DeviceMotionEvent, DeviceOrientationEvent, DialogElement, DivElement, Document, DocumentFragment, DomError, DomException, Element, EmbedElement, ErrorEvent, Event, EventTarget, FieldSetElement, FileError, FocusEvent, FormElement, HRElement, HashChangeEvent, HeadElement, HeadingElement, HtmlCollection, HtmlDocument, HtmlFormControlsCollection, HtmlHtmlElement, HtmlOptionsCollection, IFrameElement, ImageElement, InputElement, InstallEvent, InstallPhaseEvent, KeyboardEvent, KeygenElement, LIElement, LabelElement, LegendElement, LinkElement, MapElement, MediaElement, MediaError, MediaKeyError, MediaKeyEvent, MediaKeyMessageEvent, MediaKeyNeededEvent, MediaStream, MediaStreamEvent, MediaStreamTrackEvent, MenuElement, MessageEvent, MetaElement, MeterElement, MidiConnectionEvent, MidiMessageEvent, ModElement, MouseEvent, Navigator, NavigatorUserMediaError, Node, NodeList, OListElement, ObjectElement, OptGroupElement, OptionElement, OutputElement, OverflowEvent, PageTransitionEvent, ParagraphElement, ParamElement, PopStateEvent, PositionError, PreElement, ProcessingInstruction, ProgressElement, ProgressEvent, QuoteElement, ResourceProgressEvent, RtcDataChannelEvent, RtcDtmfToneChangeEvent, RtcIceCandidateEvent, ScriptElement, SecurityPolicyViolationEvent, SelectElement, ShadowElement, ShadowRoot, SourceElement, SpanElement, SpeechInputEvent, SpeechRecognitionError, SpeechRecognitionEvent, SpeechSynthesisEvent, StorageEvent, StyleElement, TableCaptionElement, TableCellElement, TableColElement, TableElement, TableRowElement, TableSectionElement, TemplateElement, Text, TextAreaElement, TextEvent, TitleElement, TouchEvent, TrackElement, TrackEvent, TransitionEvent, UIEvent, UListElement, UnknownElement, VideoElement, WheelEvent, Window, XmlDocument, _Attr, _ClientRect, _DocumentType, _HTMLAppletElement, _HTMLDirectoryElement, _HTMLFontElement, _HTMLFrameElement, _HTMLFrameSetElement, _HTMLMarqueeElement, _MutationEvent, _NamedNodeMap, _Notation, _XMLHttpRequestProgressEvent, VersionChangeEvent, AElement, AltGlyphElement, AnimateElement, AnimateMotionElement, AnimateTransformElement, AnimatedLength, AnimatedLengthList, AnimatedNumber, AnimatedNumberList, AnimatedString, AnimationElement, CircleElement, ClipPathElement, DefsElement, DescElement, DiscardElement, EllipseElement, FEBlendElement, FEColorMatrixElement, FEComponentTransferElement, FECompositeElement, FEConvolveMatrixElement, FEDiffuseLightingElement, FEDisplacementMapElement, FEDistantLightElement, FEFloodElement, FEFuncAElement, FEFuncBElement, FEFuncGElement, FEFuncRElement, FEGaussianBlurElement, FEImageElement, FEMergeElement, FEMergeNodeElement, FEMorphologyElement, FEOffsetElement, FEPointLightElement, FESpecularLightingElement, FESpotLightElement, FETileElement, FETurbulenceElement, FilterElement, ForeignObjectElement, GElement, GeometryElement, GraphicsElement, ImageElement0, LineElement, LinearGradientElement, MarkerElement, MaskElement, MetadataElement, PathElement, PatternElement, PolygonElement, PolylineElement, RadialGradientElement, RectElement, ScriptElement0, SetElement, StopElement, StyleElement0, SvgElement, SvgSvgElement, SwitchElement, SymbolElement, TSpanElement, TextContentElement, TextElement, TextPathElement, TextPositioningElement, TitleElement0, UseElement, ViewElement, ZoomEvent, _GradientElement, _SVGAltGlyphDefElement, _SVGAltGlyphItemElement, _SVGComponentTransferFunctionElement, _SVGCursorElement, _SVGFEDropShadowElement, _SVGFontElement, _SVGFontFaceElement, _SVGFontFaceFormatElement, _SVGFontFaceNameElement, _SVGFontFaceSrcElement, _SVGFontFaceUriElement, _SVGGlyphElement, _SVGGlyphRefElement, _SVGHKernElement, _SVGMPathElement, _SVGMissingGlyphElement, _SVGVKernElement, AudioProcessingEvent, OfflineAudioCompletionEvent, ContextEvent, SqlError, NativeTypedData, NativeUint8List, JS_CONST, Interceptor, JSBool, JSNull, JavaScriptObject, PlainJavaScriptObject, UnknownJavaScriptObject, JSArray, JSNumber, JSInt, JSDouble, JSString, startRootIsolate_closure, startRootIsolate_closure0, _Manager, _IsolateContext, _IsolateContext_handlePing_respond, _EventLoop, _EventLoop__runHelper_next, _IsolateEvent, _MainManagerStub, IsolateNatives__processWorkerMessage_closure, IsolateNatives__startIsolate_runStartFunction, _BaseSendPort, _NativeJsSendPort, _NativeJsSendPort_send_closure, _WorkerSendPort, RawReceivePortImpl, _JsSerializer, _JsCopier, _JsDeserializer, _JsVisitedMap, _MessageTraverserVisitedMap, _MessageTraverser, _Copier, _Copier_visitMap_closure, _Serializer, _Deserializer, TimerImpl, TimerImpl_internalCallback, TimerImpl_internalCallback0, CapabilityImpl, ReflectionInfo, TypeErrorDecoder, NullError, JsNoSuchMethodError, UnknownJsTypeError, unwrapException_saveStackTrace, _StackTrace, invokeClosure_closure, invokeClosure_closure0, invokeClosure_closure1, invokeClosure_closure2, invokeClosure_closure3, Closure, TearOffClosure, BoundClosure, RuntimeError, RuntimeType, RuntimeFunctionType, DynamicRuntimeType, TypeImpl, initHooks_closure, initHooks_closure0, initHooks_closure1, DetailedArgumentError, InvalidOperationError, ListIterable, ListIterator, MappedIterable, EfficientLengthMappedIterable, MappedIterator, MappedListIterable, WhereIterable, WhereIterator, FixedLengthListMixin, _AsyncRun__initializeScheduleImmediate_internalCallback, _AsyncRun__initializeScheduleImmediate_closure, _AsyncRun__scheduleImmediateJsOverride_internalCallback, _AsyncError, _UncaughtAsyncError, _BroadcastStream, _BroadcastSubscription, _BroadcastStreamController, _SyncBroadcastStreamController, _SyncBroadcastStreamController__sendData_closure, _SyncBroadcastStreamController__sendError_closure, _SyncBroadcastStreamController__sendDone_closure, Future, _Completer, _AsyncCompleter, _Future, _Future__addListener_closure, _Future__chainForeignFuture_closure, _Future__chainForeignFuture_closure0, _Future__asyncComplete_closure, _Future__asyncComplete_closure0, _Future__propagateToListeners_handleValueCallback, _Future__propagateToListeners_handleError, _Future__propagateToListeners_handleWhenCompleteCallback, _Future__propagateToListeners_handleWhenCompleteCallback_closure, _Future__propagateToListeners_handleWhenCompleteCallback_closure0, _AsyncCallbackEntry, Stream, Stream_forEach_closure, Stream_forEach__closure, Stream_forEach__closure0, Stream_forEach_closure0, Stream_length_closure, Stream_length_closure0, StreamSubscription, _ControllerStream, _ControllerSubscription, _EventSink, _BufferingStreamSubscription, _BufferingStreamSubscription__sendError_sendError, _BufferingStreamSubscription__sendDone_sendDone, _StreamImpl, _DelayedEvent, _DelayedData, _DelayedError, _DelayedDone, _PendingEvents, _PendingEvents_schedule_closure, _StreamImplEvents, _DoneStreamSubscription, _cancelAndError_closure, _cancelAndErrorClosure_closure, _Zone, _rootHandleUncaughtError_closure, _RootZone, _RootZone_bindCallback_closure, _RootZone_bindCallback_closure0, _RootZone_bindUnaryCallback_closure, _RootZone_bindUnaryCallback_closure0, _HashMap, _HashMap_values_closure, HashMapKeyIterable, HashMapKeyIterator, _LinkedHashMap, _LinkedHashMap_values_closure, LinkedHashMapCell, LinkedHashMapKeyIterable, LinkedHashMapKeyIterator, _LinkedHashSet, LinkedHashSetCell, LinkedHashSetIterator, _HashSetBase, IterableBase, ListBase, Object_ListMixin, ListMixin, Maps_mapToString_closure, ListQueue, _ListQueueIterator, SetMixin, SetBase, NoSuchMethodError_toString_closure, bool, $double, Duration, Duration_toString_sixDigits, Duration_toString_twoDigits, Error, NullThrownError, ArgumentError, RangeError, UnsupportedError, UnimplementedError, StateError, ConcurrentModificationError, StackOverflowError, CyclicInitializationError, _ExceptionImplementation, FormatException, Expando, $int, Iterator, List, Null, num, Object, StackTrace, String, StringBuffer, Symbol, Interceptor_CssStyleDeclarationBase, CssStyleDeclarationBase, _ChildrenElementList, _FrozenElementList, _FrozenElementList$_wrap_closure, Interceptor_ListMixin, Interceptor_ListMixin_ImmutableListMixin, _ChildNodeListLazy, Interceptor_ListMixin0, Interceptor_ListMixin_ImmutableListMixin0, Interceptor_ListMixin1, Interceptor_ListMixin_ImmutableListMixin1, _MultiElementCssClassSet, _MultiElementCssClassSet_closure, _MultiElementCssClassSet_readClasses_closure, _MultiElementCssClassSet_modify_closure, _MultiElementCssClassSet_remove_closure, _MultiElementCssClassSet__modifyWithReturnValue_closure, _ElementCssClassSet, EventStreamProvider, _EventStream, _ElementEventStreamImpl, _ElementListEventStreamImpl, _EventStreamSubscription, _StreamPool, _StreamPool_add_closure, ImmutableListMixin, FixedSizeListIterator, _AttributeClassSet, Capability, NativeTypedArray, NativeTypedArrayOfInt, NativeTypedArray_ListMixin, NativeTypedArray_ListMixin_FixedLengthListMixin, _Enum, Css3TransitionEffect, Css3TransitionEffect__startAnimation_closure, _css3TransitionEffectValues, _css3TransitionEffectValues_delayStart_closure, FadeEffect, EffectTiming, CssEffectTiming, ShowHideAction, ShowHideResult, ShowHide__populateState_closure, _ShowHideValues, _AnimatingValues, ShowHideEffect, _NoOpShowHideEffect, ShowHideState, CssClassSetImpl, CssClassSetImpl_add_closure, CssClassSetImpl_clear_closure, FilteredElementList, FilteredElementList__filtered_closure, FilteredElementList_removeRange_closure, main_closure, Slideshow, Slideshow_closure, Slideshow_closure0, Slideshow_closure1, Slideshow_closure2, Slideshow__closure, Slideshow__closure0, Slideshow__closure1, Slideshow__changeImage_closure, Slideshow__changeImage_closure0, Slideshow__initTimer_closure];
+  return [HtmlElement, AnchorElement, AnimationEvent, AreaElement, AudioElement, AutocompleteErrorEvent, BRElement, BaseElement, BeforeLoadEvent, BeforeUnloadEvent, BodyElement, ButtonElement, CDataSection, CanvasElement, CharacterData, CloseEvent, Comment, CompositionEvent, ContentElement, CssFontFaceLoadEvent, CssStyleDeclaration, CustomEvent, DListElement, DataListElement, DetailsElement, DeviceMotionEvent, DeviceOrientationEvent, DialogElement, DivElement, Document, DocumentFragment, DomError, DomException, Element, EmbedElement, ErrorEvent, Event, EventTarget, FieldSetElement, FileError, FocusEvent, FormElement, HRElement, HashChangeEvent, HeadElement, HeadingElement, HtmlCollection, HtmlDocument, HtmlFormControlsCollection, HtmlHtmlElement, HtmlOptionsCollection, IFrameElement, ImageElement, InputElement, InstallEvent, InstallPhaseEvent, KeyboardEvent, KeygenElement, LIElement, LabelElement, LegendElement, LinkElement, Location, MapElement, MediaElement, MediaError, MediaKeyError, MediaKeyEvent, MediaKeyMessageEvent, MediaKeyNeededEvent, MediaStream, MediaStreamEvent, MediaStreamTrackEvent, MenuElement, MessageEvent, MetaElement, MeterElement, MidiConnectionEvent, MidiMessageEvent, ModElement, MouseEvent, Navigator, NavigatorUserMediaError, Node, NodeList, OListElement, ObjectElement, OptGroupElement, OptionElement, OutputElement, OverflowEvent, PageTransitionEvent, ParagraphElement, ParamElement, PopStateEvent, PositionError, PreElement, ProcessingInstruction, ProgressElement, ProgressEvent, QuoteElement, ResourceProgressEvent, RtcDataChannelEvent, RtcDtmfToneChangeEvent, RtcIceCandidateEvent, ScriptElement, SecurityPolicyViolationEvent, SelectElement, ShadowElement, ShadowRoot, SourceElement, SpanElement, SpeechInputEvent, SpeechRecognitionError, SpeechRecognitionEvent, SpeechSynthesisEvent, StorageEvent, StyleElement, TableCaptionElement, TableCellElement, TableColElement, TableElement, TableRowElement, TableSectionElement, TemplateElement, Text, TextAreaElement, TextEvent, TitleElement, TouchEvent, TrackElement, TrackEvent, TransitionEvent, UIEvent, UListElement, UnknownElement, VideoElement, WheelEvent, Window, XmlDocument, _Attr, _ClientRect, _DocumentType, _HTMLAppletElement, _HTMLDirectoryElement, _HTMLFontElement, _HTMLFrameElement, _HTMLFrameSetElement, _HTMLMarqueeElement, _MutationEvent, _NamedNodeMap, _Notation, _XMLHttpRequestProgressEvent, VersionChangeEvent, AElement, AltGlyphElement, AnimateElement, AnimateMotionElement, AnimateTransformElement, AnimatedLength, AnimatedLengthList, AnimatedNumber, AnimatedNumberList, AnimatedString, AnimationElement, CircleElement, ClipPathElement, DefsElement, DescElement, DiscardElement, EllipseElement, FEBlendElement, FEColorMatrixElement, FEComponentTransferElement, FECompositeElement, FEConvolveMatrixElement, FEDiffuseLightingElement, FEDisplacementMapElement, FEDistantLightElement, FEFloodElement, FEFuncAElement, FEFuncBElement, FEFuncGElement, FEFuncRElement, FEGaussianBlurElement, FEImageElement, FEMergeElement, FEMergeNodeElement, FEMorphologyElement, FEOffsetElement, FEPointLightElement, FESpecularLightingElement, FESpotLightElement, FETileElement, FETurbulenceElement, FilterElement, ForeignObjectElement, GElement, GeometryElement, GraphicsElement, ImageElement0, LineElement, LinearGradientElement, MarkerElement, MaskElement, MetadataElement, PathElement, PatternElement, PolygonElement, PolylineElement, RadialGradientElement, RectElement, ScriptElement0, SetElement, StopElement, StyleElement0, SvgElement, SvgSvgElement, SwitchElement, SymbolElement, TSpanElement, TextContentElement, TextElement, TextPathElement, TextPositioningElement, TitleElement0, UseElement, ViewElement, ZoomEvent, _GradientElement, _SVGAltGlyphDefElement, _SVGAltGlyphItemElement, _SVGComponentTransferFunctionElement, _SVGCursorElement, _SVGFEDropShadowElement, _SVGFontElement, _SVGFontFaceElement, _SVGFontFaceFormatElement, _SVGFontFaceNameElement, _SVGFontFaceSrcElement, _SVGFontFaceUriElement, _SVGGlyphElement, _SVGGlyphRefElement, _SVGHKernElement, _SVGMPathElement, _SVGMissingGlyphElement, _SVGVKernElement, AudioProcessingEvent, OfflineAudioCompletionEvent, ContextEvent, SqlError, NativeTypedData, NativeUint8List, JS_CONST, Interceptor, JSBool, JSNull, JavaScriptObject, PlainJavaScriptObject, UnknownJavaScriptObject, JSArray, JSNumber, JSInt, JSDouble, JSString, startRootIsolate_closure, startRootIsolate_closure0, _Manager, _IsolateContext, _IsolateContext_handlePing_respond, _EventLoop, _EventLoop__runHelper_next, _IsolateEvent, _MainManagerStub, IsolateNatives__processWorkerMessage_closure, IsolateNatives__startIsolate_runStartFunction, _BaseSendPort, _NativeJsSendPort, _NativeJsSendPort_send_closure, _WorkerSendPort, RawReceivePortImpl, _JsSerializer, _JsCopier, _JsDeserializer, _JsVisitedMap, _MessageTraverserVisitedMap, _MessageTraverser, _Copier, _Copier_visitMap_closure, _Serializer, _Deserializer, TimerImpl, TimerImpl_internalCallback, TimerImpl_internalCallback0, CapabilityImpl, ReflectionInfo, TypeErrorDecoder, NullError, JsNoSuchMethodError, UnknownJsTypeError, unwrapException_saveStackTrace, _StackTrace, invokeClosure_closure, invokeClosure_closure0, invokeClosure_closure1, invokeClosure_closure2, invokeClosure_closure3, Closure, TearOffClosure, BoundClosure, RuntimeError, RuntimeType, RuntimeFunctionType, DynamicRuntimeType, TypeImpl, initHooks_closure, initHooks_closure0, initHooks_closure1, DetailedArgumentError, InvalidOperationError, ListIterable, ListIterator, MappedIterable, EfficientLengthMappedIterable, MappedIterator, MappedListIterable, WhereIterable, WhereIterator, FixedLengthListMixin, _AsyncRun__initializeScheduleImmediate_internalCallback, _AsyncRun__initializeScheduleImmediate_closure, _AsyncRun__scheduleImmediateJsOverride_internalCallback, _AsyncError, _UncaughtAsyncError, _BroadcastStream, _BroadcastSubscription, _BroadcastStreamController, _SyncBroadcastStreamController, _SyncBroadcastStreamController__sendData_closure, _SyncBroadcastStreamController__sendError_closure, _SyncBroadcastStreamController__sendDone_closure, Future, _Completer, _AsyncCompleter, _Future, _Future__addListener_closure, _Future__chainForeignFuture_closure, _Future__chainForeignFuture_closure0, _Future__asyncComplete_closure, _Future__asyncComplete_closure0, _Future__propagateToListeners_handleValueCallback, _Future__propagateToListeners_handleError, _Future__propagateToListeners_handleWhenCompleteCallback, _Future__propagateToListeners_handleWhenCompleteCallback_closure, _Future__propagateToListeners_handleWhenCompleteCallback_closure0, _AsyncCallbackEntry, Stream, Stream_forEach_closure, Stream_forEach__closure, Stream_forEach__closure0, Stream_forEach_closure0, Stream_length_closure, Stream_length_closure0, StreamSubscription, _ControllerStream, _ControllerSubscription, _EventSink, _BufferingStreamSubscription, _BufferingStreamSubscription__sendError_sendError, _BufferingStreamSubscription__sendDone_sendDone, _StreamImpl, _DelayedEvent, _DelayedData, _DelayedError, _DelayedDone, _PendingEvents, _PendingEvents_schedule_closure, _StreamImplEvents, _DoneStreamSubscription, _cancelAndError_closure, _cancelAndErrorClosure_closure, _Zone, _rootHandleUncaughtError_closure, _RootZone, _RootZone_bindCallback_closure, _RootZone_bindCallback_closure0, _RootZone_bindUnaryCallback_closure, _RootZone_bindUnaryCallback_closure0, _HashMap, _HashMap_values_closure, HashMapKeyIterable, HashMapKeyIterator, _LinkedHashMap, _LinkedHashMap_values_closure, LinkedHashMapCell, LinkedHashMapKeyIterable, LinkedHashMapKeyIterator, _LinkedHashSet, LinkedHashSetCell, LinkedHashSetIterator, _HashSetBase, IterableBase, ListBase, Object_ListMixin, ListMixin, Maps_mapToString_closure, ListQueue, _ListQueueIterator, SetMixin, SetBase, NoSuchMethodError_toString_closure, bool, $double, Duration, Duration_toString_sixDigits, Duration_toString_twoDigits, Error, NullThrownError, ArgumentError, RangeError, UnsupportedError, UnimplementedError, StateError, ConcurrentModificationError, StackOverflowError, CyclicInitializationError, _ExceptionImplementation, FormatException, Expando, $int, Iterator, List, Null, num, Object, StackTrace, String, StringBuffer, Symbol, Interceptor_CssStyleDeclarationBase, CssStyleDeclarationBase, _ChildrenElementList, _FrozenElementList, _FrozenElementList$_wrap_closure, Interceptor_ListMixin, Interceptor_ListMixin_ImmutableListMixin, _ChildNodeListLazy, Interceptor_ListMixin0, Interceptor_ListMixin_ImmutableListMixin0, Interceptor_ListMixin1, Interceptor_ListMixin_ImmutableListMixin1, _AttributeMap, _ElementAttributeMap, _MultiElementCssClassSet, _MultiElementCssClassSet_closure, _MultiElementCssClassSet_readClasses_closure, _MultiElementCssClassSet_modify_closure, _MultiElementCssClassSet_remove_closure, _MultiElementCssClassSet__modifyWithReturnValue_closure, _ElementCssClassSet, EventStreamProvider, _EventStream, _ElementEventStreamImpl, _ElementListEventStreamImpl, _EventStreamSubscription, _StreamPool, _StreamPool_add_closure, ImmutableListMixin, FixedSizeListIterator, _AttributeClassSet, Capability, NativeTypedArray, NativeTypedArrayOfInt, NativeTypedArray_ListMixin, NativeTypedArray_ListMixin_FixedLengthListMixin, _Enum, Css3TransitionEffect, Css3TransitionEffect__startAnimation_closure, _css3TransitionEffectValues, _css3TransitionEffectValues_delayStart_closure, FadeEffect, EffectTiming, CssEffectTiming, ShowHideAction, ShowHideResult, ShowHide__populateState_closure, _ShowHideValues, _AnimatingValues, ShowHideEffect, _NoOpShowHideEffect, ShowHideState, CssClassSetImpl, CssClassSetImpl_add_closure, CssClassSetImpl_clear_closure, FilteredElementList, FilteredElementList__filtered_closure, FilteredElementList_removeRange_closure, main_closure, Slideshow, Slideshow_closure, Slideshow_closure0, Slideshow_closure1, Slideshow_closure2, Slideshow_closure3, Slideshow_closure4, Slideshow__closure, Slideshow__closure0, Slideshow__closure1, Slideshow_closure5, Slideshow__changeImage_closure, Slideshow__changeImage_closure0, Slideshow__initTimer_closure];
 }

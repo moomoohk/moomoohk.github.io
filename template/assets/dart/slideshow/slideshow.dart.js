@@ -6454,7 +6454,7 @@ var $$ = {};
   },
   HtmlElement: {
     "^": "Element;",
-    "%": "HTMLAppletElement|HTMLBRElement|HTMLBaseElement|HTMLBodyElement|HTMLButtonElement|HTMLCanvasElement|HTMLContentElement|HTMLDListElement|HTMLDataListElement|HTMLDetailsElement|HTMLDialogElement|HTMLDirectoryElement|HTMLDivElement|HTMLFieldSetElement|HTMLFontElement|HTMLFrameElement|HTMLFrameSetElement|HTMLHRElement|HTMLHeadElement|HTMLHeadingElement|HTMLHtmlElement|HTMLKeygenElement|HTMLLIElement|HTMLLabelElement|HTMLLegendElement|HTMLLinkElement|HTMLMapElement|HTMLMarqueeElement|HTMLMenuElement|HTMLMetaElement|HTMLMeterElement|HTMLModElement|HTMLOListElement|HTMLObjectElement|HTMLOptGroupElement|HTMLOptionElement|HTMLOutputElement|HTMLParagraphElement|HTMLParamElement|HTMLPreElement|HTMLProgressElement|HTMLQuoteElement|HTMLShadowElement|HTMLSpanElement|HTMLStyleElement|HTMLTableCaptionElement|HTMLTableCellElement|HTMLTableColElement|HTMLTableDataCellElement|HTMLTableElement|HTMLTableHeaderCellElement|HTMLTableRowElement|HTMLTableSectionElement|HTMLTemplateElement|HTMLTextAreaElement|HTMLTitleElement|HTMLUListElement|HTMLUnknownElement;HTMLElement"
+    "%": "HTMLAppletElement|HTMLBRElement|HTMLBaseElement|HTMLBodyElement|HTMLCanvasElement|HTMLContentElement|HTMLDListElement|HTMLDataListElement|HTMLDetailsElement|HTMLDialogElement|HTMLDirectoryElement|HTMLDivElement|HTMLFontElement|HTMLFrameElement|HTMLFrameSetElement|HTMLHRElement|HTMLHeadElement|HTMLHeadingElement|HTMLHtmlElement|HTMLLabelElement|HTMLLegendElement|HTMLLinkElement|HTMLMarqueeElement|HTMLMenuElement|HTMLModElement|HTMLOListElement|HTMLOptGroupElement|HTMLParagraphElement|HTMLPreElement|HTMLQuoteElement|HTMLShadowElement|HTMLSpanElement|HTMLStyleElement|HTMLTableCaptionElement|HTMLTableCellElement|HTMLTableColElement|HTMLTableDataCellElement|HTMLTableElement|HTMLTableHeaderCellElement|HTMLTableRowElement|HTMLTableSectionElement|HTMLTemplateElement|HTMLTitleElement|HTMLUListElement|HTMLUnknownElement;HTMLElement"
   },
   AnchorElement: {
     "^": "HtmlElement;",
@@ -6469,6 +6469,10 @@ var $$ = {};
       return receiver.toString();
     },
     "%": "HTMLAreaElement"
+  },
+  ButtonElement: {
+    "^": "HtmlElement;name=,value=",
+    "%": "HTMLButtonElement"
   },
   CharacterData: {
     "^": "Node;length=",
@@ -6530,6 +6534,9 @@ var $$ = {};
   },
   Element: {
     "^": "Node;className%",
+    get$attributes: function(receiver) {
+      return new W._ElementAttributeMap(receiver);
+    },
     get$children: function(receiver) {
       return new W._ChildrenElementList(receiver, receiver.children);
     },
@@ -6560,7 +6567,7 @@ var $$ = {};
     "%": ";Element"
   },
   EmbedElement: {
-    "^": "HtmlElement;src=",
+    "^": "HtmlElement;name=,src=",
     "%": "HTMLEmbedElement"
   },
   ErrorEvent: {
@@ -6581,8 +6588,12 @@ var $$ = {};
     },
     "%": "MediaStream;EventTarget"
   },
+  FieldSetElement: {
+    "^": "HtmlElement;name=",
+    "%": "HTMLFieldSetElement"
+  },
   FormElement: {
-    "^": "HtmlElement;length=",
+    "^": "HtmlElement;length=,name=",
     "%": "HTMLFormElement"
   },
   HtmlCollection: {
@@ -6616,7 +6627,7 @@ var $$ = {};
     "%": "HTMLCollection|HTMLFormControlsCollection|HTMLOptionsCollection"
   },
   IFrameElement: {
-    "^": "HtmlElement;src=",
+    "^": "HtmlElement;name=,src=",
     "%": "HTMLIFrameElement"
   },
   ImageElement: {
@@ -6625,13 +6636,40 @@ var $$ = {};
     "%": "HTMLImageElement"
   },
   InputElement: {
-    "^": "HtmlElement;alt=,src=",
+    "^": "HtmlElement;alt=,name=,src=,value=",
     $isElement: true,
     "%": "HTMLInputElement"
+  },
+  KeygenElement: {
+    "^": "HtmlElement;name=",
+    "%": "HTMLKeygenElement"
+  },
+  LIElement: {
+    "^": "HtmlElement;value=",
+    "%": "HTMLLIElement"
+  },
+  Location: {
+    "^": "Interceptor;",
+    toString$0: function(receiver) {
+      return receiver.toString();
+    },
+    "%": "Location"
+  },
+  MapElement: {
+    "^": "HtmlElement;name=",
+    "%": "HTMLMapElement"
   },
   MediaElement: {
     "^": "HtmlElement;error=,src=",
     "%": "HTMLAudioElement|HTMLMediaElement|HTMLVideoElement"
+  },
+  MetaElement: {
+    "^": "HtmlElement;name=",
+    "%": "HTMLMetaElement"
+  },
+  MeterElement: {
+    "^": "HtmlElement;value=",
+    "%": "HTMLMeterElement"
   },
   MouseEvent: {
     "^": "UIEvent;",
@@ -6667,7 +6705,7 @@ var $$ = {};
     _replaceChild$2: function(receiver, newChild, oldChild) {
       return receiver.replaceChild(newChild, oldChild);
     },
-    "%": "Attr|Document|DocumentFragment|DocumentType|HTMLDocument|Notation|ShadowRoot|XMLDocument;Node"
+    "%": "Document|DocumentFragment|DocumentType|HTMLDocument|Notation|ShadowRoot|XMLDocument;Node"
   },
   NodeList: {
     "^": "Interceptor_ListMixin_ImmutableListMixin0;",
@@ -6699,12 +6737,32 @@ var $$ = {};
     $isJavaScriptIndexingBehavior: true,
     "%": "NodeList|RadioNodeList"
   },
+  ObjectElement: {
+    "^": "HtmlElement;name=",
+    "%": "HTMLObjectElement"
+  },
+  OptionElement: {
+    "^": "HtmlElement;value=",
+    "%": "HTMLOptionElement"
+  },
+  OutputElement: {
+    "^": "HtmlElement;name=,value=",
+    "%": "HTMLOutputElement"
+  },
+  ParamElement: {
+    "^": "HtmlElement;name=,value=",
+    "%": "HTMLParamElement"
+  },
+  ProgressElement: {
+    "^": "HtmlElement;value=",
+    "%": "HTMLProgressElement"
+  },
   ScriptElement: {
     "^": "HtmlElement;src=",
     "%": "HTMLScriptElement"
   },
   SelectElement: {
-    "^": "HtmlElement;length=",
+    "^": "HtmlElement;length=,name=,value=",
     "%": "HTMLSelectElement"
   },
   SourceElement: {
@@ -6714,6 +6772,10 @@ var $$ = {};
   SpeechRecognitionError: {
     "^": "Event;error=",
     "%": "SpeechRecognitionError"
+  },
+  TextAreaElement: {
+    "^": "HtmlElement;name=,value=",
+    "%": "HTMLTextAreaElement"
   },
   TrackElement: {
     "^": "HtmlElement;src=",
@@ -6729,6 +6791,10 @@ var $$ = {};
       return receiver.toString();
     },
     "%": "DOMWindow|Window"
+  },
+  _Attr: {
+    "^": "Node;name=,value=",
+    "%": "Attr"
   },
   _ClientRect: {
     "^": "Interceptor;bottom=,height=,left=,right=,top=,width=",
@@ -6837,7 +6903,7 @@ var $$ = {};
     }
   },
   _ChildrenElementList: {
-    "^": "ListBase;_html$_element,_childElements",
+    "^": "ListBase;_element,_childElements",
     get$length: function(_) {
       return this._childElements.length;
     },
@@ -6851,13 +6917,13 @@ var $$ = {};
       var t1 = this._childElements;
       if (index >>> 0 !== index || index >= t1.length)
         return H.ioore(t1, index);
-      this._html$_element.replaceChild(value, t1[index]);
+      this._element.replaceChild(value, t1[index]);
     },
     set$length: function(_, newLength) {
       throw H.wrapException(P.UnsupportedError$("Cannot resize element lists"));
     },
     add$1: function(_, value) {
-      this._html$_element.appendChild(value);
+      this._element.appendChild(value);
       return value;
     },
     get$iterator: function(_) {
@@ -6871,7 +6937,7 @@ var $$ = {};
       return false;
     },
     clear$0: function(_) {
-      J._clearChildren$0$x(this._html$_element);
+      J._clearChildren$0$x(this._element);
     },
     $asListBase: function() {
       return [W.Element];
@@ -7020,6 +7086,72 @@ var $$ = {};
     },
     $isEfficientLength: true
   },
+  _AttributeMap: {
+    "^": "Object;",
+    forEach$1: function(_, f) {
+      var t1, key;
+      for (t1 = this.get$keys(), t1 = new H.ListIterator(t1, t1.length, 0, null); t1.moveNext$0();) {
+        key = t1._current;
+        f.call$2(key, this.$index(0, key));
+      }
+    },
+    get$keys: function() {
+      var attributes, keys, len, i;
+      attributes = this._element.attributes;
+      keys = H.setRuntimeTypeInfo([], [P.String]);
+      for (len = attributes.length, i = 0; i < len; ++i) {
+        if (i >= attributes.length)
+          return H.ioore(attributes, i);
+        if (this._matches$1(attributes[i])) {
+          if (i >= attributes.length)
+            return H.ioore(attributes, i);
+          keys.push(J.get$name$x(attributes[i]));
+        }
+      }
+      return keys;
+    },
+    get$values: function(_) {
+      var attributes, values, len, i;
+      attributes = this._element.attributes;
+      values = H.setRuntimeTypeInfo([], [P.String]);
+      for (len = attributes.length, i = 0; i < len; ++i) {
+        if (i >= attributes.length)
+          return H.ioore(attributes, i);
+        if (this._matches$1(attributes[i])) {
+          if (i >= attributes.length)
+            return H.ioore(attributes, i);
+          values.push(J.get$value$x(attributes[i]));
+        }
+      }
+      return values;
+    },
+    $isMap: true,
+    $asMap: function() {
+      return [P.String, P.String];
+    }
+  },
+  _ElementAttributeMap: {
+    "^": "_AttributeMap;_element",
+    $index: function(_, key) {
+      return this._element.getAttribute(key);
+    },
+    $indexSet: function(_, key, value) {
+      this._element.setAttribute(key, value);
+    },
+    remove$1: function(_, key) {
+      var t1, value;
+      t1 = this._element;
+      value = t1.getAttribute(key);
+      t1.removeAttribute(key);
+      return value;
+    },
+    get$length: function(_) {
+      return this.get$keys().length;
+    },
+    _matches$1: function(node) {
+      return node.namespaceURI == null;
+    }
+  },
   _MultiElementCssClassSet: {
     "^": "CssClassSetImpl;_elementIterable,_elementCssClassSetIterable",
     readClasses$0: function() {
@@ -7082,11 +7214,11 @@ var $$ = {};
     }
   },
   _ElementCssClassSet: {
-    "^": "CssClassSetImpl;_html$_element",
+    "^": "CssClassSetImpl;_element",
     readClasses$0: function() {
       var s, t1, trimmed;
       s = P.LinkedHashSet_LinkedHashSet(null, null, null, P.String);
-      for (t1 = J.get$className$x(this._html$_element).split(" "), t1 = new H.ListIterator(t1, t1.length, 0, null); t1.moveNext$0();) {
+      for (t1 = J.get$className$x(this._element).split(" "), t1 = new H.ListIterator(t1, t1.length, 0, null); t1.moveNext$0();) {
         trimmed = J.trim$0$s(t1._current);
         if (trimmed.length !== 0)
           s.add$1(0, trimmed);
@@ -7095,7 +7227,7 @@ var $$ = {};
     },
     writeClasses$1: function(s) {
       P.List_List$from(s, true, null);
-      J.set$className$x(this._html$_element, s.join$1(0, " "));
+      J.set$className$x(this._element, s.join$1(0, " "));
     }
   },
   EventStreamProvider: {
@@ -7697,7 +7829,7 @@ var $$ = {};
     "^": "Object;initialComputedDisplay<,initialLocalDisplay,currentState@"
   },
   _AnimatingValues: {
-    "^": "Object;_element,_cleanupAction,_finishFunc,_completer,_effects$_timer",
+    "^": "Object;_effects$_element,_cleanupAction,_finishFunc,_completer,_effects$_timer",
     _cleanupAction$1: function(arg0) {
       return this._cleanupAction.call$1(arg0);
     },
@@ -7718,14 +7850,14 @@ var $$ = {};
     },
     _complete$0: [function() {
       this._cleanup$0();
-      this._finishFunc$1(this._element);
+      this._finishFunc$1(this._effects$_element);
       var t1 = this._completer.future;
       if (t1._state !== 0)
         H.throwExpression(P.StateError$("Future already completed"));
       t1._asyncComplete$1(C.ShowHideResult_animated);
     }, "call$0", "get$_complete", 0, 0, 2],
     _cleanup$0: function() {
-      var t1 = this._element;
+      var t1 = this._effects$_element;
       this._cleanupAction$1(t1);
       $.get$_AnimatingValues__aniValues().$indexSet(0, t1, null);
     },
@@ -7930,7 +8062,7 @@ var $$ = {};
     }
   },
   Slideshow: {
-    "^": "Object;_timer,_thumbnails,_currentSlide,_selectedThumbnail,_currentSlideText,_pauseDuration",
+    "^": "Object;_timer,_thumbnails,_slideshowContainer,_currentSlide,_selectedThumbnail,_currentSlideText,_pauseDuration",
     _nextImage$0: function() {
       var t1, index, t2, t3;
       t1 = this._thumbnails;
@@ -7977,6 +8109,12 @@ var $$ = {};
         Y.ShowHide_begin(C.ShowHideAction_hide, t2, 500, null, $.get$EffectTiming_ease()).then$1(new L.Slideshow__changeImage_closure0(this, thumbnail));
       else
         t2.textContent = t1.get$alt(thumbnail);
+      t1 = t1.get$attributes(thumbnail)._element.getAttribute("href");
+      t2 = this._slideshowContainer;
+      if (t1 != null)
+        J.get$classes$x(t2).add$1(0, "link");
+      else
+        J.get$classes$x(t2).remove$1(0, "link");
       t1 = this._currentSlideText;
       t2 = P.LinkedHashMap_LinkedHashMap(null, null, null, P.String, P.String);
       t2 = new Y.FadeEffect("opacity", t2);
@@ -7998,7 +8136,7 @@ var $$ = {};
       this._timer = P.Timer_Timer(P.Duration$(0, 0, 0, this._pauseDuration, 0, 0), new L.Slideshow__initTimer_closure(this));
     },
     Slideshow$2$pauseDuration: function(container, pauseDuration, box_0) {
-      var t1, t2, t3, t4, e, ribbon, thumbnails;
+      var t1, t2, t3, t4, e, t5, t6, ribbon, thumbnails;
       t1 = J.getInterceptor$x(container);
       t2 = t1.get$children(container);
       if (t2.every$1(t2, new L.Slideshow_closure())) {
@@ -8017,9 +8155,15 @@ var $$ = {};
         t4.add$1(0, e);
         t3 = t3.get$children(t2);
         t4 = document.createElement("span", null);
-        J.get$classes$x(t4).add$1(0, "currentSlideText");
+        t5 = J.getInterceptor$x(t4);
+        t5.get$classes(t4).add$1(0, "currentSlideText");
+        t6 = t5.get$onMouseEnter(t4);
+        H.setRuntimeTypeInfo(new W._EventStreamSubscription(0, t6._target, t6._eventType, W._wrapZone(new L.Slideshow_closure0(this)), t6._useCapture), [H.getTypeArgumentByIndex(t6, 0)])._tryResume$0();
+        t5 = t5.get$onMouseLeave(t4);
+        H.setRuntimeTypeInfo(new W._EventStreamSubscription(0, t5._target, t5._eventType, W._wrapZone(new L.Slideshow_closure1(this)), t5._useCapture), [H.getTypeArgumentByIndex(t5, 0)])._tryResume$0();
         this._currentSlideText = t4;
         t3.add$1(0, t4);
+        this._slideshowContainer = t2;
         t1.add$1(0, t2);
         ribbon = document.createElement("div", null);
         t2 = J.getInterceptor$x(ribbon);
@@ -8031,7 +8175,7 @@ var $$ = {};
         t4 = J.getInterceptor$x(t1);
         t4.get$classes(t1).add$1(0, "slideshowControl left");
         t4 = t4.get$onClick(t1);
-        H.setRuntimeTypeInfo(new W._EventStreamSubscription(0, t4._target, t4._eventType, W._wrapZone(new L.Slideshow_closure0(this)), t4._useCapture), [H.getTypeArgumentByIndex(t4, 0)])._tryResume$0();
+        H.setRuntimeTypeInfo(new W._EventStreamSubscription(0, t4._target, t4._eventType, W._wrapZone(new L.Slideshow_closure2(this)), t4._useCapture), [H.getTypeArgumentByIndex(t4, 0)])._tryResume$0();
         t2.add$1(0, t1);
         thumbnails = document.createElement("div", null);
         J.get$classes$x(thumbnails).add$1(0, "thumbnails");
@@ -8042,11 +8186,13 @@ var $$ = {};
         t4 = J.getInterceptor$x(t1);
         t4.get$classes(t1).add$1(0, "slideshowControl right");
         t4 = t4.get$onClick(t1);
-        H.setRuntimeTypeInfo(new W._EventStreamSubscription(0, t4._target, t4._eventType, W._wrapZone(new L.Slideshow_closure1(this)), t4._useCapture), [H.getTypeArgumentByIndex(t4, 0)])._tryResume$0();
+        H.setRuntimeTypeInfo(new W._EventStreamSubscription(0, t4._target, t4._eventType, W._wrapZone(new L.Slideshow_closure3(this)), t4._useCapture), [H.getTypeArgumentByIndex(t4, 0)])._tryResume$0();
         t2.add$1(0, t1);
         t1 = this._thumbnails;
         t1.toString;
-        H.IterableMixinWorkaround_forEach(t1, new L.Slideshow_closure2(box_0, this));
+        H.IterableMixinWorkaround_forEach(t1, new L.Slideshow_closure4(box_0, this));
+        t1 = J.get$onClick$x(this._slideshowContainer);
+        H.setRuntimeTypeInfo(new W._EventStreamSubscription(0, t1._target, t1._eventType, W._wrapZone(new L.Slideshow_closure5(this)), t1._useCapture), [H.getTypeArgumentByIndex(t1, 0)])._tryResume$0();
         t1 = this._thumbnails;
         if (0 >= t1.length)
           return H.ioore(t1, 0);
@@ -8055,7 +8201,7 @@ var $$ = {};
       }
     },
     static: {Slideshow$: function(container, pauseDuration) {
-        var t1 = new L.Slideshow(null, null, null, null, null, pauseDuration);
+        var t1 = new L.Slideshow(null, null, null, null, null, null, pauseDuration);
         t1.Slideshow$2$pauseDuration(container, pauseDuration, {});
         return t1;
       }}
@@ -8069,8 +8215,20 @@ var $$ = {};
   Slideshow_closure0: {
     "^": "Closure:14;this_1",
     call$1: function($event) {
+      return this.this_1.setTimer$1(false);
+    }
+  },
+  Slideshow_closure1: {
+    "^": "Closure:14;this_2",
+    call$1: function($event) {
+      return this.this_2.setTimer$1(true);
+    }
+  },
+  Slideshow_closure2: {
+    "^": "Closure:14;this_3",
+    call$1: function($event) {
       var t1, t2, index, t3;
-      t1 = this.this_1;
+      t1 = this.this_3;
       t2 = t1._thumbnails;
       index = H.Lists_indexOf(t2, t1._selectedThumbnail, 0, t2.length);
       t2 = t1._thumbnails;
@@ -8086,19 +8244,19 @@ var $$ = {};
       return;
     }
   },
-  Slideshow_closure1: {
-    "^": "Closure:14;this_2",
+  Slideshow_closure3: {
+    "^": "Closure:14;this_4",
     call$1: function($event) {
-      return this.this_2._nextImage$0();
+      return this.this_4._nextImage$0();
     }
   },
-  Slideshow_closure2: {
-    "^": "Closure:24;box_0,this_3",
+  Slideshow_closure4: {
+    "^": "Closure:24;box_0,this_5",
     call$1: function(slide) {
       var t1, t2;
       t1 = J.getInterceptor$x(slide);
       t1.get$classes(slide).clear$0(0);
-      t2 = this.this_3;
+      t2 = this.this_5;
       t1.get$onMouseEnter(slide).listen$1(new L.Slideshow__closure(t2, slide));
       t1.get$onMouseLeave(slide).listen$1(new L.Slideshow__closure0(t2, slide));
       t1.get$classes(slide).add$1(0, "thumbnail");
@@ -8107,31 +8265,39 @@ var $$ = {};
     }
   },
   Slideshow__closure: {
-    "^": "Closure:14;this_4,slide_5",
-    call$1: function($event) {
-      var t1, t2;
-      t1 = this.slide_5;
-      t2 = J.getInterceptor$x(t1);
-      t2.get$classes(t1).add$1(0, "mouseOver");
-      if (t2.get$classes(t1).readClasses$0().contains$1(0, "selectedThumbnail"))
-        this.this_4.setTimer$1(false);
-    }
-  },
-  Slideshow__closure0: {
     "^": "Closure:14;this_6,slide_7",
     call$1: function($event) {
       var t1, t2;
       t1 = this.slide_7;
       t2 = J.getInterceptor$x(t1);
+      t2.get$classes(t1).add$1(0, "mouseOver");
+      if (t2.get$classes(t1).readClasses$0().contains$1(0, "selectedThumbnail"))
+        this.this_6.setTimer$1(false);
+    }
+  },
+  Slideshow__closure0: {
+    "^": "Closure:14;this_8,slide_9",
+    call$1: function($event) {
+      var t1, t2;
+      t1 = this.slide_9;
+      t2 = J.getInterceptor$x(t1);
       t2.get$classes(t1).remove$1(0, "mouseOver");
       if (t2.get$classes(t1).readClasses$0().contains$1(0, "selectedThumbnail"))
-        this.this_6.setTimer$1(true);
+        this.this_8.setTimer$1(true);
     }
   },
   Slideshow__closure1: {
-    "^": "Closure:14;this_8,slide_9",
+    "^": "Closure:14;this_10,slide_11",
     call$1: function($event) {
-      return this.this_8._changeImage$1(this.slide_9);
+      return this.this_10._changeImage$1(this.slide_11);
+    }
+  },
+  Slideshow_closure5: {
+    "^": "Closure:14;this_12",
+    call$1: function($event) {
+      var t1 = this.this_12;
+      if (J.get$attributes$x(t1._selectedThumbnail)._element.getAttribute("href") != null)
+        window.location.assign(J.get$attributes$x(t1._selectedThumbnail)._element.getAttribute("href"));
     }
   },
   Slideshow__changeImage_closure: {
@@ -8366,6 +8532,9 @@ J.forEach$1$ax = function(receiver, a0) {
 J.get$alt$x = function(receiver) {
   return J.getInterceptor$x(receiver).get$alt(receiver);
 };
+J.get$attributes$x = function(receiver) {
+  return J.getInterceptor$x(receiver).get$attributes(receiver);
+};
 J.get$children$x = function(receiver) {
   return J.getInterceptor$x(receiver).get$children(receiver);
 };
@@ -8396,6 +8565,12 @@ J.get$last$ax = function(receiver) {
 J.get$length$asx = function(receiver) {
   return J.getInterceptor$asx(receiver).get$length(receiver);
 };
+J.get$name$x = function(receiver) {
+  return J.getInterceptor$x(receiver).get$name(receiver);
+};
+J.get$onClick$x = function(receiver) {
+  return J.getInterceptor$x(receiver).get$onClick(receiver);
+};
 J.get$opacity$x = function(receiver) {
   return J.getInterceptor$x(receiver).get$opacity(receiver);
 };
@@ -8404,6 +8579,9 @@ J.get$setProperty$x = function(receiver) {
 };
 J.get$src$x = function(receiver) {
   return J.getInterceptor$x(receiver).get$src(receiver);
+};
+J.get$value$x = function(receiver) {
+  return J.getInterceptor$x(receiver).get$value(receiver);
 };
 J.getComputedStyle$0$x = function(receiver) {
   return J.getInterceptor$x(receiver).getComputedStyle$0(receiver);
