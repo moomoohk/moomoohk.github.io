@@ -46,6 +46,10 @@
 
 /* http://css-tricks.com/snippets/css/a-guide-to-flexbox/ */
 .ribbon {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
   display: flex;
   flex-direction: row;
   height: 90px;
