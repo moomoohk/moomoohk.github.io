@@ -227,7 +227,8 @@ section {
         border-radius: 0px;
         padding: 0;
         position: absolute;
-        top: 100%; }
+        top: 100%;
+        list-style: none; }
         #main ul#topList ul li {
           float: none;
           border-top: 1px solid #6b727c;
@@ -243,6 +244,7 @@ section {
             #main ul#topList ul li a:active {
               background: #47515a; }
         #main ul#topList ul ul {
+          list-style: none;
           z-index: 10;
           position: absolute;
           left: 100%;
