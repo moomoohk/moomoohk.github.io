@@ -68,7 +68,7 @@
 				}).on("mouseleave", function() {
 					if ($(this).hasClass("returnToTop"))
 						$(this).text(textContents);
-				}).mousedown(function(event) {
+				}).on("mousedown", function(event) {
 					if ($(this).hasClass("returnToTop"))
 						if (event.which == 1)
 							$("html, body").animate({

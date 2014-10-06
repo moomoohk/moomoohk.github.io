@@ -45,20 +45,27 @@
 }
 
 /* http://css-tricks.com/snippets/css/a-guide-to-flexbox/ */
+/* http://css-tricks.com/using-flexbox/ */
 .ribbon {
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
   display: -webkit-flex;
   display: flex;
+  -webkit-flex-direction: row;
+  -moz-flex-direction: row;
+  -ms-flex-direction: row;
   flex-direction: row;
+  -webkit-justify-content: space-between;
+  -moz-justify-content: space-between;
+  -ms-justify-content: space-between;
+  justify-content: space-between;
   height: 90px;
   border-bottom-right-radius: 3px;
   border-bottom-left-radius: 3px;
   padding: 5px;
   white-space: nowrap;
   background-color: #505050;
-  justify-content: space-between;
 }
 
 .thumbnail {
