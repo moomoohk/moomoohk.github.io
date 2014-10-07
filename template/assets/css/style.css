@@ -151,7 +151,7 @@ section {
     #main ul#topList {
       display: none;
       margin-left: 25px; }
-      #main ul#topList li:nth-child(1) {
+      #main ul#topList li.title {
         display: none; }
     #main ul {
       margin-left: 10px; }
