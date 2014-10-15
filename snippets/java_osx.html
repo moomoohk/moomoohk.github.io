@@ -39,7 +39,8 @@
 		<link href="http://fonts.googleapis.com/css?family=PT+Sans:400italic,400,700italic,700" rel="stylesheet" type="text/css">
 		<link href='http://fonts.googleapis.com/css?family=PT+Mono' rel='stylesheet' type='text/css'>
 
-		<link rel='stylesheet' href='../template/assets/css/style.css'>
+		<link rel='stylesheet' href='../template/assets/css/normalize.css'>
+<link rel='stylesheet' href='../template/assets/css/style.css'>
 <link rel='stylesheet' href='../template/assets/dart/slideshow/slideshow.css'>
 		<script src='../template/assets/js/jquery-1.8.3.min.js'></script>
 <script src='../template/assets/js/snaptortoise-konami-js-93c5489/konami.js'></script>
@@ -586,7 +587,7 @@ public abstract class MacOSXAppEventAdapter implements AboutHandler, Preferences
 
 <p>Here's where it gets quirky: <a href="http://stackoverflow.com/a/11616853/1124853">Apparently</a> this won't work if you make the call after you either interact with <code>java.awt.Toolkit</code> or set your app's look and feel.</p>
 
-<p>So just make the call first thing in the main right? Not quite. Interacting with <code>java.awt.Toolkit</code> includes <em>loading</em> a class that extends <code>javax.swing.JFrame</code>. This means that if your main method is in a subclass of <code>javax.swing.JFrame</code> it won’t work (since the class is loaded right away)!</p>
+<p>So just make the call first thing in the main right? Not quite. Interacting with <code>java.awt.Toolkit</code> includes <em>loading</em> a class that extends <code>javax.swing.JFrame</code>. This means that if your main method is in a subclass of <code>javax.swing.JFrame</code> it won't work (since the class is loaded right away)!</p>
 
 <p>To remedy this simply extract your main method to a separate class and you’re good to go:</p>
 
@@ -610,7 +611,132 @@ public abstract class MacOSXAppEventAdapter implements AboutHandler, Preferences
 
 <p><em>This approach doesn’t appear to work either as a result of a bug with Java. It has been reported <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=381970">here</a> and <a href="https://bugs.openjdk.java.net/browse/JDK-8029440">here</a></em></p>
 
-<p>Effectively, there appears to be no way to set the menu bar title in later versions of OS X coupled with later versions of Java.</p>
+<p>Effectively, there currently appears to be no way to set the menu bar title in later versions of OS X coupled with later versions of Java.</p>
+
+<h2>Multitouch Gesture Handling</h2>
+
+<p>Multitouch gestures are what I've been missing in my Java apps all these years. </p>
+
+<p>Luckily the <code>com.apple.eawt.event</code> package provides a system to handle gestures.</p>
+
+<p>Unluckily it doesn't appear to work. As mentioned above, I'm on 10.9.5 and I've tested these features on 10.7.5.</p>
+
+<p>Events to listen for:</p>
+
+<ul>
+  <li><code>com.apple.eawt.event.GesturePhaseEvent</code>: Generic prolonged event that has a start point and end point</li>
+  <li><code>com.apple.eawt.event.MagnificationEvent</code>: Two finger pinch</li>
+  <li><code>com.apple.eawt.event.RotationEvent</code>: Two finger rotate</li>
+  <li><code>com.apple.eawt.event.SwipeEvent</code>: Two (possibly three) finger swipe</li>
+</ul>
+
+<p>Listeners to use:</p>
+
+<ul>
+  <li><code>com.apple.eawt.event.GesturePhaseListener</code></li>
+  <li><code>com.apple.eawt.event.MagnificationListener</code></li>
+  <li><code>com.apple.eawt.event.RotationListener</code></li>
+  <li><code>com.apple.eawt.event.SwipeListener</code></li>
+</ul>
+
+<p>All 4 listeners implement the <code>com.apple.eawt.event.GestureListener</code> interface.</p>
+
+<p>Listeners are attached to <code>javax.swing.JComponent</code>s through the <code>com.apple.eawt.event.GestureUtilities.addGestureListenerTo(javax.swing.JComponent component, com.apple.eawt.event.GestureListener listener)</code> method</p>
+
+<p>Here’s an example implementation of all these event listeners:</p>
+
+<pre><code>import javax.swing.JPanel;
+
+import com.apple.eawt.event.GesturePhaseEvent;
+import com.apple.eawt.event.GesturePhaseListener;
+import com.apple.eawt.event.GestureUtilities;
+import com.apple.eawt.event.MagnificationEvent;
+import com.apple.eawt.event.MagnificationListener;
+import com.apple.eawt.event.RotationEvent;
+import com.apple.eawt.event.RotationListener;
+import com.apple.eawt.event.SwipeEvent;
+import com.apple.eawt.event.SwipeListener;
+
+public class GestureListenerTest
+{
+    JPanel p = new JPanel();
+
+    public static void main(String[] args)
+    {    
+        GestureUtilities.addGestureListenerTo(p, new SwipeListener()
+        {
+            @Override
+            public void swipedDown(SwipeEvent e)
+            {
+                System.out.println("Down");
+            }
+            
+                        @Override
+            public void swipedLeft(SwipeEvent e)
+            {
+                System.out.println("Left");
+            }
+            
+            @Override
+            public void swipedRight(SwipeEvent e)
+            {
+                System.out.println("Right");
+            }
+            
+            @Override
+            public void swipedUp(SwipeEvent e)
+            {
+                System.out.println("Up");
+            }
+        });
+
+        GestureUtilities.addGestureListenerTo(p, new MagnificationListener()
+        {
+            @Override
+            public void magnify(MagnificationEvent e)
+            {
+                System.out.println(e.getMagnification());
+            }
+        });
+        
+        GestureUtilities.addGestureListenerTo(p, new RotationListener()
+        {
+            @Override
+            public void rotate(RotationEvent e)
+            {
+                System.out.println(e.getRotation());
+            }
+        });
+
+          GestureUtilities.addGestureListenerTo(p, new GesturePhaseListener()
+        {
+            @Override
+            public void gestureBegan(GesturePhaseEvent e)
+            {
+                System.out.println("Begin");
+            }
+            
+            @Override
+            public void gestureEnded(GesturePhaseEvent e)
+            {
+                System.out.println("End");
+            }
+        });
+    }
+}
+</code></pre>
+
+<p>The <code>com.apple.eawt.event.GestureAdapter</code> is an adapter for all the possible gesture events.</p>
+
+<p>Again, I haven’t been able to get any of these events to fire on my setup.</p>
+
+<h2>Auto Hiding Scrollbars</h2>
+
+<p>In Mac OS X Lion (10.7) Apple introduced auto hiding scroll bars.</p>
+
+<p>Unfortunately this scroll bar style isn’t available out of the box (even with the OS X Look and Feel set).</p>
+
+<p>I did come across <a href="http://www.andrewdcox.com/blog/2012/08/05/update-mac-os-x-lion-jscrollpane-customization/">this workaround</a> a while ago but I haven’t tested it extensively. </p>
 
 <h2>My Beef With com.apple.eawt</h2>
 
@@ -631,6 +757,8 @@ public abstract class MacOSXAppEventAdapter implements AboutHandler, Preferences
   </li>
 </ul>
 
+		<!-- @todo https://developer.apple.com/Library/mac/releasenotes/Java/JavaSnowLeopardUpdate3LeopardUpdate8RN/NewandNoteworthy/NewandNoteworthy.html -->
+		<!-- @todo http://www.coderanch.com/how-to/javadoc/appledoc/api/overview-summary.html -->
 	</article>
 </section>
 <section>
@@ -642,6 +770,8 @@ public abstract class MacOSXAppEventAdapter implements AboutHandler, Preferences
   <li>28/9/14: Added Menu Bar App Title section</li>
   <li>28/9/14: Expanded Notification Center section</li>
   <li>1/10/14: Revised Menu Bar Title section</li>
+  <li>15/10/14: Added Multitouch Gesture section</li>
+  <li>15/10/14: Added Auto Hiding Scrollbar section</li>
 </ul>
 
 </section>
