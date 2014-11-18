@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="Working with <table> elements in Dart">
+		<meta name="robots" content="index, follow">
+
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:site" content="@moomoohk" />
+		<meta name="twitter:title" content="moomoohk/snippets/dart_tables" />
+		<meta name="twitter:description" content="Working with <table> elements in Dart" />
+		<meta name="twitter:image" content="../website-template/assets/image/avatar.png" />
+
+		
+        <!-- Hammer reload -->
+          <script>
+            setInterval(function(){
+              try {
+                if(typeof ws != 'undefined' && ws.readyState == 1){return true;}
+                ws = new WebSocket('ws://'+(location.host || 'localhost').split(':')[0]+':35353')
+                ws.onopen = function(){ws.onclose = function(){document.location.reload()}}
+                ws.onmessage = function(){
+                  var links = document.getElementsByTagName('link'); 
+                    for (var i = 0; i < links.length;i++) { 
+                    var link = links[i]; 
+                    if (link.rel === 'stylesheet' && !link.href.match(/typekit/)) { 
+                      href = link.href.replace(/((&|\?)hammer=)[^&]+/,''); 
+                      link.href = href + (href.indexOf('?')>=0?'&':'?') + 'hammer='+(new Date().valueOf());
+                    }
+                  }
+                }
+              }catch(e){}
+            }, 1000)
+          </script>
+        <!-- /Hammer reload -->
+      
+
+		<link href="http://fonts.googleapis.com/css?family=PT+Sans:400italic,400,700italic,700" rel="stylesheet" type="text/css">
+		<link href='http://fonts.googleapis.com/css?family=PT+Mono' rel='stylesheet' type='text/css'>
+
+		<link rel='stylesheet' href='../website-template/assets/css/normalize.css'>
+<link rel='stylesheet' href='../website-template/assets/css/style.css'>
+<link rel='stylesheet' href='../website-template/assets/dart/slideshow/slideshow.css'>
+		<script src='../website-template/assets/js/jquery-1.8.3.min.js'></script>
+<script src='../website-template/assets/js/snaptortoise-konami-js-93c5489/konami.js'></script>
+		<script async type="application/dart" src="../website-template/assets/dart/slideshow/slideshow.dart"></script>
+		<script async src="../website-template/assets/dart/slideshow/packages/browser/dart.js"></script>
+
+		<link href="../website-template/assets/image/favicon.ico" rel="shortcut icon">
+		<title>moomoohk/snippets/dart_tables</title>
+		<script type="application/javascript">
+			$(document).ready(function() {
+				/* Oh what's this */
+				new Konami(function() {
+					var audioElement = document.createElement("audio");
+					audioElement.setAttribute("src", "../website-template/assets/audio/aristotle.m4a");
+					audioElement.setAttribute("autoplay", "autoplay");
+				});
+
+				if ($("body").height() > $(window).height()) {
+					$("#footer").addClass("returnToTop");
+				}
+
+				var textContents = $("#footer").text().trim();
+				$("#footer")
+				/*.on("mouseenter", function() {
+					if ($(this).hasClass("returnToTop"))
+						$(this).text("Return to top");
+				}).on("mouseleave", function() {
+					if ($(this).hasClass("returnToTop"))
+						$(this).text(textContents);
+				})*/
+				.on("click", function(event) {
+					if ($(this).hasClass("returnToTop"))
+						if (event.which == 1)
+							$("html, body").animate({
+								scrollTop : 0
+							}, 400);
+				});
+
+				var eventHandle = function() {
+					if ($("body").height() > $(window).height()) {
+						$("#footer").addClass("returnToTop");
+					} else {
+						$("#footer").removeClass("returnToTop");
+					}
+				};
+				if (window.addEventListener) {
+					window.addEventListener("resize", eventHandle, false);
+				} else if (window.attachEvent) {
+					window.attachEvent("onresize", eventHandle);
+				} else {
+					window["onresize"] = eventHandle;
+				}
+			});
+		</script>
+	</head>
+
+	<body>
+		<header>
+			<nav id="main">
+	<div id="mobileMenu">
+		<img src="../website-template/assets/image/menu.png" id="menuIcon"/>
+		<span id="title">moomoohk</span>
+	</div>
+	<ul id="topList">
+		<li class="title"><p unselectable="on">moomoohk</p></li>
+		<li><a href="/index.html">Home</a></li>
+		<li><a href="/projects.html">Projects</a>
+			<ul>
+				<li><a href="/grame/">Grame</a>
+					<ul>
+						<li><a href="/grame/docs/">JavaDocs</a></li>
+						<li><a href="/grame/#downloads">Download</a></li>
+					</ul>
+				</li>
+				<li><a href="/reactionkeeper.html">Reaction Keeper</a>
+					<ul>
+						<li><a href="/reactionkeeper.html#downloads">Download</a></li>
+					</ul>
+				</li>
+				<li><a href="/trackingmanager.html">Tracking Manager</a>
+					<ul>
+						<li><a href="/trackingmanager.html#downloads">Download</a></li>
+					</ul>
+				</li>
+				<li><a href="/moocommands/">MooCommands</a>
+					<ul>
+						<li><a href="/moocommands/docs/">JavaDocs</a></li>
+						<li><a href="/moocommands/#downloads">Download</a></li>
+					</ul>
+				</li>
+				<li><a href="/mooconsole/">MooConsole</a>
+					<ul>
+						<li><a href="/mooconsole/docs/">JavaDocs</a></li>
+						<li><a href="/mooconsole/#downloads">Download</a></li>
+					</ul>
+				</li>
+				<li><a href="/mootilities/">Mootilities</a>
+					<ul>
+						<li><a href="/mootilities/docs/">JavaDocs</a></li>
+						<li><a href="/mootilities/#downloads">Download</a></li>
+					</ul>
+				</li>
+				<li><a href="/moobootstrap/">MooBootstrap</a>
+					<ul>
+						<li><a href="/moobootstrap/docs/">JavaDocs</a></li>
+						<li><a href="/moobootstrap/#downloads">Download</a></li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+		<li><a href="/snippets.html">Snippets</a></li>
+		<li><a href="/contact.html">Contact</a>
+			<ul>
+				<li>
+					<a href="http://twitter.com/moomoohk/" target="_blank">Twitter</a>
+				</li>
+				<li>
+					<a href="http://youtube.com/moomoohk/" target="_blank">YouTube</a>
+				</li>
+				<li>
+					<a href="http://webchat.freenode.net?channels=%23moomoohk&uio=Mj10cnVlJjQ9dHJ1ZSYxMT0yMzYff/" target="_blank">IRC</a>
+				</li>
+				<li>
+					<a href="http://github.com/moomoohk/" target="_blank">GitHub</a>
+				</li>
+			</ul>
+		</li>
+	</ul>
+</nav>
+		</header>
+
+<style type="text/css">
+	#snippetHeader {
+		text-align: center;
+		padding: 5px;
+		background-color: #B9C2DB;
+	}
+
+	#snippetID {
+		display: block;
+		margin-bottom: 5px;
+	}
+
+	#indexLink {
+		background-color: #9BA5BE;
+		border-bottom-right-radius: 4px;
+		border-bottom-left-radius: 4px;
+		display: block;
+		padding: 5px;
+		margin-left: -5px;
+		margin-right: -5px;
+		margin-bottom: -5px;
+		-o-transition: background-color ease .2s;
+		-ms-transition: background-color ease .2s;
+		-moz-transition: background-color ease .2s;
+		-webkit-transition: background-color ease .2s;
+		transition: background-color ease .2s;
+	}
+
+	#indexLink:hover {
+		background-color: #788DC2;
+	}
+</style>
+<section id="snippetHeader">
+	<span id="snippetID">Snippet: dart_tables</span>
+	<a href="../snippets.html" id="indexLink">Index</a>
+</section>
+
+<section>
+	<article>
+		<h1>Working with &lt;table&gt; elements in Dart</h1>
+
+<p>Much like with my <a href="/snippets/java_osx.html">java_osx</a> snippet, I haven’t found any good and up-to-date guides online that cover this topic, so here I am writing one.</p>
+
+<p><em>Find more information on Dart <a href="http://dartlang.org/">here</a>.</em></p>
+
+<p>For the sake of simplicity I will not be using Dart's cascade feature in my code until the end.</p>
+
+<h2>Introduction to Tables in Dart</h2>
+<p>These are the classes you’ll have to work with:</p>
+
+<ul>
+  <li><code>TableElement</code>: The <code>&lt;table&gt;</code> itself, contains <code>TableSectionElement</code>s</li>
+  <li><code>TableSectionElement</code>: Parts of the <code>&lt;table&gt;</code> (like <code>&lt;thead&gt;</code> and <code>&lt;tfoot&gt;</code>), contains <code>TableRowElement</code>s</li>
+  <li><code>TableRowElement</code>: <code>&lt;tr&gt;</code> element, contains <code>TableCellElement</code>s</li>
+  <li><code>TableCellElement</code>: <code>&lt;td&gt;</code> element, contains text</li>
+</ul>
+
+<p>You should never have to instantiate <code>TableSectionElement</code>s, <code>TableRowElement</code>s or <code>TableCellElement</code>s yourself:</p>
+
+<ul>
+  <li><code>TableElement.createTHead()</code>, <code>TableElement.createTBody()</code> and <code>TableElement.createTFoot()</code> will insert and return a <code>TableSectionElement</code> signifying <code>&lt;thead&gt;</code>, <code>&lt;tbody&gt;</code> and <code>&lt;tfoot&gt;</code> respectively</li>
+  <li><code>TableSectionElement.insertRow(int index)</code> inserts and returns a <code>TableRowElement</code></li>
+  <li><code>TableRowElement.insertCell(int index)</code> inserts and returns a <code>TableCellElement</code></li>
+</ul>
+
+<h2>Creating a table</h2>
+<pre><code>TableElement table = new TableElement();
+</code></pre>
+
+<h2>Creating a thead</h2>
+<pre><code>TableSectionElement tHead = table.createTHead();
+</code></pre>
+
+<h3>Setting thead Column Titles</h3>
+<pre><code>TableRowElement tHeadRow = tHead.insertRow(0);
+Element column1Title = new Element.tag("th");
+column1Title.text = "Column 1";
+tHeadRow.nodes.add(column1Title);
+</code></pre>
+
+<p>You’ll notice I'm manually creating and adding the th element, this is because Dart doesn't appear to support th elements. An <a href="https://code.google.com/p/dart/issues/detail?id=4340">issue</a> has been opened regarding this but has been closed with no real solution.</p>
+
+<h2>Creating a tbody</h2>
+<pre><code>TableSectionElement tBody = table.createTBody();
+</code></pre>
+
+<h3>Adding Rows</h3>
+<pre><code>TableRowElement tRow = tBody.insertRow(0);
+</code></pre>
+
+<h3>Adding Cells</h3>
+<pre><code>TableCellElement tCell = tRow.insertCell(0);
+tCell.text = "Cell data";
+</code></pre>
+
+<h2>Creating a tfoot</h2>
+<pre><code>TableSectionElement tFoot = table.createTFoot();
+</code></pre>
+
+<p>Add rows and data to it normally with <code>insertRow</code> and <code>insertCell</code>.</p>
+
+<h2>Full Code</h2>
+<pre><code>TableElement table = new TableElement();
+
+TableSectionElement tHead = table.createTHead();
+
+TableRowElement tHeadRow = tHead.insertRow(0);
+
+Element column1Title = new Element.tag("th");
+column1Title.text = "Column 1";
+tHeadRow.nodes.add(column1Title);
+
+Element column2Title = new Element.tag("th");
+column2Title.text = "Column 2";
+tHeadRow.nodes.add(column2Title);
+
+TableSectionElement tBody = table.createTBody();
+
+TableRowElement tBodyRow1 = tBody.insertRow(0);
+
+TableCellElement tBodyRow1Cell1 = tBodyRow1.insertCell(0);
+tBodyRow1Cell1.text = "Cell 1";
+
+TableCellElement tBodyRow1Cell2 = tBodyRow1.insertCell(1);
+tBodyRow1Cell2.text = "Cell 2";
+
+TableSectionElement tFoot = table.createTFoot();
+
+TableRowElement tFootRow = tFoot.insertRow(0);
+
+TableCellElement column1Foot = tFootRow.insertCell(0);
+column1Foot.text = "Column 1";
+
+TableCellElement column2Foot = tFootRow.insertCell(1);
+column2Foot.text = "Column 2";
+</code></pre>
+
+<p>Will produce:</p>
+
+<pre><code>&lt;table&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th&gt;Column 1&lt;/th&gt;
+            &lt;th&gt;Column 2&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tfoot&gt;
+        &lt;tr&gt;
+            &lt;td&gt;Column 1&lt;/td&gt;
+            &lt;td&gt;Column 2&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tfoot&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td&gt;Cell 1&lt;/td&gt;
+            &lt;td&gt;Cell 2&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;
+</code></pre>
+
+		<!-- @todo https://developer.apple.com/Library/mac/releasenotes/Java/JavaSnowLeopardUpdate3LeopardUpdate8RN/NewandNoteworthy/NewandNoteworthy.html -->
+		<!-- @todo http://www.coderanch.com/how-to/javadoc/appledoc/api/overview-summary.html -->
+	</article>
+</section>
+<section>
+	<h1>Document Changelog</h1>
+<ul>
+  <li>18/11/14: Created</li>
+</ul>
+
+</section>
+
+		<section id="footer">
+			<span>© moomoohk 2014</span>
+		</section>
+	</body>
+</html>
