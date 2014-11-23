@@ -8,7 +8,7 @@
 
 		<meta name="twitter:card" content="summary" />
 		<meta name="twitter:site" content="@moomoohk" />
-		<meta name="twitter:title" content="moomoohk/projects" />
+		<meta name="twitter:title" content="moomoohk/marketmaven" />
 		<meta name="twitter:description" content="Moomoohk's personal site" />
 		<meta name="twitter:image" content="website-template/assets/image/avatar.png" />
 
@@ -48,7 +48,7 @@
 		<script async src="website-template/assets/dart/slideshow/packages/browser/dart.js"></script>
 
 		<link href="website-template/assets/image/favicon.ico" rel="shortcut icon">
-		<title>moomoohk/projects</title>
+		<title>moomoohk/marketmaven</title>
 		<script type="application/javascript">
 			$(document).ready(function() {
 				/* Oh what's this */
@@ -215,216 +215,18 @@
 	</ul>
 </nav>
 		</header>
-
-
 <section>
-	<style type="text/css">
-		p.help {
-			margin-bottom: 10px;
-			padding-left: 0px;
-		}
-
-		div.project {
-			margin-bottom: 10px;
-		}
-
-		.collapsible {
-			display: none;
-			padding-top: 5px;
-			background-color: #B9C2DB;
-		}
-
-		span#help {
-			display: block;
-			margin-bottom: 5px;
-			text-align: center;
-		}
-
-		button {
-			width: 49%;
-			padding: 5px;
-			background-color: #D6D6D6;
-			border: none;
-			outline: none;
-			font-family: "PT Sans", sans-serif;
-			-webkit-transition: background-color ease 0.5s, border-color ease 0.5s;
-			-moz-transition: background-color ease 0.5s, border-color ease 0.5s;
-			-ms-transition: background-color ease 0.5s, border-color ease 0.5s;
-			-o-transition: background-color ease 0.5s, border-color ease 0.5s;
-			transition: background-color ease 0.5s, border-color ease 0.5s;
-		}
-
-		button:hover {
-			background-color: #C3C3C3;
-		}
-
-		button:active {
-			background-color: #AEAEAE;
-		}
-
-		button#collapseall {
-			float: right;
-		}
-
-		button.projectName {
-			width: 100%;
-			font-size: 20px;
-			font-weight: bold;
-		}
-
-		.projectlink {
-			display: block;
-			text-align: right;
-			padding-right: 10px;
-			background-color: #9BA5BE;
-			-webkit-transition: background-color ease 0.5s, border-color ease 0.5s;
-			-moz-transition: background-color ease 0.5s, border-color ease 0.5s;
-			-ms-transition: background-color ease 0.5s, border-color ease 0.5s;
-			-o-transition: background-color ease 0.5s, border-color ease 0.5s;
-			transition: background-color ease 0.5s, border-color ease 0.5s;
-		}
-
-		.projectlink:hover {
-			background-color: #788DC2;
-		}
-
-		.tile {
-			margin-right: 5px;
-			margin-bottom: 2px;
-			height: 30px;
-			vertical-align: middle;
-		}
-	</style>
-	<script type="application/javascript">
-		$(document).ready(function() {
-			function expand(obj) {
-				obj.next().slideDown(200);
-				obj.addClass("open");
-			}
-
-			function collapse(obj) {
-				obj.next().slideUp(200);
-				obj.removeClass("open");
-			}
-
-
-			$("button.projectName").on("dblclick", function() {
-				console.log($(this).next().children("a.projectlink"));
-				window.location = $(this).next().children("a.projectlink").attr("href");
-			}).on("click", function() {
-				$(this).parent().css("border-color", "blue");
-				if (!$(this).hasClass("open")) {
-					expand($(this));
-				} else {
-					collapse($(this));
-				}
-			});
-
-			$("#expandall").on("click", function() {
-				$("button.projectName").each(function() {
-					expand($(this));
-				});
-			});
-
-			$("#collapseall").on("click", function() {
-				$("button.projectName").each(function() {
-					collapse($(this));
-				});
-			});
-		});
-	</script>
-	<h1>Projects</h1>
-	<p class="help">
-		<span id="help">Click to expand, double click to visit page</span>
-		<button id="expandall">
-			Expand all
-		</button>
-		<button id="collapseall">
-			Collapse all
-		</button>
+	<h1>Market Maven</h1>
+	<p>
+		Market Maven is a stock market simulator/game that I'm currently developing.
+		<div class="slideshow">
+			<img class="slide" src="assets/images/screenshots/marketmaven/marketmaven1.png" alt="Main menu" />
+			<img class="slide" src="assets/images/screenshots/marketmaven/marketmaven2.png" alt="New game dialog" />
+			<img class="slide" src="assets/images/screenshots/marketmaven/marketmaven3.png" alt="Load game dialog" />
+			<img class="slide" src="assets/images/screenshots/marketmaven/marketmaven4.png" alt="Game screen" />
+		</div>
 	</p>
-	<div class="project">
-		<button class="projectName"><img src="assets/images/tiles/Grame.png" class="tile"/>Grame
-		</button>
-		<div class="collapsible">
-			<p>
-				Grame is a 2D grid based game engine I've been spending the better part of the last few years developing.
-			</p>
-			<a href="/grame" class="projectlink">Read more ></a>
-		</div>
-	</div>
-	<div class="project">
-		<button class="projectName"><img src="assets/images/tiles/MarketMaven.png" class="tile"/>Market Maven
-		</button>
-		<div class="collapsible">
-			<p>
-				Market Maven is a stock market simulator/game that's in development.
-			</p>
-			<a href="/marketmaven.html" class="projectlink">Read more ></a>
-		</div>
-	</div>
-	<div class="project">
-		<button class="projectName"><img src="assets/images/tiles/ReactionKeeper.png" class="tile"/>Reaction Keeper
-		</button>
-		<div class="collapsible">
-			<p>
-				Reaction Keeper is an app I made to help catalogue GIFs and images I keep finding myself using.
-			</p>
-			<a href="/reactionkeeper.html" class="projectlink">Read more ></a>
-		</div>
-	</div>
-	<div class="project">
-		<button class="projectName"><img src="assets/images/tiles/TrackingManager.png" class="tile"/>Tracking Manager
-		</button>
-		<div class="collapsible">
-			<p >
-				Tracking Manager is an app I made to help keep track of packages that you've got in the mail with the help of tracking numbers.
-			</p>
-			<a href="/trackingmanager.html" class="projectlink">Read more ></a>
-		</div>
-	</div>
-	<div class="project">
-		<button class="projectName"><img src="assets/images/tiles/MooCommands.png" class="tile"/>MooCommands
-		</button>
-		<div class="collapsible">
-			<p>
-				MooCommands is a library which helps in creating, managing and executing command objects in your program. Great for apps like IRC clients.
-			</p>
-			<a href="/moocommands" class="projectlink">Read more ></a>
-		</div>
-	</div>
-	<div class="project">
-		<button class="projectName"><img src="assets/images/tiles/MooConsole.png" class="tile"/>MooConsole
-		</button>
-		<div class="collapsible">
-			<p >
-				Mooconsole is an external console for your everyday logging needs. Depends on MooCommands.
-			</p>
-			<a href="/mooconsole" class="projectlink">Read more ></a>
-		</div>
-	</div>
-	<div class="project">
-		<button class="projectName"><img src="assets/images/sprites/no-icon.png" class="tile"/>Mootilities
-		</button>
-		<div class="collapsible">
-			<p>
-				Mootilities is a library which contains plenty of useful classes and boilerplate methods for your convinience.
-			</p>
-			<a href="/mootilities" class="projectlink">Read more ></a>
-		</div>
-	</div>
-	<div class="project">
-		<button class="projectName"><img src="assets/images/sprites/no-icon.png" class="tile"/>MooBootstrap
-		</button>
-		<div class="collapsible">
-			<p>
-				MooBootstrap is a library which provides an easy to use bootstrap system for application in your programs.
-			</p>
-			<a href="/moobootstrap" class="projectlink">Read more ></a>
-		</div>
-	</div>
 </section>
-
 		<section id="footer">
 			<span>© moomoohk 2014</span>
 		</section>
