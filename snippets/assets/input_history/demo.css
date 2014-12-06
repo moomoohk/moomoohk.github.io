@@ -1,0 +1,13 @@
+textarea#DemoTextArea {
+  display: block;
+  width: 500px;
+  height: 200px;
+  resize: none;
+  margin-bottom: 10px;
+}
+
+input#DemoInput {
+  display: block;
+  width: 500px;
+  margin-bottom: 10px;
+}
