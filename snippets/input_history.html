@@ -344,6 +344,7 @@ inputField
       <li>Put <code>input</code> in the stash (in case it isn’t already)</li>
       <li>Ensure that the value of <code>input</code> doesn’t appear more than once in <code>scrollback</code> by removing any doubles</li>
       <li>Insert an empty string at index[0] of <code>scrollback</code> effectively committing the command to history and resetting the stash</li>
+      <li>Set <code>scrollbackIndex</code> to 0</li>
       <li>Reset the input field</li>
       <li>Evaluate the command using whatever method</li>
     </ol>
