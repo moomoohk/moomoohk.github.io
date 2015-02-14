@@ -37,42 +37,39 @@
 					audioElement.setAttribute("autoplay", "autoplay");
 				});
 
-				if ($("body").height() > $(window).height()) {
-					$("#footer").addClass("returnToTop");
-				}
+				setupFooter();
+				checkDocumentHeight(setupFooter);
+			});
 
-				var textContents = $("#footer").text().trim();
-				$("#footer")
-				/*.on("mouseenter", function() {
-					if ($(this).hasClass("returnToTop"))
+			function checkDocumentHeight(callback) {
+				var lastHeight = document.body.clientHeight, newHeight, timer;
+				(function run() {
+					newHeight = document.body.clientHeight;
+					if (lastHeight != newHeight)
+						callback();
+					lastHeight = newHeight;
+					timer = setTimeout(run, 200);
+				})();
+			}
+
+			function setupFooter() {
+				if ($("html").height() > $(window).height()) {
+					$("#footer").addClass("returnToTop");
+					$("#footer").on("mouseenter", function() {
 						$(this).text("Return to top");
-				}).on("mouseleave", function() {
-					if ($(this).hasClass("returnToTop"))
-						$(this).text(textContents);
-				})*/
-				.on("click", function(event) {
-					if ($(this).hasClass("returnToTop"))
+					}).on("mouseleave", function() {
+						$(this).text("© moomoohk 2014");
+					}).on("click", function(event) {
 						if (event.which == 1)
 							$("html, body").animate({
 								scrollTop : 0
 							}, 400);
-				});
-
-				var eventHandle = function() {
-					if ($("body").height() > $(window).height()) {
-						$("#footer").addClass("returnToTop");
-					} else {
-						$("#footer").removeClass("returnToTop");
-					}
-				};
-				if (window.addEventListener) {
-					window.addEventListener("resize", eventHandle, false);
-				} else if (window.attachEvent) {
-					window.attachEvent("onresize", eventHandle);
+					});
 				} else {
-					window["onresize"] = eventHandle;
+					$("#footer").removeClass("returnToTop");
+					$("#footer").off("mouseenter mouseleave click");
 				}
-			});
+			}
 		</script>
 		
         <!-- Hammer reload -->
