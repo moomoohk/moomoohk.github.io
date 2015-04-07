@@ -205,12 +205,13 @@ Each Command object contains a piece of code which will run when the command is 
 <h2>Writing a command object</h2>
 
 <ol>
-<li>Extend the <code>com.moomoohk.MooCommands.Command</code> class. This should inherit the following abstract methods:</li>
+<li>Extend the abstract <code>com.moomoohk.MooCommands.Command</code> class. This will inherit the following abstract methods:</li>
+<li><code>String getCommand()</code>: Returns the String that matches this command. This method should only contain one line, a return statement. I.e. <code>return "/help"</code></li>
+<li><code>String getHelpMessage()</code>: Returns a String containing a message describing what this command does</li>
+<li><code>String getUsage()</code>: Returns a String containing helpful usage information. This includes syntax and any parameters</li>
+<li><code>int getMaxParams()</code>: Returns an int representing the maximum amount of parameters this command takes</li>
+<li><code>int getMinParams()</code>: Returns an int representing the mainimum amount of parameters this command takes</li>
 </ol>
-
-<ul>
-<li><code>String getCommand()</code>: The text that matches this command. Should only contain one line (a return statement), i.e. <code>return "/help";</code>.</li>
-</ul>
 
 <p><em>I really need to finish this page</em></p>
 
