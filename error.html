@@ -1,0 +1,204 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Moomoohk's personal site">
+<meta name="robots" content="index, follow">
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@moomoohk" />
+<meta name="twitter:title" content="moomoohk" />
+<meta name="twitter:description" content="Moomoohk's personal site" />
+<meta name="twitter:image" content="/static/images/avatar.png" />
+
+<link rel="shortcut icon" href="/static/images/favicon.ico">
+<link rel="stylesheet" href="/static/css/normalize.css">
+<link rel="stylesheet" href="/static/css/style.css">
+<link rel="stylesheet" href="/static/fonts/mono_social_icons/mono_social_icons.css">
+
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:400italic,400,700italic,700" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Mono" rel="stylesheet" type="text/css">
+
+<title>moomoohk</title>
+
+<script type="application/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script type="application/javascript" src="/static/js/konami/konami.js"></script>
+<script type="application/javascript" src="/static/js/highlight/highlight.pack.js"></script>
+
+<link rel="stylesheet" href="/static/js/highlight/styles/xcode.css" />
+<link rel="stylesheet" href="/static/dart/slideshow/slideshow.css" />
+
+<script type="application/dart" async src="/static/dart/slideshow/slideshow.dart"></script>
+<script async src="/static/dart/packages/browser/dart.js"></script>
+<script type="application/javascript">
+	hljs.initHighlightingOnLoad();
+	$(document).ready(function() {
+		/* Oh what's this */
+		new Konami(function() {
+			var audioElement = document.createElement("audio");
+			audioElement.setAttribute("src", "/static/audio/aristotle.m4a");
+			audioElement.setAttribute("autoplay", "autoplay");
+		});
+
+		setupFooter();
+		checkDocumentHeight(setupFooter);
+	});
+
+	function checkDocumentHeight(callback) {
+		var lastHeight = document.body.clientHeight, newHeight, timer;
+		(function run() {
+			newHeight = document.body.clientHeight;
+			if (lastHeight != newHeight)
+				callback();
+			lastHeight = newHeight;
+			timer = setTimeout(run, 200);
+		})();
+	}
+
+	function setupFooter() {
+		if ($("html").height() > $(window).height()) {
+			$("#footer").addClass("returnToTop");
+			$("#footer").on("mouseenter", function() {
+				$(this).text("Return to top");
+			}).on("mouseleave", function() {
+				$(this).text("© moomoohk 2014");
+			}).on("click", function(event) {
+				if (event.which == 1)
+					$("html, body").animate({
+						scrollTop : 0
+					}, 400);
+			});
+		} else {
+			$("#footer").removeClass("returnToTop");
+			$("#footer").off("mouseenter mouseleave click");
+		}
+	}
+</script>
+		
+		
+	</head>
+	<body>
+		<nav id="main">
+	<div id="mobileMenu">
+		<img src="/static/images/menu.png" id="menuIcon"/>
+		<span id="title">moomoohk</span>
+	</div>
+	<ul id="topList">
+		<li class="title">
+			<p unselectable="on">
+				moomoohk
+			</p>
+		</li>
+		<li>
+			<a href="/index.html">Home</a>
+		</li>
+		<li>
+			<a href="/projects.html">Projects</a>
+			<ul>
+				<li>
+					<a href="/grame/">Grame</a>
+					<ul>
+						<li>
+							<a href="/grame/docs/">JavaDocs</a>
+						</li>
+						<li>
+							<a href="/grame/#downloads">Download</a>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<a href="/marketmaven.html">Market Maven</a>
+				</li>
+				<li>
+					<a href="/reactionkeeper.html">Reaction Keeper</a>
+					<ul>
+						<li>
+							<a href="/reactionkeeper.html#downloads">Download</a>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<a href="/trackingmanager.html">Tracking Manager</a>
+					<ul>
+						<li>
+							<a href="/trackingmanager.html#downloads">Download</a>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<a href="/moocommands/">MooCommands</a>
+					<ul>
+						<li>
+							<a href="/moocommands/docs/">JavaDocs</a>
+						</li>
+						<li>
+							<a href="/moocommands/#downloads">Download</a>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<a href="/mooconsole/">MooConsole</a>
+					<ul>
+						<li>
+							<a href="/mooconsole/docs/">JavaDocs</a>
+						</li>
+						<li>
+							<a href="/mooconsole/#downloads">Download</a>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<a href="/mootilities/">Mootilities</a>
+					<ul>
+						<li>
+							<a href="/mootilities/docs/">JavaDocs</a>
+						</li>
+						<li>
+							<a href="/mootilities/#downloads">Download</a>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<a href="/moobootstrap/">MooBootstrap</a>
+					<ul>
+						<li>
+							<a href="/moobootstrap/docs/">JavaDocs</a>
+						</li>
+						<li>
+							<a href="/moobootstrap/#downloads">Download</a>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+		<li>
+			<a href="/snippets.html">Snippets</a>
+		</li>
+		<li>
+			<a href="/contact.html">Contact</a>
+			<ul>
+				<li>
+					<a href="http://webchat.freenode.net?channels=%23moomoohk&uio=Mj10cnVlJjQ9dHJ1ZSYxMT0yMzYff/" target="_blank">IRC</a>
+				</li>
+				<li>
+					<a href="http://github.com/moomoohk/" target="_blank">GitHub</a>
+				</li>
+			</ul>
+		</li>
+	</ul>
+</nav>
+		
+		
+		<section>
+			
+			
+		</section>
+		
+		
+		<section id="footer">
+	<span>© moomoohk 2015</span>
+</section>
+	</body>
+</html>

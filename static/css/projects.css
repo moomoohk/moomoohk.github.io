@@ -1,0 +1,75 @@
+p.help {
+	margin-bottom: 10px;
+	padding-left: 0px;
+}
+
+div.project {
+	margin-bottom: 10px;
+}
+
+.collapsible {
+	display: none;
+	padding-top: 5px;
+	background-color: #B9C2DB;
+}
+
+span#help {
+	display: block;
+	margin-bottom: 5px;
+	text-align: center;
+}
+
+button {
+	width: 49%;
+	padding: 5px;
+	background-color: #D6D6D6;
+	border: none;
+	outline: none;
+	font-family: "PT Sans", sans-serif;
+	-webkit-transition: background-color ease 0.5s, border-color ease 0.5s;
+	-moz-transition: background-color ease 0.5s, border-color ease 0.5s;
+	-ms-transition: background-color ease 0.5s, border-color ease 0.5s;
+	-o-transition: background-color ease 0.5s, border-color ease 0.5s;
+	transition: background-color ease 0.5s, border-color ease 0.5s;
+}
+
+button:hover {
+	background-color: #C3C3C3;
+}
+
+button:active {
+	background-color: #AEAEAE;
+}
+
+button#collapseall {
+	float: right;
+}
+
+button.projectName {
+	width: 100%;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.projectlink {
+	display: block;
+	text-align: right;
+	padding-right: 10px;
+	background-color: #9BA5BE;
+	-webkit-transition: background-color ease 0.5s, border-color ease 0.5s;
+	-moz-transition: background-color ease 0.5s, border-color ease 0.5s;
+	-ms-transition: background-color ease 0.5s, border-color ease 0.5s;
+	-o-transition: background-color ease 0.5s, border-color ease 0.5s;
+	transition: background-color ease 0.5s, border-color ease 0.5s;
+}
+
+.projectlink:hover {
+	background-color: #788DC2;
+}
+
+.tile {
+	margin-right: 5px;
+	margin-bottom: 2px;
+	height: 30px;
+	vertical-align: middle;
+}

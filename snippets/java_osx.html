@@ -1,106 +1,89 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
 	<head>
 		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="description" content="Developing an OSX Application in Java">
-		<meta name="robots" content="index, follow">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Developing an OSX Application in Java">
+<meta name="robots" content="index, follow">
 
-		<meta name="twitter:card" content="summary" />
-		<meta name="twitter:site" content="@moomoohk" />
-		<meta name="twitter:title" content="moomoohk/snippets/java_osx" />
-		<meta name="twitter:description" content="Developing an OSX Application in Java" />
-		<meta name="twitter:image" content="../website-template/assets/image/avatar.png" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@moomoohk" />
+<meta name="twitter:title" content="moomoohk" />
+<meta name="twitter:description" content="Developing an OSX Application in Java" />
+<meta name="twitter:image" content="/static/images/avatar.png" />
 
-		<title>moomoohk/snippets/java_osx</title>
-		<link href="../website-template/assets/image/favicon.ico" rel="shortcut icon">
+<link rel="shortcut icon" href="/static/images/favicon.ico">
+<link rel="stylesheet" href="/static/css/normalize.css">
+<link rel="stylesheet" href="/static/css/style.css">
+<link rel="stylesheet" href="/static/fonts/mono_social_icons/mono_social_icons.css">
 
-		<link href="http://fonts.googleapis.com/css?family=PT+Sans:400italic,400,700italic,700" rel="stylesheet" type="text/css">
-		<link href='http://fonts.googleapis.com/css?family=PT+Mono' rel='stylesheet' type='text/css'>
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:400italic,400,700italic,700" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Mono" rel="stylesheet" type="text/css">
 
-		<link rel='stylesheet' href='../website-template/assets/css/normalize.css'>
-<link rel='stylesheet' href='../website-template/assets/css/style.css'>
-<link rel='stylesheet' href='../website-template/assets/dart/slideshow/slideshow.css'>
-<link rel='stylesheet' href='../website-template/assets/lib/highlight/styles/xcode.css'>
-		<script src='../website-template/assets/js/jquery-1.8.3.min.js'></script>
-<script src='../website-template/assets/js/snaptortoise-konami-js-93c5489/konami.js'></script>
-<script src='../website-template/assets/lib/highlight/highlight.pack.js'></script>
-		<script async type="application/dart" src="../website-template/assets/dart/slideshow/slideshow.dart"></script>
-		<script async src="../website-template/assets/dart/packages/browser/dart.js"></script>
-		<script type="application/javascript">
-			hljs.initHighlightingOnLoad();
-			$(document).ready(function() {
-				/* Oh what's this */
-				new Konami(function() {
-					var audioElement = document.createElement("audio");
-					audioElement.setAttribute("src", "../website-template/assets/audio/aristotle.m4a");
-					audioElement.setAttribute("autoplay", "autoplay");
-				});
+<title>moomoohk</title>
 
-				setupFooter();
-				checkDocumentHeight(setupFooter);
+<script type="application/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script type="application/javascript" src="/static/js/konami/konami.js"></script>
+<script type="application/javascript" src="/static/js/highlight/highlight.pack.js"></script>
+
+<link rel="stylesheet" href="/static/js/highlight/styles/xcode.css" />
+<link rel="stylesheet" href="/static/dart/slideshow/slideshow.css" />
+
+<script type="application/dart" async src="/static/dart/slideshow/slideshow.dart"></script>
+<script async src="/static/dart/packages/browser/dart.js"></script>
+<script type="application/javascript">
+	hljs.initHighlightingOnLoad();
+	$(document).ready(function() {
+		/* Oh what's this */
+		new Konami(function() {
+			var audioElement = document.createElement("audio");
+			audioElement.setAttribute("src", "/static/audio/aristotle.m4a");
+			audioElement.setAttribute("autoplay", "autoplay");
+		});
+
+		setupFooter();
+		checkDocumentHeight(setupFooter);
+	});
+
+	function checkDocumentHeight(callback) {
+		var lastHeight = document.body.clientHeight, newHeight, timer;
+		(function run() {
+			newHeight = document.body.clientHeight;
+			if (lastHeight != newHeight)
+				callback();
+			lastHeight = newHeight;
+			timer = setTimeout(run, 200);
+		})();
+	}
+
+	function setupFooter() {
+		if ($("html").height() > $(window).height()) {
+			$("#footer").addClass("returnToTop");
+			$("#footer").on("mouseenter", function() {
+				$(this).text("Return to top");
+			}).on("mouseleave", function() {
+				$(this).text("© moomoohk 2014");
+			}).on("click", function(event) {
+				if (event.which == 1)
+					$("html, body").animate({
+						scrollTop : 0
+					}, 400);
 			});
-
-			function checkDocumentHeight(callback) {
-				var lastHeight = document.body.clientHeight, newHeight, timer;
-				(function run() {
-					newHeight = document.body.clientHeight;
-					if (lastHeight != newHeight)
-						callback();
-					lastHeight = newHeight;
-					timer = setTimeout(run, 200);
-				})();
-			}
-
-			function setupFooter() {
-				if ($("html").height() > $(window).height()) {
-					$("#footer").addClass("returnToTop");
-					$("#footer").on("mouseenter", function() {
-						$(this).text("Return to top");
-					}).on("mouseleave", function() {
-						$(this).text("© moomoohk 2014");
-					}).on("click", function(event) {
-						if (event.which == 1)
-							$("html, body").animate({
-								scrollTop : 0
-							}, 400);
-					});
-				} else {
-					$("#footer").removeClass("returnToTop");
-					$("#footer").off("mouseenter mouseleave click");
-				}
-			}
-		</script>
+		} else {
+			$("#footer").removeClass("returnToTop");
+			$("#footer").off("mouseenter mouseleave click");
+		}
+	}
+</script>
 		
-        <!-- Hammer reload -->
-          <script>
-            setInterval(function(){
-              try {
-                if(typeof ws != 'undefined' && ws.readyState == 1){return true;}
-                ws = new WebSocket('ws://'+(location.host || 'localhost').split(':')[0]+':35353')
-                ws.onopen = function(){ws.onclose = function(){document.location.reload()}}
-                ws.onmessage = function(){
-                  var links = document.getElementsByTagName('link'); 
-                    for (var i = 0; i < links.length;i++) { 
-                    var link = links[i]; 
-                    if (link.rel === 'stylesheet' && !link.href.match(/typekit/)) { 
-                      href = link.href.replace(/((&|\?)hammer=)[^&]+/,''); 
-                      link.href = href + (href.indexOf('?')>=0?'&':'?') + 'hammer='+(new Date().valueOf());
-                    }
-                  }
-                }
-              }catch(e){}
-            }, 1000)
-          </script>
-        <!-- /Hammer reload -->
-      
-	</head>
+<link rel="stylesheet" href="/static/css/snippet.css">
 
+	</head>
 	<body>
-		<header>
-			<nav id="main">
+		<nav id="main">
 	<div id="mobileMenu">
-		<img src="../website-template/assets/image/menu.png" id="menuIcon"/>
+		<img src="/static/images/menu.png" id="menuIcon"/>
 		<span id="title">moomoohk</span>
 	</div>
 	<ul id="topList">
@@ -207,55 +190,24 @@
 		</li>
 	</ul>
 </nav>
-		</header>
-
-<style type="text/css">
-	#snippetHeader {
-		text-align: center;
-		padding: 5px;
-		background-color: #B9C2DB;
-	}
-
-	#snippetID {
-		display: block;
-		margin-bottom: 5px;
-	}
-
-	#indexLink {
-		background-color: #9BA5BE;
-		border-bottom-right-radius: 4px;
-		border-bottom-left-radius: 4px;
-		display: block;
-		padding: 5px;
-		margin-left: -5px;
-		margin-right: -5px;
-		margin-bottom: -5px;
-		-o-transition: background-color ease .2s;
-		-ms-transition: background-color ease .2s;
-		-moz-transition: background-color ease .2s;
-		-webkit-transition: background-color ease .2s;
-		transition: background-color ease .2s;
-	}
-
-	#indexLink:hover {
-		background-color: #788DC2;
-	}
-</style>
+		
 <section id="snippetHeader">
-	<span id="snippetID">Snippet: java_osx</span>
-	<a href="../snippets.html" id="indexLink">Index</a>
+	<span id="snippet_id">Snippet: java_osx</span>
+	<a href="/snippets.html" id="indexLink">Index</a>
 </section>
 
-<section>
-	<article>
-		<h1>Developing an OSX Application in Java</h1>
+		<section>
+			
+
+<h1>Developing an OSX Application in Java</h1>
+
 <p><em>This article is incomplete</em></p>
 
 <p>I haven't found any good development guides for Java apps on OSX so I thought I'd write one myself.</p>
 
 <p>I want this article to be both a guide and a reference. I'll try to add/edit info as I learn it through experimentation. If you have any info you think belongs in this article feel free to <a href="/contact.html">contact me</a>.</p>
 
-<p><a href="https://www.reddit.com/r/java/comments/2hnvsn/developing_an_osx_application_in_java/ckuf7q0">Someone</a> suggested I write a demo app that is fully OS X capable. When I feel like I’ve aggregated enough information here I will definitely do that. </p>
+<p><a href="https://www.reddit.com/r/java/comments/2hnvsn/developing_an_osx_application_in_java/ckuf7q0">Someone</a> suggested I write a demo app that is fully OS X capable. When I feel like I've aggregated enough information here I will definitely do that. </p>
 
 <p>All of the Apple related classes are located in the <code>com.apple.eawt</code> package which <em>should</em> come with your Mac JDK.</p>
 
@@ -266,6 +218,7 @@
 <p><code>Application macApplication = Application.getApplication();</code></p>
 
 <h2>Events</h2>
+
 <p>So the whole <code>com.apple.eawt</code> system abstractifies user interaction with OSX specific app components (like menubar items, I'll get to that) as well operations originating from the OS by throwing events. This abstractification is a bit convoluted and took me quite a bit to wrap my head around.</p>
 
 <p>The <code>com.apple.eawt.AppEvent</code> class contains all the different OSX specific events that might get thrown (in the form of abstract subclasses).</p>
@@ -273,48 +226,52 @@
 <p>I've separated these events into different categories:</p>
 
 <h3>Menu Bar Item Events</h3>
+
 <ul>
-  <li><code>com.apple.eawt.AppEvent.AboutEvent</code></li>
-  <li><code>com.apple.eawt.AppEvent.PreferencesEvent</code></li>
-  <li><code>com.apple.eawt.AppEvent.QuitEvent</code></li>
+<li><code>com.apple.eawt.AppEvent.AboutEvent</code></li>
+<li><code>com.apple.eawt.AppEvent.PreferencesEvent</code></li>
+<li><code>com.apple.eawt.AppEvent.QuitEvent</code></li>
 </ul>
 
 <h3>App State Events</h3>
+
 <ul>
-  <li><code>com.apple.eawt.AppEvent.AppReOpenedEvent</code></li>
-  <li><code>com.apple.eawt.AppEvent.AppForegroundEvent</code></li>
-  <li><code>com.apple.eawt.AppEvent.AppHiddenEvent</code></li>
+<li><code>com.apple.eawt.AppEvent.AppReOpenedEvent</code></li>
+<li><code>com.apple.eawt.AppEvent.AppForegroundEvent</code></li>
+<li><code>com.apple.eawt.AppEvent.AppHiddenEvent</code></li>
 </ul>
 
 <h3>Computer State Events</h3>
+
 <ul>
-  <li><code>com.apple.eawt.AppEvent.ScreenSleepEvent</code></li>
-  <li><code>com.apple.eawt.AppEvent.SystemSleepEvent</code></li>
-  <li><code>com.apple.eawt.AppEvent.FullScreenEvent</code></li>
+<li><code>com.apple.eawt.AppEvent.ScreenSleepEvent</code></li>
+<li><code>com.apple.eawt.AppEvent.SystemSleepEvent</code></li>
+<li><code>com.apple.eawt.AppEvent.FullScreenEvent</code></li>
 </ul>
 
 <p>The names of these events should pretty clearly indicate their purpose.</p>
 
 <h3>Miscellaneous Events (aka I'm not exactly sure what these do)</h3>
+
 <ul>
-  <li><code>com.apple.eawt.AppEvent.FilesEvent</code>: I think this is just an abstract class that helps you work with lists of files for stuff
-    <ul>
-      <li><code>com.apple.eawt.AppEvent.OpenFilesEvent</code>: Extends <code>FilesEvent</code>. Not sure where this event would originate from</li>
-      <li><code>com.apple.eawt.AppEvent.PrintFilesEvent</code>: Extends <code>FilesEvent</code>. Not sure where this event would originate from</li>
-    </ul>
-  </li>
-  <li><code>com.apple.eawt.AppEvent.UserSessionEvent</code>: I think this is thrown when the computer comes from or goes to the login screen</li>
-  <li><code>com.apple.eawt.AppEvent.OpenURIEvent</code>: Not sure how this event is different from <code>OpenFilesEvent</code> (or where it would originate from)</li>
+<li><code>com.apple.eawt.AppEvent.FilesEvent</code>: I think this is just an abstract class that helps you work with lists of files for stuff
+<ul>
+<li><code>com.apple.eawt.AppEvent.OpenFilesEvent</code>: Extends <code>FilesEvent</code>. Not sure where this event would originate from</li>
+<li><code>com.apple.eawt.AppEvent.PrintFilesEvent</code>: Extends <code>FilesEvent</code>. Not sure where this event would originate from</li>
+</ul></li>
+<li><code>com.apple.eawt.AppEvent.UserSessionEvent</code>: I think this is thrown when the computer comes from or goes to the login screen</li>
+<li><code>com.apple.eawt.AppEvent.OpenURIEvent</code>: Not sure how this event is different from <code>OpenFilesEvent</code> (or where it would originate from)</li>
 </ul>
 
 <h2>Event Handlers</h2>
+
 <p>Here's where things get confusing.</p>
 
-<p>Allow me to compare the <code>com.apple.eawt</code> event system to Swing’s event system:</p>
+<p>Allow me to compare the <code>com.apple.eawt</code> event system to Swing's event system:</p>
 
 <ul>
-  <li>Similarity: Both systems feature different types of events which fall into different categories</li>
-  <li>Difference: Swing has a uniform way of handling events: <code>someSwingComponent.addSomeListener(paramSomeEvent)</code>. On the other hand, <code>com.apple.eawt</code> doesn’t have a uniform way to handle events.</li>
+<li>Similarity: Both systems feature different types of events which fall into different categories</li>
+<li>Difference: Swing has a uniform way of handling events: <code>someSwingComponent.addSomeListener(paramSomeEvent)</code>. On the other hand, <code>com.apple.eawt</code> doesn't have a uniform way to handle events.</li>
 </ul>
 
 <p><code>com.apple.eawt</code> provides handlers for <em>some</em> events.</p>
@@ -322,39 +279,40 @@
 <p>Here are the handlers available:</p>
 
 <ul>
-  <li><code>com.apple.eawt.AboutHandler</code></li>
-  <li><code>com.apple.eawt.PreferencesHandler</code></li>
-  <li><code>com.apple.eawt.OpenFilesHandler</code></li>
-  <li><code>com.apple.eawt.PrintFilesHandler</code></li>
-  <li><code>com.apple.eawt.OpenURIHandler</code></li>
-  <li><code>com.apple.eawt.QuitHandler</code></li>
+<li><code>com.apple.eawt.AboutHandler</code></li>
+<li><code>com.apple.eawt.PreferencesHandler</code></li>
+<li><code>com.apple.eawt.OpenFilesHandler</code></li>
+<li><code>com.apple.eawt.PrintFilesHandler</code></li>
+<li><code>com.apple.eawt.OpenURIHandler</code></li>
+<li><code>com.apple.eawt.QuitHandler</code></li>
 </ul>
 
 <p>Implementing these handlers is pretty straightforward (demonstrated with <code>com.apple.eawt.PreferencesHandler</code> and <code>com.apple.eawt.AboutHandler</code> in the next section). </p>
 
-<p>The events that don't have handlers instead have listeners, I'm not sure why… Maybe “handlers” are for user input whereas “listeners” are for OS induced operations? Seems more confusing and redundant than anything else.</p>
+<p>The events that don't have handlers instead have listeners, I'm not sure why... Maybe "handlers" are for user input whereas "listeners" are for OS induced operations? Seems more confusing and redundant than anything else.</p>
 
 <p>Here are the listeners available:</p>
 
 <ul>
-  <li><code>com.apple.eawt.AppReOpenedListener</code></li>
-  <li><code>com.apple.eawt.AppForegroundListener</code></li>
-  <li><code>com.apple.eawt.AppHiddenListener</code></li>
-  <li><code>com.apple.eawt.UserSessionListener</code></li>
-  <li><code>com.apple.eawt.ScreenSleepListener</code></li>
-  <li><code>com.apple.eawt.SystemSleepListener</code></li>
+<li><code>com.apple.eawt.AppReOpenedListener</code></li>
+<li><code>com.apple.eawt.AppForegroundListener</code></li>
+<li><code>com.apple.eawt.AppHiddenListener</code></li>
+<li><code>com.apple.eawt.UserSessionListener</code></li>
+<li><code>com.apple.eawt.ScreenSleepListener</code></li>
+<li><code>com.apple.eawt.SystemSleepListener</code></li>
 </ul>
 
 <p>All these listeners extend <code>com.apple.eawt.AppEventListener</code>.</p>
 
 <p>Register these listeners through <code>macApplication.addAppEventListener(AppEventListener paramAppEventListener)</code>.</p>
 
-<p>You can write your own listener that extends <code>com.apple.eawt.AppEventListener</code> but attempting to register it will result in nothing happening. Only the above 6 listeners can be registered. This should be obvious since the only events you’re catching with this system are being thrown by the OS, which means you can’t create your own events and therefore have no reason to create your own listeners.</p>
+<p>You can write your own listener that extends <code>com.apple.eawt.AppEventListener</code> but attempting to register it will result in nothing happening. Only the above 6 listeners can be registered. This should be obvious since the only events you're catching with this system are being thrown by the OS, which means you can't create your own events and therefore have no reason to create your own listeners.</p>
 
-<h3>“Catch All” Adapter</h3>
-<p>After understanding how the <code>com.apple.eawt</code> event system works I felt it was only appropriate to quickly write up and share an event adapter that catches everything. I realize it’s not very elegant but it “just makes sense”.</p>
+<h3>"Catch All" Adapter</h3>
 
-<p>I’m including it here as well as in the <code>com.moomoohk.Mootilities.OSUtils.MacOSX</code> package of <a href="/mootilities/">Mootilities</a> (a pretty handy project of mine that you should totally check out):</p>
+<p>After understanding how the <code>com.apple.eawt</code> event system works I felt it was only appropriate to quickly write up and share an event adapter that catches everything. I realize it's not very elegant but it "just makes sense".</p>
+
+<p>I'm including it here as well as in the <code>com.moomoohk.Mootilities.OSUtils.MacOSX</code> package of <a href="/mootilities/">Mootilities</a> (a pretty handy project of mine that you should totally check out):</p>
 
 <pre><code>import com.apple.eawt.AboutHandler;
 import com.apple.eawt.AppEvent.AboutEvent;
@@ -406,68 +364,69 @@ public abstract class MacOSXAppEventAdapter implements AboutHandler, Preferences
         Application.getApplication().setOpenURIHandler(this);
         Application.getApplication().setQuitHandler(this);
     }
-    
+
     @Override
     public abstract void systemAboutToSleep(SystemSleepEvent paramSystemSleepEvent);
-    
+
     @Override
     public abstract void systemAwoke(SystemSleepEvent paramSystemSleepEvent);
-    
+
     @Override
     public abstract void screenAboutToSleep(ScreenSleepEvent paramScreenSleepEvent);
-    
+
     @Override
     public abstract void screenAwoke(ScreenSleepEvent paramScreenSleepEvent);
-    
+
     @Override
     public abstract void userSessionDeactivated(UserSessionEvent paramUserSessionEvent);
-    
+
     @Override
     public abstract void userSessionActivated(UserSessionEvent paramUserSessionEvent);
-    
+
     @Override
     public abstract void appHidden(AppHiddenEvent paramAppHiddenEvent);
-    
+
     @Override
     public abstract void appUnhidden(AppHiddenEvent paramAppHiddenEvent);
-    
+
     @Override
     public abstract void appRaisedToForeground(AppForegroundEvent paramAppForegroundEvent);
-    
+
     @Override
     public abstract void appMovedToBackground(AppForegroundEvent paramAppForegroundEvent);
-    
+
     @Override
     public abstract void appReOpened(AppReOpenedEvent paramAppReOpenedEvent);
-    
+
     @Override
     public abstract void handleQuitRequestWith(QuitEvent arg0, QuitResponse arg1);
-    
+
     @Override
     public abstract void openURI(OpenURIEvent paramOpenURIEvent);
-    
+
     @Override
     public abstract void openFiles(OpenFilesEvent paramOpenFilesEvent);
-    
+
     @Override
     public abstract void handlePreferences(PreferencesEvent paramPreferencesEvent);
-    
+
     @Override
     public abstract void printFiles(PrintFilesEvent paramPrintFilesEvent);
-    
+
     @Override
     public abstract void handleAbout(AboutEvent paramAboutEvent);
 }
 </code></pre>
 
 <h2>Menu Items</h2>
+
 <p>The first thing you'll want to do is add and customize the default OSX menu items (About, Preferences, etc.).</p>
 
 <p>It was super confusing to figure out due to all the outdated tutorials and docs I've found online coupled with the fact that a lot of classes are deprecated.</p>
 
-<p>You'll notice that by default your app bundle doesn't have a “Preferences” item in the main app menu. I assume this is because most people won't implement their own preferences implementation. Most (if not all) of the guides I came across online state that you should call <code>macApplication.setEnabledPreferencesMenu(true);</code> or <code>macApplication.addPreferencesMenuItem()</code> to get the item to show up. However, these methods are deprecated and I therefore recommend you don't use them.</p>
+<p>You'll notice that by default your app bundle doesn't have a "Preferences" item in the main app menu. I assume this is because most people won't implement their own preferences implementation. Most (if not all) of the guides I came across online state that you should call <code>macApplication.setEnabledPreferencesMenu(true);</code> or <code>macApplication.addPreferencesMenuItem()</code> to get the item to show up. However, these methods are deprecated and I therefore recommend you don't use them.</p>
 
-<p>To get the “Preferences” item to show up all you seemingly need to do is implement a handler for that item, like so:</p>
+<p>To get the "Preferences" item to show up all you seemingly need to do is implement a handler for that item, like so:</p>
 
 <pre><code>macApplication.setPreferencesHandler(new PreferencesHandler()
 {
@@ -479,7 +438,7 @@ public abstract class MacOSXAppEventAdapter implements AboutHandler, Preferences
 });
 </code></pre>
 
-<p>This appears to be applicable to the “About” menu item as well:</p>
+<p>This appears to be applicable to the "About" menu item as well:</p>
 
 <pre><code>macApplication.setAboutHandler(new AboutHandler()
 {
@@ -494,21 +453,23 @@ public abstract class MacOSXAppEventAdapter implements AboutHandler, Preferences
 <p>This code should replace <code>macApplication.setEnabledAboutMenuItem(true);</code> and <code>macApplication.addAboutMenuItem();</code>.</p>
 
 <h2>Fullscreen</h2>
+
 <p>In Mac OS X Lion (10.7) Apple introduced full screen apps.</p>
 
 <p>Calling <code>FullScreenUtilities.setWindowCanFullScreen(frame, true);</code>, where <code>frame</code> is your window object (as in, extends <code>java.awt.Window</code>. This includes <code>javax.swing.JFrame</code>), will enable this functionality.</p>
 
 <p>Before enabling full screen:</p>
 
-<p><img src="assets/java_osx/java_osx_1.png" alt="" title="Standard JFrame" /></p>
+<p><img src="/static/images/snippets/java_osx/java_osx_1.png" title="Standard JFrame"></img></p>
 
 <p>After enabling full screen:</p>
 
-<p><img src="assets/java_osx/java_osx_2.png" alt="" title="Fabulous JFrame" /></p>
+<p><img src="/static/images/snippets/java_osx/java_osx_2.png" title="Fabulous JFrame"></img></p>
 
-<p>To programmatically toggle full screen mode call <code>macApplication.requestToggleFullScreen(frame);</code>. There’s no way to set the fullscreen state manually, only a toggle.</p>
+<p>To programmatically toggle full screen mode call <code>macApplication.requestToggleFullScreen(frame);</code>. There's no way to set the fullscreen state manually, only a toggle.</p>
 
 <h3>Note</h3>
+
 <p>I'm not sure how <code>com.apple.eawt</code> handles these calls on systems older than 10.7. Here's a more complete example with a (possibly redundant) check to make sure the system is at least Mac OS X Lion: </p>
 
 <pre><code>if (System.getProperty("os.name").startsWith("Mac OS X"))
@@ -526,99 +487,89 @@ public abstract class MacOSXAppEventAdapter implements AboutHandler, Preferences
 </code></pre>
 
 <h2>Notification Center</h2>
+
 <p><code>com.apple.eawt</code> does not provide any way to send NC notifications. </p>
 
 <p>Apple implemented NC in Mountain Lion (10.8), one version after Lion (10.7). Since <code>com.apple.eawt</code> includes full screen capabilities I can only assume that the package hasn't been updated since Lion was a thing, which would be 2011. This might explain why there's no NC capabilities in <code>com.apple.eawt</code>. Here's to hoping that gets patched in before long.</p>
 
 <h3>Workarounds/Alternatives</h3>
-<p>Unfortunately I haven’t tried most of these solutions so I can't really provide much more than information I've found online (for now).</p>
+
+<p>Unfortunately I haven't tried most of these solutions so I can't really provide much more than information I've found online (for now).</p>
 
 <ul>
-  <li>
-    <p><strong>AppleScript</strong>: <a href="http://www.reddit.com/r/java/comments/2hnvsn/developing_an_osx_application_in_java/ckuqh71">Someone suggested</a> executing an AppleScript command that produces a notification.</p>
+<li><p><strong>AppleScript</strong>: <a href="http://www.reddit.com/r/java/comments/2hnvsn/developing_an_osx_application_in_java/ckuqh71">Someone suggested</a> executing an AppleScript command that produces a notification.</p>
 
-    <p>The “<a href="https://developer.apple.com/library/mac/documentation/applescript/conceptual/applescriptlangguide/reference/aslr_cmds.html#//apple_ref/doc/uid/TP40000983-CH216-SW224">display notification</a>” command will do exactly that.</p>
+<p>The "<a href="https://developer.apple.com/library/mac/documentation/applescript/conceptual/applescriptlangguide/reference/aslr_cmds.html#//apple_ref/doc/uid/TP40000983-CH216-SW224">display notification</a>" command will do exactly that.</p>
 
-    <p>Optional parameters for the command:</p>
+<p>Optional parameters for the command:</p>
 
-    <ul>
-      <li>“with title”</li>
-      <li>“subtitle”</li>
-      <li>“sound name” (Look in /System/Library/Sounds/ for all the available sounds)</li>
-    </ul>
-
-    <p>Here’s an example:</p>
-
-    <pre><code>display notification "Message" with title "Title" subtitle "Subtitle" sound name "Glass"
-</code></pre>
-
-    <p>will produce this (while playing /System/Library/Sounds/Glass.aiff):</p>
-
-    <p><img src="assets/java_osx/java_osx_3.png" alt="" title="Sample notification" /></p>
-
-    <p>That's the full extent of what you can achieve with the command. You can't set the app icon or create interactive notifications.</p>
-
-    <p>There are multiple way to run this AppleScript from within Java:</p>
-
-    <p><strong>Runtime.exec</strong></p>
-
-    <pre><code>Runtime.getRuntime().exec(new String[] { "osascript", "-e", "display notification \"Message\" with title \"Title\" subtitle \"Subtitle\" sound name \"Glass\"" });
-</code></pre>
-
-    <p><strong>ProcessBuilder</strong></p>
-
-    <pre><code>new ProcessBuilder("osascript", "-e", "display notification \"Message\" with title \"Title\" subtitle \"Subtitle\" sound name \"Glass\"").start();
-</code></pre>
-
-    <p><strong>ScriptEngine</strong></p>
-
-    <p>According <a href="https://developer.apple.com/library/mac/documentation/Java/Conceptual/Java14Development/07-NativePlatformIntegration/NativePlatformIntegration.html#//apple_ref/doc/uid/TP40001909-212907-TPXREF140">this</a> article by Apple the correct way to run AppleScript from Java is with <code>javax.script.ScriptEngine</code>.</p>
-
-    <p>I'm on OS X Mavericks (10.9) and I tried this solution with both Java 1.6 and 1.7 but neither worked.</p>
-
-    <pre><code>new ScriptEngineManager().getEngineByName("AppleScript").eval("display notification \"Message\" with title \"Title\" subtitle \"Subtitle\" sound name \"Glass\"");
-</code></pre>
-
-    <p>So the upside to this AppleScript approach is that it's fully vanilla Java, the downside is that you're extremely limited with what you can produce.</p>
-  </li>
-  <li>
-    <p><a href="http://growl.info/">Growl</a>: I don’t really like Growl and wouldn’t use it if I had the choice but it seems like a pretty viable solution, especially since it lets users set whether Growl notifications get forwarded to NC. That’s as close as you'll get without some weird hack (coming up next).</p>
-
-    <p>Here are two libraries that provide Java bindings for Growl (found on <a href="http://growl.info/documentation/developer/bindings.php">this</a> page):</p>
-
-    <ul>
-      <li><a href="http://code.google.com/p/jgntp/">JGNTP</a></li>
-      <li><a href="http://sourceforge.net/projects/libgrowl/">LibGrowl</a></li>
-    </ul>
-
-    <p>After a short googling I found <a href="https://github.com/tjun/Java-libgrowl-Sample/blob/master/src/com/test/growl/GrowlSample.java">this</a> sample class for LibGrowl that should help get you started with it.</p>
-  </li>
-  <li>
-    <p><strong>"Using JNA to manipulate NSObjects"</strong>: I put that in quotes because I have close to no idea what it actually means. </p>
-
-    <p>This solution relies on writing an Objective-C library and using it through JNA (Java Native Access). The concept sounds simple enough but for someone with no Objective-C/Cocoa experience is probably impossible to implement. </p>
-
-    <p>Lots of people on Stack Overflow seemed to know what they were doing with this and got some systems working. Here are some threads for extended reading:</p>
-
-    <ul>
-      <li><a href="http://stackoverflow.com/questions/11720652/using-10-8-notification-center-in-java">Using 10.8 Notification Center in Java</a></li>
-      <li><a href="http://stackoverflow.com/questions/13638092/using-os-x-10-8-notification-center-nsusernotification-with-java">Using OS X 10.8 Notification Center (NSUserNotification) with Java</a></li>
-      <li><a href="http://stackoverflow.com/questions/14263020/can-i-use-mountain-lions-notification-center-from-java">Can I use Mountain Lion's Notification Center from Java?</a></li>
-      <li><a href="http://stackoverflow.com/questions/11712535/mac-mountain-lion-send-notification-from-cli-app">Mac Mountain Lion send notification from CLI app</a></li>
-    </ul>
-  </li>
-  <li>
-    <p><a href="https://github.com/wokier/java-to-OS-notify">wokier/java-to-OS-notify</a>: This library relies on and communicates with CLI tools. It covers more than just NC on OS X.</p>
-
-    <p>For our purposes this library seems like a last resort (multiple dependencies and lots of overhead).</p>
-  </li>
+<ul>
+<li>"with title"</li>
+<li>"subtitle"</li>
+<li>"sound name" (Look in /System/Library/Sounds/ for all the available sounds)</li>
 </ul>
 
-<p>Ideally we shouldn’t have to go through all this trouble.</p>
+<p>Here's an example:</p>
+
+<p>display notification "Message" with title "Title" subtitle "Subtitle" sound name "Glass"</p>
+
+<p>will produce this (while playing /System/Library/Sounds/Glass.aiff):</p>
+
+<p><img src="/static/images/snippets/java_osx/java_osx_3.png" title="Sample notification"></img></p>
+
+<p>That's the full extent of what you can achieve with the command. You can't set the app icon or create interactive notifications.</p>
+
+<p>There are multiple way to run this AppleScript from within Java:</p>
+
+<p><strong>Runtime.exec</strong></p>
+
+<p>Runtime.getRuntime().exec(new String[] { "osascript", "-e", "display notification "Message" with title "Title" subtitle "Subtitle" sound name "Glass"" });</p>
+
+<p><strong>ProcessBuilder</strong></p>
+
+<p>new ProcessBuilder("osascript", "-e", "display notification "Message" with title "Title" subtitle "Subtitle" sound name "Glass"").start();</p>
+
+<p><strong>ScriptEngine</strong></p>
+
+<p>According <a href="https://developer.apple.com/library/mac/documentation/Java/Conceptual/Java14Development/07-NativePlatformIntegration/NativePlatformIntegration.html#//apple_ref/doc/uid/TP40001909-212907-TPXREF140">this</a> article by Apple the correct way to run AppleScript from Java is with <code>javax.script.ScriptEngine</code>.</p>
+
+<p>I'm on OS X Mavericks (10.9) and I tried this solution with both Java 1.6 and 1.7 but neither worked.</p>
+
+<p>new ScriptEngineManager().getEngineByName("AppleScript").eval("display notification "Message" with title "Title" subtitle "Subtitle" sound name "Glass"");</p>
+
+<p>So the upside to this AppleScript approach is that it's fully vanilla Java, the downside is that you're extremely limited with what you can produce.</p></li>
+<li><p><a href="http://growl.info/">Growl</a>: I don't really like Growl and wouldn't use it if I had the choice but it seems like a pretty viable solution, especially since it lets users set whether Growl notifications get forwarded to NC. That's as close as you'll get without some weird hack (coming up next).</p>
+
+<p>Here are two libraries that provide Java bindings for Growl (found on <a href="http://growl.info/documentation/developer/bindings.php">this</a> page):</p>
+
+<ul>
+<li><a href="http://code.google.com/p/jgntp/">JGNTP</a></li>
+<li><a href="http://sourceforge.net/projects/libgrowl/">LibGrowl</a></li>
+</ul>
+
+<p>After a short googling I found <a href="https://github.com/tjun/Java-libgrowl-Sample/blob/master/src/com/test/growl/GrowlSample.java">this</a> sample class for LibGrowl that should help get you started with it.</p></li>
+<li><p><strong>"Using JNA to manipulate NSObjects"</strong>: I put that in quotes because I have close to no idea what it actually means. </p>
+
+<p>This solution relies on writing an Objective-C library and using it through JNA (Java Native Access). The concept sounds simple enough but for someone with no Objective-C/Cocoa experience is probably impossible to implement. </p>
+
+<p>Lots of people on Stack Overflow seemed to know what they were doing with this and got some systems working. Here are some threads for extended reading:</p>
+
+<ul>
+<li><a href="http://stackoverflow.com/questions/11720652/using-10-8-notification-center-in-java">Using 10.8 Notification Center in Java</a></li>
+<li><a href="http://stackoverflow.com/questions/13638092/using-os-x-10-8-notification-center-nsusernotification-with-java">Using OS X 10.8 Notification Center (NSUserNotification) with Java</a></li>
+<li><a href="http://stackoverflow.com/questions/14263020/can-i-use-mountain-lions-notification-center-from-java">Can I use Mountain Lion's Notification Center from Java?</a></li>
+<li><a href="http://stackoverflow.com/questions/11712535/mac-mountain-lion-send-notification-from-cli-app">Mac Mountain Lion send notification from CLI app</a></li>
+</ul></li>
+<li><p><a href="https://github.com/wokier/java-to-OS-notify">wokier/java-to-OS-notify</a>: This library relies on and communicates with CLI tools. It covers more than just NC on OS X.</p>
+
+<p>For our purposes this library seems like a last resort (multiple dependencies and lots of overhead).</p></li>
+</ul>
+
+<p>Ideally we shouldn't have to go through all this trouble.</p>
 
 <h2>Setting The Menu Bar Title (App Name)</h2>
 
-<p><em>This following approach doesn’t seem to work with later combinations of Java and OS X. I'm not sure whether it's the versions of Java I tried with (1.6/1.7) or my OS (Mavericks). I can’t find a way to set the menu bar title on my setup.</em></p>
+<p><em>This following approach doesn't seem to work with later combinations of Java and OS X. I'm not sure whether it's the versions of Java I tried with (1.6/1.7) or my OS (Mavericks). I can't find a way to set the menu bar title on my setup.</em></p>
 
 <p>All the guides that I came across stated that you have to set the <code>com.apple.mrj.application.apple.menu.about.name</code> property to the name of your app and it should work.</p>
 
@@ -631,7 +582,7 @@ public abstract class MacOSXAppEventAdapter implements AboutHandler, Preferences
 
 <p>So just make the call first thing in the main right? Not quite. Interacting with <code>java.awt.Toolkit</code> includes <em>loading</em> a class that extends <code>javax.swing.JFrame</code>. This means that if your main method is in a subclass of <code>javax.swing.JFrame</code> it won't work (since the class is loaded right away)!</p>
 
-<p>To remedy this simply extract your main method to a separate class and you’re good to go:</p>
+<p>To remedy this simply extract your main method to a separate class and you're good to go:</p>
 
 <pre><code>public class Launcher
 {
@@ -649,9 +600,9 @@ public abstract class MacOSXAppEventAdapter implements AboutHandler, Preferences
 <pre><code>-Xdock:name="This is my app"
 </code></pre>
 
-<p>You can set this through the “VM Options” section when exporting your Mac Application Bundle in Eclipse.</p>
+<p>You can set this through the "VM Options" section when exporting your Mac Application Bundle in Eclipse.</p>
 
-<p><em>This approach doesn’t appear to work either as a result of a bug with Java. It has been reported <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=381970">here</a> and <a href="https://bugs.openjdk.java.net/browse/JDK-8029440">here</a></em></p>
+<p><em>This approach doesn't appear to work either as a result of a bug with Java. It has been reported <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=381970">here</a> and <a href="https://bugs.openjdk.java.net/browse/JDK-8029440">here</a></em></p>
 
 <p>Effectively, there currently appears to be no way to set the menu bar title in later versions of OS X coupled with later versions of Java.</p>
 
@@ -666,26 +617,26 @@ public abstract class MacOSXAppEventAdapter implements AboutHandler, Preferences
 <p>Events to listen for:</p>
 
 <ul>
-  <li><code>com.apple.eawt.event.GesturePhaseEvent</code>: Generic prolonged event that has a start point and end point</li>
-  <li><code>com.apple.eawt.event.MagnificationEvent</code>: Two finger pinch</li>
-  <li><code>com.apple.eawt.event.RotationEvent</code>: Two finger rotate</li>
-  <li><code>com.apple.eawt.event.SwipeEvent</code>: Two (possibly three) finger swipe</li>
+<li><code>com.apple.eawt.event.GesturePhaseEvent</code>: Generic prolonged event that has a start point and end point</li>
+<li><code>com.apple.eawt.event.MagnificationEvent</code>: Two finger pinch</li>
+<li><code>com.apple.eawt.event.RotationEvent</code>: Two finger rotate</li>
+<li><code>com.apple.eawt.event.SwipeEvent</code>: Two (possibly three) finger swipe</li>
 </ul>
 
 <p>Listeners to use:</p>
 
 <ul>
-  <li><code>com.apple.eawt.event.GesturePhaseListener</code></li>
-  <li><code>com.apple.eawt.event.MagnificationListener</code></li>
-  <li><code>com.apple.eawt.event.RotationListener</code></li>
-  <li><code>com.apple.eawt.event.SwipeListener</code></li>
+<li><code>com.apple.eawt.event.GesturePhaseListener</code></li>
+<li><code>com.apple.eawt.event.MagnificationListener</code></li>
+<li><code>com.apple.eawt.event.RotationListener</code></li>
+<li><code>com.apple.eawt.event.SwipeListener</code></li>
 </ul>
 
 <p>All 4 listeners implement the <code>com.apple.eawt.event.GestureListener</code> interface.</p>
 
 <p>Listeners are attached to <code>javax.swing.JComponent</code>s through the <code>com.apple.eawt.event.GestureUtilities.addGestureListenerTo(javax.swing.JComponent component, com.apple.eawt.event.GestureListener listener)</code> method</p>
 
-<p>Here’s an example implementation of all these event listeners:</p>
+<p>Here's an example implementation of all these event listeners:</p>
 
 <pre><code>import javax.swing.JPanel;
 
@@ -712,19 +663,19 @@ public class GestureListenerTest
             {
                 System.out.println("Down");
             }
-            
+
                         @Override
             public void swipedLeft(SwipeEvent e)
             {
                 System.out.println("Left");
             }
-            
+
             @Override
             public void swipedRight(SwipeEvent e)
             {
                 System.out.println("Right");
             }
-            
+
             @Override
             public void swipedUp(SwipeEvent e)
             {
@@ -740,7 +691,7 @@ public class GestureListenerTest
                 System.out.println(e.getMagnification());
             }
         });
-        
+
         GestureUtilities.addGestureListenerTo(p, new RotationListener()
         {
             @Override
@@ -757,7 +708,7 @@ public class GestureListenerTest
             {
                 System.out.println("Begin");
             }
-            
+
             @Override
             public void gestureEnded(GesturePhaseEvent e)
             {
@@ -770,7 +721,7 @@ public class GestureListenerTest
 
 <p>The <code>com.apple.eawt.event.GestureAdapter</code> class is an adapter for all the possible gesture events.</p>
 
-<p>Again, I haven’t been able to get any of these events to fire on my setup.</p>
+<p>Again, I haven't been able to get any of these events to fire on my setup.</p>
 
 <h2>Auto Hiding Scrollbars</h2>
 
@@ -778,7 +729,7 @@ public class GestureListenerTest
 
 <p>Unfortunately this scroll bar style isn't available out of the box (even with the OS X Look and Feel set).</p>
 
-<p>I did come across <a href="http://www.andrewdcox.com/blog/2012/08/05/update-mac-os-x-lion-jscrollpane-customization/">this workaround</a> a while ago but I haven’t tested it extensively.</p>
+<p>I did come across <a href="http://www.andrewdcox.com/blog/2012/08/05/update-mac-os-x-lion-jscrollpane-customization/">this workaround</a> a while ago but I haven't tested it extensively.</p>
 
 <h2>Documentation and Source Code</h2>
 
@@ -790,45 +741,41 @@ public class GestureListenerTest
 
 <h2>My Beef With com.apple.eawt</h2>
 
-<p>Throughout the article I’ve tried to keep my personal opinions on the <code>com.apple.eawt</code> package bottled up but I feel like some aspects of it that I find too problematic to ignore.</p>
+<p>Throughout the article I've tried to keep my personal opinions on the <code>com.apple.eawt</code> package bottled up but I feel like some aspects of it that I find too problematic to ignore.</p>
 
 <ul>
-  <li>
-    <p><strong>It’s a (seemingly) inconsistent system</strong></p>
+<li><p><strong>It's a (seemingly) inconsistent system</strong></p>
 
-    <p>As noted above in the “Events” section, the package handles different types of events in different ways. Some require a “handler” while others require a “listener”. This makes absolutely no sense and just creates confusion.</p>
+<p>As noted above in the "Events" section, the package handles different types of events in different ways. Some require a "handler" while others require a "listener". This makes absolutely no sense and just creates confusion.</p>
 
-    <p>I say “seemingly” because there is probably some logic behind this design decision. I proposed a possibility above (“handlers” = user input, “listener” = OS operations), another could be that this is a carry over from the Objective-C/Cocoa system. After all, I did notice that a lot of the internal classes in <code>com.apple.eawt</code> follow a lot of naming and coding conventions that aren’t very Java.</p>
-  </li>
-  <li>
-    <p><strong>It's old</strong></p>
+<p>I say "seemingly" because there is probably some logic behind this design decision. I proposed a possibility above ("handlers" = user input, "listener" = OS operations), another could be that this is a carry over from the Objective-C/Cocoa system. After all, I did notice that a lot of the internal classes in <code>com.apple.eawt</code> follow a lot of naming and coding conventions that aren't very Java.</p></li>
+<li><p><strong>It's old</strong></p>
 
-    <p>I'm sure the exact age of the package can be found online but above I estimated it to be around 3 years old. Since then there have been 2 new iterations of OS X (10.8 Mountain Lion and 10.9 Mavericks, 10.10 Yosemite's public release is right around the corner) and new native features have been added (like Notification Center). Without an update to this package none of these recent features are easily accessible which is a super bummer.</p>
-  </li>
+<p>I'm sure the exact age of the package can be found online but above I estimated it to be around 3 years old. Since then there have been 2 new iterations of OS X (10.8 Mountain Lion and 10.9 Mavericks, 10.10 Yosemite's public release is right around the corner) and new native features have been added (like Notification Center). Without an update to this package none of these recent features are easily accessible which is a super bummer.</p></li>
 </ul>
 
-		<!-- @todo https://developer.apple.com/Library/mac/releasenotes/Java/JavaSnowLeopardUpdate3LeopardUpdate8RN/NewandNoteworthy/NewandNoteworthy.html -->
-		<!-- @todo http://www.coderanch.com/how-to/javadoc/appledoc/api/overview-summary.html -->
-	</article>
-</section>
-<section>
-	<h1>Document Changelog</h1>
-<ul>
-  <li>27/9/14: Created</li>
-  <li>28/9/14: Added Notification Center section</li>
-  <li>28/9/14: Added Beef section</li>
-  <li>28/9/14: Added Menu Bar App Title section</li>
-  <li>28/9/14: Expanded Notification Center section</li>
-  <li>1/10/14: Revised Menu Bar Title section</li>
-  <li>15/10/14: Added Multitouch Gesture section</li>
-  <li>15/10/14: Added Auto Hiding Scrollbar section</li>
-  <li>18/10/14: Added Documentation and Source section</li>
-</ul>
 
+
+		</section>
+		
+<section id="share">
+	<span class="shareSpan">Share:</span>
+	<a class="share facebook" href="#" onclick="javascript:window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(location.href) + '&t=TITLE', '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;" target="_blank" title="Share on Facebook">
+		<span class="symbol">circlefacebook</span>
+	</a>
+	<a class="share twitter" href="#" onclick="javascript:window.open('https://twitter.com/share?url=' + encodeURIComponent(location.href) + '&via=moomoohk&text=' + encodeURIComponent('Developing an OSX Application in Java'), '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;" target="_blank" title="Share on Twitter">
+		<span class="symbol">circletwitterbird</span>
+	</a>
+	<a class="share gplus" href="#" onclick="javascript:window.open('https://plus.google.com/share?url=' + encodeURIComponent(location.href), '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=350,width=480');return false;" target="_blank" title="Share on Google+">
+		<span class="symbol">circlegoogleplus</span>
+	</a>
+	<a class="share reddit" href="#" onclick="javascript:window.open('http://www.reddit.com/submit?url=' + encodeURIComponent(location.href) + '&title=' + encodeURIComponent('Developing an OSX Application in Java'));return false;" target="_blank" title="Share on Reddit">
+		<span class="symbol">circlereddit</span>
+	</a>
 </section>
 
 		<section id="footer">
-			<span>© moomoohk 2015</span>
-		</section>
+	<span>© moomoohk 2015</span>
+</section>
 	</body>
 </html>

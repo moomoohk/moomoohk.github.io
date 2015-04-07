@@ -1,0 +1,19 @@
+a.snippet {
+	display: block;
+	background-color: #D6D6D6;
+	padding: 5px;
+	-webkit-transition: background-color ease 0.5s, border-color ease 0.5s;
+	-moz-transition: background-color ease 0.5s, border-color ease 0.5s;
+	-ms-transition: background-color ease 0.5s, border-color ease 0.5s;
+	-o-transition: background-color ease 0.5s, border-color ease 0.5s;
+	transition: background-color ease 0.5s, border-color ease 0.5s;
+}
+
+a.snippet:hover {
+	background-color: #C3C3C3;
+	text-decoration: none;
+}
+
+a.snippet:active {
+	background-color: #AEAEAE;
+}
