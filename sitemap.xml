@@ -21,22 +21,32 @@
         <priority>1.0</priority>
     </url>
     <url>
-        <loc>/marketmaven.html</loc>
-        <changefreq>daily</changefreq>
-        <priority>1.0</priority>
-    </url>
-    <url>
         <loc>/oldprojects.html</loc>
         <changefreq>daily</changefreq>
         <priority>1.0</priority>
     </url>
     <url>
-        <loc>/projects.html</loc>
+        <loc>/projects/grame.html</loc>
         <changefreq>daily</changefreq>
         <priority>1.0</priority>
     </url>
     <url>
-        <loc>/reactionkeeper.html</loc>
+        <loc>/projects/marketmaven.html</loc>
+        <changefreq>daily</changefreq>
+        <priority>1.0</priority>
+    </url>
+    <url>
+        <loc>/projects/reactionkeeper.html</loc>
+        <changefreq>daily</changefreq>
+        <priority>1.0</priority>
+    </url>
+    <url>
+        <loc>/projects/trackingmanager.html</loc>
+        <changefreq>daily</changefreq>
+        <priority>1.0</priority>
+    </url>
+    <url>
+        <loc>/projects.html</loc>
         <changefreq>daily</changefreq>
         <priority>1.0</priority>
     </url>
@@ -67,11 +77,6 @@
     </url>
     <url>
         <loc>/snippets.html</loc>
-        <changefreq>daily</changefreq>
-        <priority>1.0</priority>
-    </url>
-    <url>
-        <loc>/trackingmanager.html</loc>
         <changefreq>daily</changefreq>
         <priority>1.0</priority>
     </url>
