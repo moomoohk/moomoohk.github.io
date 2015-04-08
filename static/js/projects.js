@@ -10,10 +10,7 @@ $(document).ready(function() {
 	}
 
 
-	$("button.projectName").on("dblclick", function() {
-		console.log($(this).next().children("a.projectlink"));
-		window.location = $(this).next().children("a.projectlink").attr("href");
-	}).on("click", function() {
+	$("button.projectName").on("click", function() {
 		$(this).parent().css("border-color", "blue");
 		if (!$(this).hasClass("open")) {
 			expand($(this));
