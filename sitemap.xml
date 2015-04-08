@@ -6,6 +6,11 @@
         <priority>1.0</priority>
     </url>
     <url>
+        <loc>/docs.html</loc>
+        <changefreq>daily</changefreq>
+        <priority>1.0</priority>
+    </url>
+    <url>
         <loc>/extricated.html</loc>
         <changefreq>daily</changefreq>
         <priority>1.0</priority>
@@ -32,6 +37,26 @@
     </url>
     <url>
         <loc>/projects/marketmaven.html</loc>
+        <changefreq>daily</changefreq>
+        <priority>1.0</priority>
+    </url>
+    <url>
+        <loc>/projects/moobootstrap.html</loc>
+        <changefreq>daily</changefreq>
+        <priority>1.0</priority>
+    </url>
+    <url>
+        <loc>/projects/moocommands.html</loc>
+        <changefreq>daily</changefreq>
+        <priority>1.0</priority>
+    </url>
+    <url>
+        <loc>/projects/mooconsole.html</loc>
+        <changefreq>daily</changefreq>
+        <priority>1.0</priority>
+    </url>
+    <url>
+        <loc>/projects/mootilities.html</loc>
         <changefreq>daily</changefreq>
         <priority>1.0</priority>
     </url>
