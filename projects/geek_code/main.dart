@@ -103,12 +103,12 @@ void main() {
     toggleButtons.children.add(toggle);
   }
 
-  output.onClick.listen((Event e) {
+  output.onMouseDown.listen((MouseEvent e) {
     e.preventDefault();
+    output.select();
+  });
+  output.onCopy.listen((_) {
     if (output.text.length > 0) {
-      output.select();
-      document.execCommand("copy", null, "");
-      output.setSelectionRange(0, 0);
       showNotification("Copied to clipboard");
     } else showNotification("Nothing to copy!");
   });
@@ -124,6 +124,7 @@ void main() {
   loading
     ..style.opacity = "0"
     ..onTransitionEnd.first.then((_) => loading.remove());
+  generate();
 }
 
 void generate() {
@@ -131,9 +132,9 @@ void generate() {
     output.style.color = "initial";
     List<GeekCodeType> types = getTypes();
     List<GeekCodeCategory> categories = getCategories();
-      code = new GeekCodeV312(types);
-      for (GeekCodeCategory category in categories) code.addCategory(category);
-      output.text = code.generate();
+    code = new GeekCodeV312(types);
+    for (GeekCodeCategory category in categories) code.addCategory(category);
+    output.text = code.generate();
   } catch (e) {
     output.style.color = "red";
     output.text = "Error:\n" + e.toString();

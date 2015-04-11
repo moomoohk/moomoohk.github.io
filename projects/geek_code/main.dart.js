@@ -688,7 +688,7 @@ var dart = [
     $isEfficientLength: 1
   },
   ArrayIterator: {
-    "^": "Object;__interceptors$_iterable,_length,_index,__interceptors$_current",
+    "^": "Object;__interceptors$_iterable,__interceptors$_length,_index,__interceptors$_current",
     get$current: function() {
       return this.__interceptors$_current;
     },
@@ -696,7 +696,7 @@ var dart = [
       var t1, $length, t2;
       t1 = this.__interceptors$_iterable;
       $length = t1.length;
-      if (this._length !== $length)
+      if (this.__interceptors$_length !== $length)
         throw H.wrapException(P.ConcurrentModificationError$(t1));
       t2 = this._index;
       if (t2 >= $length) {
@@ -1332,7 +1332,7 @@ var dart = [
       t1.$indexSet(0, portId, port);
     },
     _updateGlobalState$0: function() {
-      if (this.ports.__js_helper$_length - this.weakPorts._collection$_length > 0 || this.isPaused || !this.initialized)
+      if (this.ports._length - this.weakPorts._collection$_length > 0 || this.isPaused || !this.initialized)
         init.globalState.isolates.$indexSet(0, this.id, this);
       else
         this.kill$0();
@@ -1374,10 +1374,10 @@ var dart = [
       var $event, t1, t2;
       $event = this.dequeue$0();
       if ($event == null) {
-        if (init.globalState.rootContext != null && init.globalState.isolates.containsKey$1(init.globalState.rootContext.id) && init.globalState.fromCommandLine === true && init.globalState.rootContext.ports.__js_helper$_length === 0)
+        if (init.globalState.rootContext != null && init.globalState.isolates.containsKey$1(init.globalState.rootContext.id) && init.globalState.fromCommandLine === true && init.globalState.rootContext.ports._length === 0)
           H.throwExpression(P.Exception_Exception("Program exited with open ReceivePorts."));
         t1 = init.globalState;
-        if (t1.isWorker === true && t1.isolates.__js_helper$_length === 0 && t1.topEventLoop._activeJsAsyncCount === 0) {
+        if (t1.isWorker === true && t1.isolates._length === 0 && t1.topEventLoop._activeJsAsyncCount === 0) {
           t1 = t1.mainManager;
           t2 = P.LinkedHashMap_LinkedHashMap$_literal(["command", "close"], null, null);
           t2 = new H._Serializer(true, P.LinkedHashMap_LinkedHashMap$identity(null, P.$int)).serialize$1(t2);
@@ -1673,7 +1673,7 @@ var dart = [
       serializationId = t1.$index(0, x);
       if (serializationId != null)
         return ["ref", serializationId];
-      t1.$indexSet(0, x, t1.__js_helper$_length);
+      t1.$indexSet(0, x, t1._length);
       t1 = J.getInterceptor(x);
       if (!!t1.$isNativeByteBuffer)
         return ["buffer", x];
@@ -3188,9 +3188,9 @@ var dart = [
     }
   },
   JsLinkedHashMap: {
-    "^": "Object;__js_helper$_length,_strings,_nums,_rest,_first,_last,_modifications",
+    "^": "Object;_length,_strings,_nums,_rest,_first,_last,_modifications",
     get$length: function(_) {
-      return this.__js_helper$_length;
+      return this._length;
     },
     get$keys: function() {
       return H.setRuntimeTypeInfo(new H.LinkedHashMapKeyIterable(this), [H.getTypeArgumentByIndex(this, 0)]);
@@ -3307,13 +3307,13 @@ var dart = [
       return cell.get$hashMapCellValue();
     },
     clear$0: function(_) {
-      if (this.__js_helper$_length > 0) {
+      if (this._length > 0) {
         this._last = null;
         this._first = null;
         this._rest = null;
         this._nums = null;
         this._strings = null;
-        this.__js_helper$_length = 0;
+        this._length = 0;
         this._modifications = this._modifications + 1 & 67108863;
       }
     },
@@ -3358,7 +3358,7 @@ var dart = [
         last._next = cell;
         this._last = cell;
       }
-      ++this.__js_helper$_length;
+      ++this._length;
       this._modifications = this._modifications + 1 & 67108863;
       return cell;
     },
@@ -3374,7 +3374,7 @@ var dart = [
         this._last = previous;
       else
         next._previous = previous;
-      --this.__js_helper$_length;
+      --this._length;
       this._modifications = this._modifications + 1 & 67108863;
     },
     internalComputeHashCode$1: function(key) {
@@ -3402,9 +3402,9 @@ var dart = [
       }}
   },
   JsLinkedHashMap_values_closure: {
-    "^": "Closure:2;__js_helper$_captured_this_0",
+    "^": "Closure:2;_captured_this_0",
     call$1: function(each) {
-      return this.__js_helper$_captured_this_0.$index(0, each);
+      return this._captured_this_0.$index(0, each);
     }
   },
   LinkedHashMapCell: {
@@ -3413,7 +3413,7 @@ var dart = [
   LinkedHashMapKeyIterable: {
     "^": "IterableBase;_map",
     get$length: function(_) {
-      return this._map.__js_helper$_length;
+      return this._map._length;
     },
     get$iterator: function(_) {
       var t1, t2;
@@ -3667,14 +3667,14 @@ var dart = [
   _AsyncRun__scheduleImmediateJsOverride: [function(callback) {
     ++init.globalState.topEventLoop._activeJsAsyncCount;
     self.scheduleImmediate(H.convertDartClosureToJS(new P._AsyncRun__scheduleImmediateJsOverride_internalCallback(callback), 0));
-  }, "call$1", "_AsyncRun__scheduleImmediateJsOverride$closure", 2, 0, 21],
+  }, "call$1", "_AsyncRun__scheduleImmediateJsOverride$closure", 2, 0, 22],
   _AsyncRun__scheduleImmediateWithSetImmediate: [function(callback) {
     ++init.globalState.topEventLoop._activeJsAsyncCount;
     self.setImmediate(H.convertDartClosureToJS(new P._AsyncRun__scheduleImmediateWithSetImmediate_internalCallback(callback), 0));
-  }, "call$1", "_AsyncRun__scheduleImmediateWithSetImmediate$closure", 2, 0, 21],
+  }, "call$1", "_AsyncRun__scheduleImmediateWithSetImmediate$closure", 2, 0, 22],
   _AsyncRun__scheduleImmediateWithTimer: [function(callback) {
     P.Timer__createTimer(C.Duration_0, callback);
-  }, "call$1", "_AsyncRun__scheduleImmediateWithTimer$closure", 2, 0, 21],
+  }, "call$1", "_AsyncRun__scheduleImmediateWithTimer$closure", 2, 0, 22],
   _registerErrorHandler: function(errorHandler, zone) {
     var t1 = H.getDynamicRuntimeType();
     t1 = H.buildFunctionType(t1, [t1, t1])._isTest$1(errorHandler);
@@ -3766,7 +3766,7 @@ var dart = [
     }
   },
   _nullDataHandler: [function(value) {
-  }, "call$1", "_nullDataHandler$closure", 2, 0, 22],
+  }, "call$1", "_nullDataHandler$closure", 2, 0, 23],
   _nullErrorHandler: [function(error, stackTrace) {
     var t1 = $.Zone__current;
     t1.toString;
@@ -3900,22 +3900,22 @@ var dart = [
     P._scheduleAsyncCallback(f);
   },
   _AsyncRun__initializeScheduleImmediate_internalCallback: {
-    "^": "Closure:2;_box_0",
+    "^": "Closure:2;_async$_box_0",
     call$1: function(_) {
       var t1, f;
       H.leaveJsAsync();
-      t1 = this._box_0;
+      t1 = this._async$_box_0;
       f = t1._captured_storedCallback_0;
       t1._captured_storedCallback_0 = null;
       f.call$0();
     }
   },
   _AsyncRun__initializeScheduleImmediate_closure: {
-    "^": "Closure:5;_box_0,_captured_div_1,_captured_span_2",
+    "^": "Closure:5;_async$_box_0,_captured_div_1,_captured_span_2",
     call$1: function(callback) {
       var t1, t2;
       ++init.globalState.topEventLoop._activeJsAsyncCount;
-      this._box_0._captured_storedCallback_0 = callback;
+      this._async$_box_0._captured_storedCallback_0 = callback;
       t1 = this._captured_div_1;
       t2 = this._captured_span_2;
       t1.firstChild ? t1.removeChild(t2) : t1.appendChild(t2);
@@ -4155,36 +4155,36 @@ var dart = [
     }
   },
   _SyncBroadcastStreamController__sendData_closure: {
-    "^": "Closure;_captured_this_0,_captured_data_1",
+    "^": "Closure;_async$_captured_this_0,_captured_data_1",
     call$1: function(subscription) {
       subscription._async$_add$1(this._captured_data_1);
     },
     $signature: function() {
       return H.computeSignature(function(T) {
         return {func: "", args: [[P._BufferingStreamSubscription, T]]};
-      }, this._captured_this_0, "_SyncBroadcastStreamController");
+      }, this._async$_captured_this_0, "_SyncBroadcastStreamController");
     }
   },
   _SyncBroadcastStreamController__sendError_closure: {
-    "^": "Closure;_captured_this_0,_captured_error_1,_captured_stackTrace_2",
+    "^": "Closure;_async$_captured_this_0,_captured_error_1,_captured_stackTrace_2",
     call$1: function(subscription) {
       subscription._addError$2(this._captured_error_1, this._captured_stackTrace_2);
     },
     $signature: function() {
       return H.computeSignature(function(T) {
         return {func: "", args: [[P._BufferingStreamSubscription, T]]};
-      }, this._captured_this_0, "_SyncBroadcastStreamController");
+      }, this._async$_captured_this_0, "_SyncBroadcastStreamController");
     }
   },
   _SyncBroadcastStreamController__sendDone_closure: {
-    "^": "Closure;_captured_this_0",
+    "^": "Closure;_async$_captured_this_0",
     call$1: function(subscription) {
       subscription._close$0();
     },
     $signature: function() {
       return H.computeSignature(function(T) {
         return {func: "", args: [[P._BroadcastSubscription, T]]};
-      }, this._captured_this_0, "_SyncBroadcastStreamController");
+      }, this._async$_captured_this_0, "_SyncBroadcastStreamController");
     }
   },
   _AsyncBroadcastStreamController: {
@@ -4489,9 +4489,9 @@ var dart = [
       }}
   },
   _Future__addListener_closure: {
-    "^": "Closure:0;_captured_this_0,_captured_listener_1",
+    "^": "Closure:0;_async$_captured_this_0,_captured_listener_1",
     call$0: function() {
-      P._Future__propagateToListeners(this._captured_this_0, this._captured_listener_1);
+      P._Future__propagateToListeners(this._async$_captured_this_0, this._captured_listener_1);
     }
   },
   _Future__chainForeignFuture_closure: {
@@ -4516,9 +4516,9 @@ var dart = [
     }
   },
   _Future__asyncComplete_closure: {
-    "^": "Closure:0;_captured_this_0,_captured_coreFuture_1",
+    "^": "Closure:0;_async$_captured_this_0,_captured_coreFuture_1",
     call$0: function() {
-      P._Future__chainCoreFuture(this._captured_coreFuture_1, this._captured_this_0);
+      P._Future__chainCoreFuture(this._captured_coreFuture_1, this._async$_captured_this_0);
     }
   },
   _Future__asyncComplete_closure0: {
@@ -4644,10 +4644,10 @@ var dart = [
     }
   },
   _Future__propagateToListeners_handleWhenCompleteCallback_closure0: {
-    "^": "Closure:8;_box_0,_captured_result_12",
+    "^": "Closure:8;_async$_box_0,_captured_result_12",
     call$2: function(error, stackTrace) {
       var t1, completeResult;
-      t1 = this._box_0;
+      t1 = this._async$_box_0;
       if (!(t1._captured_completeResult_0 instanceof P._Future)) {
         completeResult = H.setRuntimeTypeInfo(new P._Future(0, $.Zone__current, null), [null]);
         t1._captured_completeResult_0 = completeResult;
@@ -4703,9 +4703,9 @@ var dart = [
     }
   },
   Stream_forEach_closure: {
-    "^": "Closure;_box_0,_captured_this_1,_captured_action_2,_captured_future_3",
+    "^": "Closure;_async$_box_0,_captured_this_1,_captured_action_2,_captured_future_3",
     call$1: function(element) {
-      P._runUserCode(new P.Stream_forEach__closure(this._captured_action_2, element), new P.Stream_forEach__closure0(), P._cancelAndErrorClosure(this._box_0._captured_subscription_0, this._captured_future_3));
+      P._runUserCode(new P.Stream_forEach__closure(this._captured_action_2, element), new P.Stream_forEach__closure0(), P._cancelAndErrorClosure(this._async$_box_0._captured_subscription_0, this._captured_future_3));
     },
     $signature: function() {
       return H.computeSignature(function(T) {
@@ -4731,26 +4731,26 @@ var dart = [
     }
   },
   Stream_length_closure: {
-    "^": "Closure:2;_box_0",
+    "^": "Closure:2;_async$_box_0",
     call$1: function(_) {
-      ++this._box_0._captured_count_0;
+      ++this._async$_box_0._captured_count_0;
     }
   },
   Stream_length_closure0: {
-    "^": "Closure:0;_box_0,_captured_future_1",
+    "^": "Closure:0;_async$_box_0,_captured_future_1",
     call$0: function() {
-      this._captured_future_1._complete$1(this._box_0._captured_count_0);
+      this._captured_future_1._complete$1(this._async$_box_0._captured_count_0);
     }
   },
   Stream_toList_closure: {
-    "^": "Closure;_captured_this_0,_async$_captured_result_1",
+    "^": "Closure;_async$_captured_this_0,_async$_captured_result_1",
     call$1: function(data) {
       this._async$_captured_result_1.push(data);
     },
     $signature: function() {
       return H.computeSignature(function(T) {
         return {func: "", args: [T]};
-      }, this._captured_this_0, "Stream");
+      }, this._async$_captured_this_0, "Stream");
     }
   },
   Stream_toList_closure0: {
@@ -4760,9 +4760,9 @@ var dart = [
     }
   },
   Stream_first_closure: {
-    "^": "Closure;_box_0,_captured_this_1,_captured_future_2",
+    "^": "Closure;_async$_box_0,_captured_this_1,_captured_future_2",
     call$1: function(value) {
-      P._cancelAndValue(this._box_0._captured_subscription_0, this._captured_future_2, value);
+      P._cancelAndValue(this._async$_box_0._captured_subscription_0, this._captured_future_2, value);
     },
     $signature: function() {
       return H.computeSignature(function(T) {
@@ -5029,10 +5029,10 @@ var dart = [
       }}
   },
   _BufferingStreamSubscription__sendError_sendError: {
-    "^": "Closure:1;_captured_this_0,_captured_error_1,_captured_stackTrace_2",
+    "^": "Closure:1;_async$_captured_this_0,_captured_error_1,_captured_stackTrace_2",
     call$0: function() {
       var t1, t2, t3, t4, t5, t6;
-      t1 = this._captured_this_0;
+      t1 = this._async$_captured_this_0;
       t2 = t1._state;
       if ((t2 & 8) !== 0 && (t2 & 16) === 0)
         return;
@@ -5051,10 +5051,10 @@ var dart = [
     }
   },
   _BufferingStreamSubscription__sendDone_sendDone: {
-    "^": "Closure:1;_captured_this_0",
+    "^": "Closure:1;_async$_captured_this_0",
     call$0: function() {
       var t1, t2;
-      t1 = this._captured_this_0;
+      t1 = this._async$_captured_this_0;
       t2 = t1._state;
       if ((t2 & 16) === 0)
         return;
@@ -5121,10 +5121,10 @@ var dart = [
     }
   },
   _PendingEvents_schedule_closure: {
-    "^": "Closure:0;_captured_this_0,_captured_dispatch_1",
+    "^": "Closure:0;_async$_captured_this_0,_captured_dispatch_1",
     call$0: function() {
       var t1, oldState;
-      t1 = this._captured_this_0;
+      t1 = this._async$_captured_this_0;
       oldState = t1._state;
       t1._state = 0;
       if (oldState === 3)
@@ -5209,9 +5209,9 @@ var dart = [
     }
   },
   _cancelAndValue_closure: {
-    "^": "Closure:0;_captured_future_0,_captured_value_1",
+    "^": "Closure:0;_captured_future_0,_async$_captured_value_1",
     call$0: function() {
-      return this._captured_future_0._complete$1(this._captured_value_1);
+      return this._captured_future_0._complete$1(this._async$_captured_value_1);
     }
   },
   _ForwardingStream: {
@@ -5419,9 +5419,9 @@ var dart = [
     }
   },
   _RootZone_bindCallback_closure: {
-    "^": "Closure:0;_captured_this_0,_captured_f_1",
+    "^": "Closure:0;_async$_captured_this_0,_captured_f_1",
     call$0: function() {
-      return this._captured_this_0.runGuarded$1(this._captured_f_1);
+      return this._async$_captured_this_0.runGuarded$1(this._captured_f_1);
     }
   },
   _RootZone_bindCallback_closure0: {
@@ -5431,9 +5431,9 @@ var dart = [
     }
   },
   _RootZone_bindUnaryCallback_closure: {
-    "^": "Closure:2;_captured_this_0,_captured_f_1",
+    "^": "Closure:2;_async$_captured_this_0,_captured_f_1",
     call$1: function(arg) {
-      return this._captured_this_0.runUnaryGuarded$2(this._captured_f_1, arg);
+      return this._async$_captured_this_0.runUnaryGuarded$2(this._captured_f_1, arg);
     }
   },
   _RootZone_bindUnaryCallback_closure0: {
@@ -5453,10 +5453,10 @@ var dart = [
   },
   _defaultEquals: [function(a, b) {
     return J.$eq(a, b);
-  }, "call$2", "_defaultEquals$closure", 4, 0, 23],
+  }, "call$2", "_defaultEquals$closure", 4, 0, 24],
   _defaultHashCode: [function(a) {
     return J.get$hashCode$(a);
-  }, "call$1", "_defaultHashCode$closure", 2, 0, 24],
+  }, "call$1", "_defaultHashCode$closure", 2, 0, 25],
   IterableBase_iterableToShortString: function(iterable, leftDelimiter, rightDelimiter) {
     var parts, t1;
     if (P.IterableBase__isToStringVisiting(iterable)) {
@@ -5622,7 +5622,7 @@ var dart = [
     return t1.charCodeAt(0) == 0 ? t1 : t1;
   },
   _LinkedIdentityHashMap: {
-    "^": "JsLinkedHashMap;__js_helper$_length,_strings,_nums,_rest,_first,_last,_modifications",
+    "^": "JsLinkedHashMap;_length,_strings,_nums,_rest,_first,_last,_modifications",
     internalComputeHashCode$1: function(key) {
       return H.objectHashCode(key) & 0x3ffffff;
     },
@@ -6160,10 +6160,10 @@ var dart = [
   },
   identical: [function(a, b) {
     return a == null ? b == null : a === b;
-  }, "call$2", "identical$closure", 4, 0, 25],
+  }, "call$2", "identical$closure", 4, 0, 26],
   identityHashCode: [function(object) {
     return H.objectHashCode(object);
-  }, "call$1", "identityHashCode$closure", 2, 0, 26],
+  }, "call$1", "identityHashCode$closure", 2, 0, 27],
   List_List$from: function(elements, growable, $E) {
     var list, t1;
     list = H.setRuntimeTypeInfo([], [$E]);
@@ -6179,9 +6179,9 @@ var dart = [
     H.printString(line);
   },
   NoSuchMethodError_toString_closure: {
-    "^": "Closure:13;_core$_box_0",
+    "^": "Closure:13;_box_0",
     call$2: function(key, value) {
-      var t1 = this._core$_box_0;
+      var t1 = this._box_0;
       if (t1._captured_i_1 > 0)
         t1._captured_sb_0._contents += ", ";
       P._symbolToString(key);
@@ -6381,7 +6381,10 @@ var dart = [
   ConcurrentModificationError: {
     "^": "Error;modifiedObject",
     toString$0: function(_) {
-      return "Concurrent modification during iteration: " + H.S(P.Error_safeToString(this.modifiedObject)) + ".";
+      var t1 = this.modifiedObject;
+      if (t1 == null)
+        return "Concurrent modification during iteration.";
+      return "Concurrent modification during iteration: " + H.S(P.Error_safeToString(t1)) + ".";
     },
     static: {ConcurrentModificationError$: function(modifiedObject) {
         return new P.ConcurrentModificationError(modifiedObject);
@@ -6534,7 +6537,7 @@ var dart = [
     else if (P.Device_isOpera() === true)
       return "oTransitionEnd";
     return "transitionend";
-  }, "call$1", "Element__determineTransitionEventType$closure", 2, 0, 27],
+  }, "call$1", "Element__determineTransitionEventType$closure", 2, 0, 28],
   _JenkinsSmiHash_combine: function(hash, value) {
     hash = 536870911 & hash + value;
     hash = 536870911 & hash + ((524287 & hash) << 10 >>> 0);
@@ -6696,9 +6699,9 @@ var dart = [
     }
   },
   _CssStyleDeclarationSet_setProperty_closure: {
-    "^": "Closure:2;_captured_propertyName_0,_html$_captured_value_1,_captured_priority_2",
+    "^": "Closure:2;_captured_propertyName_0,_captured_value_1,_captured_priority_2",
     call$1: function(e) {
-      return J.setProperty$3$x(e, this._captured_propertyName_0, this._html$_captured_value_1, this._captured_priority_2);
+      return J.setProperty$3$x(e, this._captured_propertyName_0, this._captured_value_1, this._captured_priority_2);
     }
   },
   CssStyleDeclarationBase: {
@@ -6884,6 +6887,9 @@ var dart = [
     get$onClick: function(receiver) {
       return C.EventStreamProvider_click.forElement$1(receiver);
     },
+    get$onMouseDown: function(receiver) {
+      return C.EventStreamProvider_mousedown.forElement$1(receiver);
+    },
     $isElement: 1,
     $isNode: 1,
     $isEventTarget: 1,
@@ -6999,12 +7005,6 @@ var dart = [
     select$0: function(receiver) {
       return receiver.select();
     },
-    setSelectionRange$3: function(receiver, start, end, direction) {
-      return receiver.setSelectionRange(start, end, direction);
-    },
-    setSelectionRange$2: function($receiver, start, end) {
-      return $receiver.setSelectionRange(start, end);
-    },
     $isInputElement: 1,
     $isHtmlElement: 1,
     $isElement: 1,
@@ -7048,6 +7048,7 @@ var dart = [
   },
   MouseEvent: {
     "^": "UIEvent;",
+    $isMouseEvent: 1,
     $isEvent: 1,
     $isObject: 1,
     "%": "DragEvent|MSPointerEvent|MouseEvent|MouseScrollEvent|MouseWheelEvent|PointerEvent|WheelEvent"
@@ -7212,12 +7213,6 @@ var dart = [
     "^": "HtmlElement;name=,value=",
     select$0: function(receiver) {
       return receiver.select();
-    },
-    setSelectionRange$3: function(receiver, start, end, direction) {
-      return receiver.setSelectionRange(start, end, direction);
-    },
-    setSelectionRange$2: function($receiver, start, end) {
-      return $receiver.setSelectionRange(start, end);
     },
     "%": "HTMLTextAreaElement"
   },
@@ -7728,6 +7723,9 @@ var dart = [
     },
     get$onClick: function(receiver) {
       return C.EventStreamProvider_click.forElement$1(receiver);
+    },
+    get$onMouseDown: function(receiver) {
+      return C.EventStreamProvider_mousedown.forElement$1(receiver);
     },
     $isEventTarget: 1,
     $isInterceptor: 1,
@@ -8608,18 +8606,23 @@ var dart = [
         J.addEventListener$3$x(t5._target, t3, t2, t4);
       J.get$children$x($.get$toggleButtons()).add$1(0, toggle);
     }
-    t1 = J.get$onClick$x($.get$output());
+    t1 = J.get$onMouseDown$x($.get$output());
     H.setRuntimeTypeInfo(new W._EventStreamSubscription(0, t1._target, t1._eventType, W._wrapZone(new F.main_closure8()), t1._useCapture), [H.getTypeArgumentByIndex(t1, 0)])._tryResume$0();
-    t1 = J.get$onClick$x($.get$clearButton());
+    t1 = $.get$output();
+    t1.toString;
+    t1 = C.EventStreamProvider_copy.forElement$1(t1);
     H.setRuntimeTypeInfo(new W._EventStreamSubscription(0, t1._target, t1._eventType, W._wrapZone(new F.main_closure9()), t1._useCapture), [H.getTypeArgumentByIndex(t1, 0)])._tryResume$0();
-    t1 = J.get$onClick$x($.get$toggleMenuButton());
+    t1 = J.get$onClick$x($.get$clearButton());
     H.setRuntimeTypeInfo(new W._EventStreamSubscription(0, t1._target, t1._eventType, W._wrapZone(new F.main_closure10()), t1._useCapture), [H.getTypeArgumentByIndex(t1, 0)])._tryResume$0();
+    t1 = J.get$onClick$x($.get$toggleMenuButton());
+    H.setRuntimeTypeInfo(new W._EventStreamSubscription(0, t1._target, t1._eventType, W._wrapZone(new F.main_closure11()), t1._useCapture), [H.getTypeArgumentByIndex(t1, 0)])._tryResume$0();
     F.showNotification("Loaded!", 3);
     t1 = $.get$loading();
     J.set$opacity$x(t1.style, "0");
     t1.toString;
     t1 = C._CustomEventStreamProvider__determineTransitionEventType.forElement$1(t1);
-    t1.get$first(t1).then$1(new F.main_closure11());
+    t1.get$first(t1).then$1(new F.main_closure12());
+    F.generate();
   }, "call$0", "main$closure", 0, 0, 1],
   generate: function() {
     var types, categories, category, e, t1, t2, t3, t4, exception;
@@ -8815,27 +8818,28 @@ var dart = [
     }
   },
   main_closure8: {
-    "^": "Closure:16;",
+    "^": "Closure:17;",
     call$1: function(e) {
-      var t1;
       J.preventDefault$0$x(e);
-      t1 = $.get$output();
-      if (t1.textContent.length > 0) {
-        J.select$0$x(t1);
-        document.execCommand("copy", null, "");
-        J.setSelectionRange$2$x($.get$output(), 0, 0);
-        F.showNotification("Copied to clipboard", 3);
-      } else
-        F.showNotification("Nothing to copy!", 3);
+      J.select$0$x($.get$output());
     }
   },
   main_closure9: {
     "^": "Closure:2;",
     call$1: function(_) {
-      return F.clear();
+      if ($.get$output().textContent.length > 0)
+        F.showNotification("Copied to clipboard", 3);
+      else
+        F.showNotification("Nothing to copy!", 3);
     }
   },
   main_closure10: {
+    "^": "Closure:2;",
+    call$1: function(_) {
+      return F.clear();
+    }
+  },
+  main_closure11: {
     "^": "Closure:2;",
     call$1: function(_) {
       var wrapper, t1;
@@ -8847,39 +8851,39 @@ var dart = [
         t1.get$classes(wrapper).add$1(0, "showMenu");
     }
   },
-  main_closure11: {
+  main_closure12: {
     "^": "Closure:2;",
     call$1: function(_) {
       return J.remove$0$ax($.get$loading());
     }
   },
   getTypes_closure: {
-    "^": "Closure:17;",
+    "^": "Closure:18;",
     call$1: function(e) {
       return !!J.getInterceptor(e).$isInputElement && e.type === "checkbox" && e.checked === true;
     }
   },
   getTypes_closure0: {
-    "^": "Closure:18;",
+    "^": "Closure:19;",
     call$1: function(e) {
       return J.get$value$x(e);
     }
   },
   getTypes_closure1: {
-    "^": "Closure:19;_captured_selectedTypeStrings_0",
+    "^": "Closure:20;_captured_selectedTypeStrings_0",
     call$1: function(type) {
       return C.JSArray_methods.contains$1(this._captured_selectedTypeStrings_0, J.toString$0(type));
     }
   },
   getCategories_closure: {
-    "^": "Closure:20;",
+    "^": "Closure:21;",
     call$1: function(e) {
       var t1 = J.getInterceptor$x(e);
       return J.get$display$x(J.get$style$x(t1.get$parent(e))) !== "none" && J.get$display$x(J.get$style$x(t1.get$parent(e))) !== "" && !t1.get$classes(e).readClasses$0().contains$1(0, "secondary");
     }
   },
   getCategories_closure0: {
-    "^": "Closure:20;",
+    "^": "Closure:21;",
     call$1: function(e) {
       var t1, builder, t2, selectedModifier, roundnessGrade, modifier;
       t1 = J.getInterceptor$x(e);
@@ -8922,7 +8926,7 @@ var dart = [
     }
   },
   clear_closure: {
-    "^": "Closure:17;",
+    "^": "Closure:18;",
     call$1: function(e) {
       return !!J.getInterceptor(e).$isInputElement && e.type === "checkbox" && e.checked === true;
     }
@@ -9103,6 +9107,9 @@ J.get$maxHeight$x = function(receiver) {
 J.get$onClick$x = function(receiver) {
   return J.getInterceptor$x(receiver).get$onClick(receiver);
 };
+J.get$onMouseDown$x = function(receiver) {
+  return J.getInterceptor$x(receiver).get$onMouseDown(receiver);
+};
 J.get$style$x = function(receiver) {
   return J.getInterceptor$x(receiver).get$style(receiver);
 };
@@ -9154,9 +9161,6 @@ J.set$opacity$x = function(receiver, value) {
 J.setProperty$3$x = function(receiver, a0, a1, a2) {
   return J.getInterceptor$x(receiver).setProperty$3(receiver, a0, a1, a2);
 };
-J.setSelectionRange$2$x = function(receiver, a0, a1) {
-  return J.getInterceptor$x(receiver).setSelectionRange$2(receiver, a0, a1);
-};
 J.toString$0 = function(receiver) {
   return J.getInterceptor(receiver).toString$0(receiver);
 };
@@ -9176,6 +9180,8 @@ C.C__RootZone = new P._RootZone();
 C.Duration_0 = new P.Duration(0);
 C.EventStreamProvider_change = new W.EventStreamProvider("change");
 C.EventStreamProvider_click = new W.EventStreamProvider("click");
+C.EventStreamProvider_copy = new W.EventStreamProvider("copy");
+C.EventStreamProvider_mousedown = new W.EventStreamProvider("mousedown");
 C.EventStreamProvider_resize = new W.EventStreamProvider("resize");
 C.Gender_0 = new V.Gender(0);
 C.Gender_1 = new V.Gender(1);
@@ -9577,6 +9583,7 @@ init.types = [{func: ""},
 {func: "", ret: P.String, args: [P.$int]},
 {func: "", ret: V.UnixGeekCodeCategoryBuilder, args: [V.UnixType]},
 {func: "", args: [W.Event]},
+{func: "", args: [W.MouseEvent]},
 {func: "", args: [W.Element]},
 {func: "", args: [W.InputElement]},
 {func: "", args: [Z.GeekCodeType]},
