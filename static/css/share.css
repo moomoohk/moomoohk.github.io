@@ -26,8 +26,13 @@
 	margin-left: 2px;
 }
 
-a.share:hover {
+a.share {
+	color: #444444;
 	text-decoration: none;
+	-webkit-transition: color 0.2s;
+ 	-moz-transition: color 0.2s;
+ 	-o-transition: color 0.2s;
+  	transition: color 0.2s;
 }
 
 /* https://www.competethemes.com/social-media-colors/ */
