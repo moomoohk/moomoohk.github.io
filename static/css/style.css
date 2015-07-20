@@ -20,6 +20,7 @@ body {
     box-shadow: 0px 10px 15px #f5f5f5;
     border-radius: 4px;
     padding: 20px;
+    padding-top: 10px;
     /* no vertical scrollbars for IE 7 */
     /* no vertical scrollbars for IE 6 */ }
     body section p {
@@ -27,6 +28,7 @@ body {
       margin-bottom: 5px;
       padding-left: 10px; }
     body section ul, body section ol {
+      margin-top: 5px;
       padding-left: 30px; }
     body section code {
       font-family: "PT Mono", monospace;
