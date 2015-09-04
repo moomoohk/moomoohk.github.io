@@ -1,7 +1,9 @@
 <!doctype html>
 <html>
 	<head>
-		<meta charset="utf-8">
+		<title>moomoohk</title>
+
+<meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Developing an OSX Application in Java">
@@ -20,8 +22,6 @@
 
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:400italic,400,700italic,700" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Mono" rel="stylesheet" type="text/css">
-
-<title>moomoohk</title>
 
 <script type="application/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script type="application/javascript" src="/static/js/konami/konami.js"></script>
@@ -529,7 +529,8 @@ public abstract class MacOSXAppEventAdapter implements AboutHandler, Preferences
 
 <p>Here's an example:</p>
 
-<p>display notification "Message" with title "Title" subtitle "Subtitle" sound name "Glass"</p>
+<pre><code>display notification "Message" with title "Title" subtitle "Subtitle" sound name "Glass"
+</code></pre>
 
 <p>will produce this (while playing /System/Library/Sounds/Glass.aiff):</p>
 
@@ -541,11 +542,13 @@ public abstract class MacOSXAppEventAdapter implements AboutHandler, Preferences
 
 <p><strong>Runtime.exec</strong></p>
 
-<p>Runtime.getRuntime().exec(new String[] { "osascript", "-e", "display notification "Message" with title "Title" subtitle "Subtitle" sound name "Glass"" });</p>
+<pre><code>Runtime.getRuntime().exec(new String[] { "osascript", "-e", "display notification "Message" with title "Title" subtitle "Subtitle" sound name "Glass"" });
+</code></pre>
 
 <p><strong>ProcessBuilder</strong></p>
 
-<p>new ProcessBuilder("osascript", "-e", "display notification "Message" with title "Title" subtitle "Subtitle" sound name "Glass"").start();</p>
+<pre><code>new ProcessBuilder("osascript", "-e", "display notification "Message" with title "Title" subtitle "Subtitle" sound name "Glass"").start();
+</code></pre>
 
 <p><strong>ScriptEngine</strong></p>
 
@@ -553,7 +556,8 @@ public abstract class MacOSXAppEventAdapter implements AboutHandler, Preferences
 
 <p>I'm on OS X Mavericks (10.9) and I tried this solution with both Java 1.6 and 1.7 but neither worked.</p>
 
-<p>new ScriptEngineManager().getEngineByName("AppleScript").eval("display notification "Message" with title "Title" subtitle "Subtitle" sound name "Glass"");</p>
+<pre><code>new ScriptEngineManager().getEngineByName("AppleScript").eval("display notification "Message" with title "Title" subtitle "Subtitle" sound name "Glass"");
+</code></pre>
 
 <p>So the upside to this AppleScript approach is that it's fully vanilla Java, the downside is that you're extremely limited with what you can produce.</p></li>
 <li><p><a href="http://growl.info/">Growl</a>: I don't really like Growl and wouldn't use it if I had the choice but it seems like a pretty viable solution, especially since it lets users set whether Growl notifications get forwarded to NC. That's as close as you'll get without some weird hack (coming up next).</p>
@@ -747,7 +751,7 @@ public class GestureListenerTest
 
 <p>Unfortunately this scroll bar style isn't available out of the box (even with the OS X Look and Feel set).</p>
 
-<p>I did come across <a href="http://www.andrewdcox.com/blog/2012/08/05/update-mac-os-x-lion-jscrollpane-customization/">this workaround</a> a while ago but I haven't tested it extensively.</p>
+<p>I did come across <a href="https://curiousandcrazy.wordpress.com/2012/08/05/update-mac-os-x-lion-jscrollpane-customization/">this workaround</a> a while ago but I haven't tested it extensively.</p>
 
 <h2>Documentation and Source Code</h2>
 
@@ -790,6 +794,7 @@ public class GestureListenerTest
 <li>15/10/14: Added Multitouch Gesture section</li>
 <li>15/10/14: Added Auto Hiding Scrollbar section</li>
 <li>18/10/14: Added Documentation and Source section</li>
+<li>9/4/15: Fixed a broken link and some bad formatting</li>
 </ul>
 
 
