@@ -8,3 +8,4 @@
 * 15/10/14: Added Multitouch Gesture section
 * 15/10/14: Added Auto Hiding Scrollbar section
 * 18/10/14: Added Documentation and Source section
+* 9/4/15: Fixed a broken link and some bad formatting
