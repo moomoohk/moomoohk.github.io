@@ -12,18 +12,24 @@
 
 .currentSlideContainer {
   position: relative;
+  height: 400px;
 }
 
-.currentSlideContainer.link {
+.currentSlideContainer.link > span.currentSlideText {
   cursor: pointer;
 }
 
 .currentSlide {
   border-radius: 4px;
   display: block;
-  margin: auto;
   max-width: 100%;
   max-height: 400px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
 }
 
 .currentSlideText {
@@ -105,10 +111,7 @@
   flex: none;
   width: 30px;
   height: 90px;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
-  border-bottom-left-radius: 5px;
+  border-radius: 5px;
   cursor: pointer;
   background-color: #E6E6E6;
   text-align: center;
