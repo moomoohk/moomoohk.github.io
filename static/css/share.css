@@ -35,6 +35,10 @@ a.share {
   	transition: color 0.2s;
 }
 
+a.share:hover {
+    text-decoration: none;
+}
+
 /* https://www.competethemes.com/social-media-colors/ */
 a.share.facebook:hover {
 	color: #3a5795;
